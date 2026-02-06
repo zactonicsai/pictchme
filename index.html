@@ -16,23 +16,49 @@
         <div class="flex items-center justify-between gap-3">
           <div>
             <h1 class="text-lg sm:text-xl font-bold leading-tight">Shark Tank Classroom Pitch Library</h1>
-            <p class="text-xs sm:text-sm text-slate-600">Pick a pitch, read the script, and review the “Shark Questions” info.</p>
+            <p class="text-xs sm:text-sm text-slate-600">
+              Pick a pitch, read the script, then tap “Shark Questions” to see answers.
+            </p>
           </div>
-          <button id="tipsBtn" class="shrink-0 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 active:scale-[0.99]">
+          <button id="tipsBtn"
+            class="shrink-0 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 active:scale-[0.99]">
             💡 Tips
           </button>
         </div>
 
-        <!-- What Sharks Ask -->
+        <!-- What Sharks Ask (CLICKABLE CHIPS) -->
         <div class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 sm:p-4">
-          <div class="text-sm font-semibold mb-2">What Sharks Ask (Include these in every pitch):</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-slate-700">
-            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ What is your business?</div>
-            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Who will buy it?</div>
-            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Cost to start?</div>
-            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Selling price?</div>
-            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Why will it succeed?</div>
-            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ How investors profit?</div>
+          <div class="text-sm font-semibold mb-2">What Sharks Ask (tap a question):</div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+            <button data-q="business" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
+              ✅ What is your business?
+              <div class="text-xs text-slate-500">What do you sell or do?</div>
+            </button>
+            <button data-q="customers" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
+              ✅ Who will buy it?
+              <div class="text-xs text-slate-500">Target customers</div>
+            </button>
+            <button data-q="startupCost" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
+              ✅ Cost to start?
+              <div class="text-xs text-slate-500">What you must buy first</div>
+            </button>
+            <button data-q="sellingPrice" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
+              ✅ Selling price?
+              <div class="text-xs text-slate-500">How much customers pay</div>
+            </button>
+            <button data-q="whySucceed" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
+              ✅ Why will it succeed?
+              <div class="text-xs text-slate-500">Why people will choose you</div>
+            </button>
+            <button data-q="investorProfit" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
+              ✅ How investors profit?
+              <div class="text-xs text-slate-500">How Sharks get paid back</div>
+            </button>
+          </div>
+
+          <div class="mt-2 text-xs text-slate-600">
+            Tip: select a pitch first — then these questions show that pitch’s answers.
           </div>
         </div>
       </div>
@@ -137,13 +163,11 @@
         <div class="p-4 border-b border-slate-200">
           <div class="flex items-center justify-between">
             <h2 class="text-base font-bold">Pitch List</h2>
-            <span class="text-xs text-slate-600">Tap a card → choose Script or Shark Questions</span>
+            <span class="text-xs text-slate-600">Tap Script to read aloud • Tap Shark Questions for details</span>
           </div>
         </div>
 
-        <div id="pitchList" class="p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <!-- cards rendered here -->
-        </div>
+        <div id="pitchList" class="p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
       </div>
 
       <!-- Investment Tracker -->
@@ -216,9 +240,8 @@
   <div id="modalBackdrop" class="fixed inset-0 z-40 hidden">
     <div class="absolute inset-0 bg-slate-900/50"></div>
     <div class="absolute inset-0 flex items-end sm:items-center justify-center p-3 sm:p-6">
-      <div id="modalPanel"
-           class="w-full sm:max-w-2xl rounded-3xl bg-white shadow-xl border border-slate-200 overflow-hidden">
-        <!-- Modal header -->
+      <!-- bottom-sheet on mobile, centered on larger screens -->
+      <div class="w-full sm:max-w-2xl rounded-3xl bg-white shadow-xl border border-slate-200 overflow-hidden">
         <div class="flex items-start justify-between gap-3 p-4 border-b border-slate-200">
           <div>
             <div id="modalTitle" class="text-base sm:text-lg font-bold leading-tight">Modal Title</div>
@@ -230,10 +253,8 @@
           </button>
         </div>
 
-        <!-- Modal content -->
         <div id="modalBody" class="p-4 max-h-[72vh] overflow-auto"></div>
 
-        <!-- Modal footer -->
         <div class="p-4 border-t border-slate-200 flex flex-col sm:flex-row gap-2 sm:justify-end">
           <button id="modalCopyBtn"
                   class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50">
@@ -272,7 +293,7 @@ const DEFAULT_PITCHES = [
     investorProfit: "Investors earn a share of profit from every bundle sold (ownership percentage).",
     askMoney: 15,
     askEquity: 20,
-    profitProjection: 20, // projected total profit for the “round” (editable)
+    profitProjection: 20,
     script: [
       "Hello Sharks! My name is ____ and today I’m presenting my business called Snack Attack Packs.",
       "The problem is students often get hungry between classes and don’t want expensive vending prices.",
@@ -357,65 +378,12 @@ const DEFAULT_PITCHES = [
       "We’re asking for $8 for 20% ownership, and investors profit from every study set sold.",
       "Thank you Sharks — questions?"
     ]
-  },
-  {
-    id: "oops-kits",
-    title: "Oops Supply Kits",
-    type: "Product",
-    keywords: ["pencils", "erasers", "school supplies", "forgot"],
-    business: "We sell mini emergency supply kits (pencil, eraser, paper, etc.).",
-    customers: "Students who forget supplies or want backups in their backpack/locker.",
-    startupCost: 12,
-    unitCost: 1.00,
-    sellingPrice: 2.50,
-    whySucceed: "Convenience sells; students forget supplies often; repeat customers.",
-    investorProfit: "Investors earn a share of profit per kit sold.",
-    askMoney: 12,
-    askEquity: 20,
-    profitProjection: 16,
-    script: [
-      "Hello Sharks! I’m ____ and my business is Oops Supply Kits.",
-      "The problem is students forget supplies and get stuck in class.",
-      "My solution is a small kit with the essentials so students can stay prepared.",
-      "Each kit costs about $1 to make and sells for $2.50.",
-      "Customers are students who want backups and teachers who recommend preparedness.",
-      "I’m asking for $12 for 20% ownership, and investors profit from each kit sold.",
-      "Thank you Sharks — I’m ready for questions!"
-    ]
-  },
-  {
-    id: "brain-break",
-    title: "Brain Break Games",
-    type: "Events",
-    keywords: ["games", "trivia", "tournament", "fun"],
-    business: "We run quick game sessions (trivia, puzzles, mini-tournaments) during approved times.",
-    customers: "Students who want fun, low-cost entertainment with friends.",
-    startupCost: 8,
-    unitCost: 0.05,
-    sellingPrice: 1.00,
-    whySucceed: "Entertainment attracts crowds; we can rotate games to stay fresh.",
-    investorProfit: "Investors earn from entry fees and small add-ons like puzzle sheets.",
-    askMoney: 8,
-    askEquity: 20,
-    profitProjection: 14,
-    script: [
-      "Hello Sharks! I’m ____ and my business is Brain Break Games.",
-      "The problem is students want fun activities during free time, but there aren’t many options.",
-      "Our solution is quick trivia and puzzle challenges with entry fees and prizes.",
-      "Startup cost is small, and we charge $1 per game session.",
-      "Customers are students who want a fun brain break with friends.",
-      "We’re asking for $8 for 20% ownership, and investors profit from each entry fee.",
-      "Thank you Sharks — questions?"
-    ]
   }
 ];
 
 const STORAGE_KEY = "classroom_sharktank_pitches_v1";
 const DECISIONS_KEY = "classroom_sharktank_decisions_v1";
 
-/* ---------------------------
-   State
---------------------------- */
 let pitches = loadPitches();
 let selectedPitchId = null;
 
@@ -426,24 +394,38 @@ function money(n) {
   const x = Number(n || 0);
   return x.toLocaleString(undefined, { style: "currency", currency: "USD" });
 }
-
 function calcInvestorReturn(totalProfit, equityPct) {
   const p = Math.max(0, Number(totalProfit || 0));
   const e = Math.max(0, Math.min(100, Number(equityPct || 0)));
   return p * (e / 100);
 }
-
 function calcRoiPct(investment, investorReturn) {
   const inv = Math.max(0, Number(investment || 0));
   if (!inv) return 0;
   return ((Math.max(0, investorReturn) - inv) / inv) * 100;
 }
-
 function toast(msg="Copied!") {
   const t = document.getElementById("toast");
   t.querySelector("div").textContent = msg;
   t.classList.remove("hidden");
   setTimeout(()=>t.classList.add("hidden"), 900);
+}
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+function tagClass(type) {
+  switch(type) {
+    case "Service": return "bg-emerald-50 border-emerald-200 text-emerald-800";
+    case "Product": return "bg-blue-50 border-blue-200 text-blue-800";
+    case "Creative": return "bg-fuchsia-50 border-fuchsia-200 text-fuchsia-800";
+    case "Events": return "bg-amber-50 border-amber-200 text-amber-900";
+    default: return "bg-slate-50 border-slate-200 text-slate-700";
+  }
 }
 
 /* ---------------------------
@@ -460,11 +442,9 @@ function loadPitches() {
     return structuredClone(DEFAULT_PITCHES);
   }
 }
-
 function savePitches() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(pitches, null, 2));
 }
-
 function loadDecisions() {
   try {
     const raw = localStorage.getItem(DECISIONS_KEY);
@@ -475,7 +455,6 @@ function loadDecisions() {
     return [];
   }
 }
-
 function saveDecisions(list) {
   localStorage.setItem(DECISIONS_KEY, JSON.stringify(list, null, 2));
 }
@@ -492,10 +471,7 @@ function renderPitches() {
 
   const filtered = pitches.filter(p => {
     const matchesFilter = (filter === "all") || (p.type === filter);
-    const blob = [
-      p.title, p.type, ...(p.keywords||[]),
-      p.business, p.customers
-    ].join(" ").toLowerCase();
+    const blob = [p.title, p.type, ...(p.keywords||[]), p.business, p.customers].join(" ").toLowerCase();
     const matchesQuery = !q || blob.includes(q);
     return matchesFilter && matchesQuery;
   });
@@ -503,9 +479,8 @@ function renderPitches() {
   document.getElementById("countLabel").textContent = filtered.length;
 
   filtered.forEach(p => {
-    const card = document.createElement("div");
     const selected = p.id === selectedPitchId;
-
+    const card = document.createElement("div");
     card.className = [
       "rounded-2xl border bg-white p-4 shadow-sm hover:shadow transition",
       selected ? "border-slate-900 ring-2 ring-slate-900/10" : "border-slate-200"
@@ -551,21 +526,10 @@ function renderPitches() {
   });
 }
 
-function tagClass(type) {
-  switch(type) {
-    case "Service": return "bg-emerald-50 border-emerald-200 text-emerald-800";
-    case "Product": return "bg-blue-50 border-blue-200 text-blue-800";
-    case "Creative": return "bg-fuchsia-50 border-fuchsia-200 text-fuchsia-800";
-    case "Events": return "bg-amber-50 border-amber-200 text-amber-900";
-    default: return "bg-slate-50 border-slate-200 text-slate-700";
-  }
-}
-
 function selectPitch(id) {
   selectedPitchId = id;
   const p = pitches.find(x => x.id === id);
   document.getElementById("selectedPitchLabel").textContent = p ? `${p.title} (${p.type})` : "None selected";
-  // default tracker values from pitch
   document.getElementById("bidAmount").value = p ? p.askMoney : 0;
   document.getElementById("bidEquity").value = p ? p.askEquity : 0;
   document.getElementById("pitchProfitProjection").value = p ? p.profitProjection : 0;
@@ -583,7 +547,6 @@ const modalBody = document.getElementById("modalBody");
 const modalCloseBtn = document.getElementById("modalCloseBtn");
 const modalOkBtn = document.getElementById("modalOkBtn");
 const modalCopyBtn = document.getElementById("modalCopyBtn");
-
 let currentModalCopyText = "";
 
 function openModal({title, subtitle, bodyHtml, copyText}) {
@@ -591,55 +554,37 @@ function openModal({title, subtitle, bodyHtml, copyText}) {
   modalSubtitle.textContent = subtitle || "";
   modalBody.innerHTML = bodyHtml || "";
   currentModalCopyText = copyText || "";
-
   modalBackdrop.classList.remove("hidden");
   document.body.classList.add("overflow-hidden");
-
-  // focus close for accessibility
   setTimeout(()=>modalCloseBtn.focus(), 0);
 }
-
 function closeModal() {
   modalBackdrop.classList.add("hidden");
   document.body.classList.remove("overflow-hidden");
 }
-
 modalCloseBtn.addEventListener("click", closeModal);
 modalOkBtn.addEventListener("click", closeModal);
-modalBackdrop.addEventListener("click", (e) => {
-  if (e.target === modalBackdrop) closeModal();
-});
-document.addEventListener("keydown", (e) => {
-  if (!modalBackdrop.classList.contains("hidden") && e.key === "Escape") closeModal();
-});
-
+modalBackdrop.addEventListener("click", (e) => { if (e.target === modalBackdrop) closeModal(); });
+document.addEventListener("keydown", (e) => { if (!modalBackdrop.classList.contains("hidden") && e.key === "Escape") closeModal(); });
 modalCopyBtn.addEventListener("click", async () => {
   if (!currentModalCopyText) return toast("Nothing to copy");
-  try {
-    await navigator.clipboard.writeText(currentModalCopyText);
-    toast("Copied!");
-  } catch {
-    toast("Copy blocked");
-  }
+  try { await navigator.clipboard.writeText(currentModalCopyText); toast("Copied!"); }
+  catch { toast("Copy blocked"); }
 });
 
 function openScriptModal(pitchId) {
   const p = pitches.find(x => x.id === pitchId);
   if (!p) return;
-
   const scriptText = (p.script || []).map((line, idx) => `${idx+1}. ${line}`).join("\n");
-
   const body = `
     <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
       <div class="text-xs font-semibold text-slate-600 mb-1">Student Script (read it out loud)</div>
       <pre class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900 font-medium">${escapeHtml(scriptText)}</pre>
     </div>
-
     <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
       <div class="rounded-2xl border border-slate-200 p-3">
         <div class="text-xs font-semibold text-slate-600">Suggested Ask</div>
         <div class="text-lg font-bold">${money(p.askMoney)} for ${Number(p.askEquity||0)}%</div>
-        <div class="text-xs text-slate-600 mt-1">You can negotiate: change money or % during Q&A.</div>
       </div>
       <div class="rounded-2xl border border-slate-200 p-3">
         <div class="text-xs font-semibold text-slate-600">Quick Numbers</div>
@@ -650,19 +595,22 @@ function openScriptModal(pitchId) {
         </div>
       </div>
     </div>
-
-    <div class="mt-3 text-sm text-slate-700">
-      <div class="font-semibold mb-1">Practice Tip:</div>
-      Speak slowly. Smile. Pause after each sentence. If you forget a line, just say it in your own words.
-    </div>
   `;
-
   openModal({
     title: `🎤 Script: ${p.title}`,
-    subtitle: "This is the speech students can read as their pitch script.",
+    subtitle: "This is the script a student can read during their pitch.",
     bodyHtml: body,
     copyText: scriptText
   });
+}
+
+function qaBlock(label, value, compact=false) {
+  return `
+    <div class="rounded-2xl border border-slate-200 ${compact ? "p-3" : "p-4"}">
+      <div class="text-xs font-semibold text-slate-600">${escapeHtml(label)}</div>
+      <div class="mt-1 text-sm text-slate-900 leading-relaxed">${escapeHtml(value)}</div>
+    </div>
+  `;
 }
 
 function openInfoModal(pitchId) {
@@ -694,40 +642,85 @@ ${p.investorProfit}
       ${qaBlock("What is your business?", p.business)}
       ${qaBlock("Who will buy it?", p.customers)}
       ${qaBlock("Cost to start?", `${money(p.startupCost)} (startup cost)`)}
-
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         ${qaBlock("Selling price?", `${money(p.sellingPrice)} per sale`, true)}
         ${qaBlock("Unit cost?", `${money(p.unitCost)} per item`, true)}
       </div>
-
       ${qaBlock("Why will it succeed?", p.whySucceed)}
       ${qaBlock("How investors profit?", p.investorProfit)}
-
       <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
         <div class="text-xs font-semibold text-slate-600">Suggested Ask</div>
         <div class="text-lg font-bold">${money(p.askMoney)} for ${Number(p.askEquity||0)}%</div>
-        <div class="text-xs text-slate-600 mt-1">Use this as a starting point for negotiation.</div>
       </div>
     </div>
   `;
 
   openModal({
     title: `📌 Shark Questions: ${p.title}`,
-    subtitle: "These are the answers Sharks expect to hear (students can memorize or read).",
+    subtitle: "These are the answers Sharks expect to hear.",
     bodyHtml: body,
     copyText: qas
   });
 }
 
-function qaBlock(label, value, compact=false) {
-  return `
-    <div class="rounded-2xl border border-slate-200 ${compact ? "p-3" : "p-4"}">
-      <div class="text-xs font-semibold text-slate-600">${escapeHtml(label)}</div>
-      <div class="mt-1 text-sm text-slate-900 leading-relaxed">${escapeHtml(value)}</div>
+/* ---------------------------
+   Clickable Top “What Sharks Ask”
+   (shows selected pitch answer)
+--------------------------- */
+function openTopQuestion(qKey) {
+  const p = pitches.find(x => x.id === selectedPitchId);
+  if (!p) {
+    openModal({
+      title: "Select a pitch first",
+      subtitle: "",
+      bodyHtml: `<div class="text-sm text-slate-700">Tap <span class="font-semibold">Select</span> on a pitch card, then tap a Shark question up top.</div>`,
+      copyText: ""
+    });
+    return;
+  }
+
+  const map = {
+    business: { label: "What is your business?", value: p.business, hint: "Say what you sell/do in one sentence." },
+    customers: { label: "Who will buy it?", value: p.customers, hint: "Name the customer group and why they care." },
+    startupCost: { label: "Cost to start?", value: `${money(p.startupCost)} (startup cost)`, hint: "List what you must buy first." },
+    sellingPrice: { label: "Selling price?", value: `${money(p.sellingPrice)} per sale`, hint: "How much the customer pays." },
+    whySucceed: { label: "Why will it succeed?", value: p.whySucceed, hint: "Explain demand, uniqueness, and how you’ll sell." },
+    investorProfit: { label: "How investors profit?", value: p.investorProfit, hint: "Explain how investors get paid back." }
+  };
+
+  const item = map[qKey] || map.business;
+
+  const copyText = `${item.label}\n${item.value}`;
+  const body = `
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <div class="text-xs font-semibold text-slate-600 mb-1">${escapeHtml(item.label)}</div>
+      <div class="text-sm text-slate-900 leading-relaxed font-medium">${escapeHtml(item.value)}</div>
+    </div>
+    <div class="mt-3 text-sm text-slate-700">
+      <span class="font-semibold">Tip:</span> ${escapeHtml(item.hint)}
+    </div>
+    <div class="mt-3 rounded-2xl border border-slate-200 p-3">
+      <div class="text-xs font-semibold text-slate-600">Selected pitch</div>
+      <div class="text-sm font-semibold">${escapeHtml(p.title)} <span class="text-xs text-slate-500">(${escapeHtml(p.type)})</span></div>
     </div>
   `;
+
+  openModal({
+    title: `✅ ${item.label}`,
+    subtitle: "Tap Copy to copy this answer.",
+    bodyHtml: body,
+    copyText
+  });
 }
 
+/* attach click handlers for the chips */
+document.querySelectorAll(".qaChip").forEach(btn => {
+  btn.addEventListener("click", () => openTopQuestion(btn.getAttribute("data-q")));
+});
+
+/* ---------------------------
+   Tips Modal
+--------------------------- */
 function openTipsModal() {
   const tipsText = `
 PITCH TIPS (STUDENT-FRIENDLY)
@@ -752,20 +745,12 @@ PRACTICE
 • If you mess up, pause and continue.
   `.trim();
 
-  const body = `
-    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-      <pre class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900 font-medium">${escapeHtml(tipsText)}</pre>
-    </div>
-
-    <div class="mt-3 text-sm text-slate-700">
-      <span class="font-semibold">Teacher tip:</span> Let students practice in pairs for 2 minutes before pitching.
-    </div>
-  `;
-
   openModal({
     title: "💡 Pitch Tips",
     subtitle: "Quick coaching + strong questions investors can ask.",
-    bodyHtml: body,
+    bodyHtml: `<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <pre class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900 font-medium">${escapeHtml(tipsText)}</pre>
+    </div>`,
     copyText: tipsText
   });
 }
@@ -784,44 +769,43 @@ function download(filename, text) {
   a.remove();
   URL.revokeObjectURL(url);
 }
-
-document.getElementById("exportBtn").addEventListener("click", () => {
-  download("pitches.json", JSON.stringify(pitches, null, 2));
-});
-
+document.getElementById("exportBtn").addEventListener("click", () => download("pitches.json", JSON.stringify(pitches, null, 2)));
 document.getElementById("resetBtn").addEventListener("click", () => {
   pitches = structuredClone(DEFAULT_PITCHES);
   selectedPitchId = null;
   savePitches();
   renderPitches();
-  selectPitch(null);
+  selectPitch(pitches[0]?.id || null);
   toast("Reset!");
 });
-
 document.getElementById("importInput").addEventListener("change", async (e) => {
   const file = e.target.files && e.target.files[0];
   if (!file) return;
-
   try {
     const text = await file.text();
     const parsed = JSON.parse(text);
     if (!Array.isArray(parsed)) throw new Error("JSON must be an array of pitches");
-    // minimal validation
     parsed.forEach(p => {
       if (!p.id || !p.title) throw new Error("Each pitch must have id and title");
-      if (!p.script || !Array.isArray(p.script)) p.script = ["Hello Sharks! My name is ____ and my business is ____."];
+      if (!Array.isArray(p.script)) p.script = ["Hello Sharks! My name is ____ and my business is ____."];
       if (!p.type) p.type = "Product";
-      if (!p.keywords) p.keywords = [];
+      if (!Array.isArray(p.keywords)) p.keywords = [];
       if (p.askMoney == null) p.askMoney = 10;
       if (p.askEquity == null) p.askEquity = 20;
       if (p.profitProjection == null) p.profitProjection = 0;
+      if (p.startupCost == null) p.startupCost = p.askMoney;
+      if (p.unitCost == null) p.unitCost = 0;
+      if (p.sellingPrice == null) p.sellingPrice = 1;
+      if (!p.business) p.business = "";
+      if (!p.customers) p.customers = "";
+      if (!p.whySucceed) p.whySucceed = "";
+      if (!p.investorProfit) p.investorProfit = "";
     });
-
     pitches = parsed;
     savePitches();
     selectedPitchId = null;
     renderPitches();
-    selectPitch(null);
+    selectPitch(pitches[0]?.id || null);
     toast("Imported!");
   } catch (err) {
     openModal({
@@ -848,48 +832,36 @@ function updateQuickROI() {
   const profit = Number(document.getElementById("roiProfit").value || 0);
   const equity = Number(document.getElementById("roiEquity").value || 0);
   const inv = Number(document.getElementById("roiInvest").value || 0);
-
   const ret = calcInvestorReturn(profit, equity);
   const roi = calcRoiPct(inv, ret);
-
   document.getElementById("roiOut").textContent = money(ret);
   document.getElementById("roiPct").textContent = `${roi.toFixed(1)}%`;
 }
-
-["roiProfit","roiEquity","roiInvest"].forEach(id => {
-  document.getElementById(id).addEventListener("input", updateQuickROI);
-});
+["roiProfit","roiEquity","roiInvest"].forEach(id => document.getElementById(id).addEventListener("input", updateQuickROI));
 
 function updateTrackerROI() {
   const bid = Number(document.getElementById("bidAmount").value || 0);
   const eq = Number(document.getElementById("bidEquity").value || 0);
   const projProfit = Number(document.getElementById("pitchProfitProjection").value || 0);
-
   const ret = calcInvestorReturn(projProfit, eq);
   const roi = calcRoiPct(bid, ret);
-
   document.getElementById("trackerReturn").textContent = money(ret);
   document.getElementById("trackerROI").textContent = `${roi.toFixed(1)}%`;
 }
-
-["bidAmount","bidEquity","pitchProfitProjection"].forEach(id => {
-  document.getElementById(id).addEventListener("input", updateTrackerROI);
-});
+["bidAmount","bidEquity","pitchProfitProjection"].forEach(id => document.getElementById(id).addEventListener("input", updateTrackerROI));
 
 /* ---------------------------
-   Decisions (Notes)
+   Decisions
 --------------------------- */
 function renderDecisions() {
   const list = loadDecisions();
   const el = document.getElementById("decisionsList");
   el.innerHTML = "";
-
   if (list.length === 0) {
     el.innerHTML = `<div class="text-sm text-slate-500">No saved decisions yet.</div>`;
     return;
   }
-
-  list.slice().reverse().forEach((d, idx) => {
+  list.slice().reverse().forEach(d => {
     const wrap = document.createElement("div");
     wrap.className = "rounded-2xl border border-slate-200 p-3 bg-white";
     wrap.innerHTML = `
@@ -908,11 +880,8 @@ function renderDecisions() {
       <div class="mt-2 text-[11px] text-slate-500">${escapeHtml(d.timestamp || "")}</div>
     `;
     wrap.querySelector(".delBtn").addEventListener("click", () => {
-      const all = loadDecisions();
-      // delete by matching timestamp+title+bid (simple)
-      const targetKey = d._key;
-      const kept = all.filter(x => x._key !== targetKey);
-      saveDecisions(kept);
+      const all = loadDecisions().filter(x => x._key !== d._key);
+      saveDecisions(all);
       renderDecisions();
     });
     el.appendChild(wrap);
@@ -921,10 +890,7 @@ function renderDecisions() {
 
 document.getElementById("saveDecisionBtn").addEventListener("click", () => {
   const p = pitches.find(x => x.id === selectedPitchId);
-  if (!p) {
-    toast("Select a pitch first");
-    return;
-  }
+  if (!p) return toast("Select a pitch first");
 
   const bidAmount = Number(document.getElementById("bidAmount").value || 0);
   const bidEquity = Number(document.getElementById("bidEquity").value || 0);
@@ -954,12 +920,7 @@ document.getElementById("saveDecisionBtn").addEventListener("click", () => {
   renderDecisions();
   toast("Saved!");
 });
-
-document.getElementById("exportTrackerBtn").addEventListener("click", () => {
-  const all = loadDecisions();
-  download("investor_notes.json", JSON.stringify(all, null, 2));
-});
-
+document.getElementById("exportTrackerBtn").addEventListener("click", () => download("investor_notes.json", JSON.stringify(loadDecisions(), null, 2)));
 document.getElementById("clearTrackerBtn").addEventListener("click", () => {
   document.getElementById("bidAmount").value = 0;
   document.getElementById("bidEquity").value = 0;
@@ -972,25 +933,14 @@ document.getElementById("clearTrackerBtn").addEventListener("click", () => {
 document.getElementById("tipsBtn").addEventListener("click", openTipsModal);
 
 /* ---------------------------
-   Small utilities
---------------------------- */
-function escapeHtml(str) {
-  return String(str ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-/* ---------------------------
    Init
 --------------------------- */
-savePitches();           // ensure stored on first load
+savePitches();
 renderPitches();
 updateQuickROI();
 renderDecisions();
-selectPitch(pitches[0]?.id || null); // default select first pitch
+selectPitch(pitches[0]?.id || null);
+updateTrackerROI();
 </script>
 </body>
 </html>
