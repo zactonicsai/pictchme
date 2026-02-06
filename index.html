@@ -1,946 +1,1092 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Classroom Shark Tank Pitch Library</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teen Summit Shark Tank Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0f2b46;--navy-deep:#091c30;--gold:#f5a623;--gold-light:#ffd873;
+  --teal:#17c3b2;--teal-dark:#0f9688;--coral:#ff6b6b;--coral-dark:#e84545;
+  --lime:#a8e063;--purple:#7c5cbf;--pink:#ff8fab;--sky:#64b5f6;
+  --bg:#0a1628;--card-bg:#12243d;--card-border:#1e3a5f;
+  --text:#e8edf4;--text-dim:#8899aa;--text-bright:#ffffff;
+  --radius:16px;--radius-sm:10px;--radius-xs:6px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* ANIMATED BACKGROUND */
+.bg-effects{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.bg-effects .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:float 20s ease-in-out infinite}
+.orb-1{width:500px;height:500px;background:var(--teal);top:-10%;left:-5%;animation-delay:0s}
+.orb-2{width:400px;height:400px;background:var(--gold);bottom:-10%;right:-5%;animation-delay:-7s}
+.orb-3{width:350px;height:350px;background:var(--coral);top:40%;left:50%;animation-delay:-14s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.1)}66%{transform:translate(-20px,30px) scale(.9)}}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--navy-deep)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px}
+
+/* LAYOUT */
+.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,22,40,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,166,35,.15);padding:12px 0}
+nav .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.nav-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.25rem;color:var(--gold);display:flex;align-items:center;gap:8px}
+.nav-logo .fin{font-size:1.5rem}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:.8rem;font-weight:500;padding:6px 12px;border-radius:20px;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(245,166,35,.1)}
+
+/* HERO */
+.hero{text-align:center;padding:80px 0 60px;position:relative}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,rgba(245,166,35,.15),rgba(23,195,178,.15));border:1px solid rgba(245,166,35,.25);color:var(--gold);font-weight:600;font-size:.85rem;padding:8px 20px;border-radius:30px;margin-bottom:24px;letter-spacing:.5px;animation:fadeDown .6s ease-out}
+.hero h1{font-family:'Fredoka',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.1;margin-bottom:16px;animation:fadeDown .6s ease-out .1s both}
+.hero h1 .gold{color:var(--gold);text-shadow:0 0 40px rgba(245,166,35,.3)}
+.hero h1 .teal{color:var(--teal)}
+.hero h1 .coral{color:var(--coral)}
+.hero-sub{font-size:1.15rem;color:var(--text-dim);max-width:650px;margin:0 auto 36px;animation:fadeDown .6s ease-out .2s both}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeDown .6s ease-out .3s both}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:30px;font-family:'Outfit',sans-serif;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:all .25s;text-decoration:none}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#e8941a);color:var(--navy-deep);box-shadow:0 4px 20px rgba(245,166,35,.3)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(245,166,35,.5)}
+.btn-outline{background:transparent;color:var(--teal);border:2px solid var(--teal)}
+.btn-outline:hover{background:rgba(23,195,178,.1);transform:translateY(-2px)}
+.btn-sm{padding:10px 20px;font-size:.85rem}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:40px 0}
+.stat-card{text-align:center;padding:24px 16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s}
+.stat-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.stat-icon{font-size:2rem;margin-bottom:8px}
+.stat-num{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:var(--gold)}
+.stat-label{font-size:.8rem;color:var(--text-dim);font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* SECTIONS */
+section{padding:60px 0}
+.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:12px;padding:6px 14px;border-radius:20px;background:rgba(23,195,178,.1);border:1px solid rgba(23,195,178,.2)}
+.section-title{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--text-bright);margin-bottom:8px}
+.section-desc{font-size:1.05rem;color:var(--text-dim);max-width:700px;margin-bottom:40px}
+
+/* ROLE PICKER */
+.role-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:40px}
+.role-card{position:relative;padding:32px 28px;border-radius:var(--radius);border:2px solid var(--card-border);background:var(--card-bg);cursor:pointer;transition:all .3s;overflow:hidden}
+.role-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
+.role-card:hover{transform:translateY(-4px)}
+.role-card.entrepreneur::before{background:linear-gradient(135deg,rgba(245,166,35,.08),transparent)}
+.role-card.investor::before{background:linear-gradient(135deg,rgba(23,195,178,.08),transparent)}
+.role-card:hover::before,.role-card.selected::before{opacity:1}
+.role-card.selected{border-color:var(--gold);box-shadow:0 0 30px rgba(245,166,35,.15)}
+.role-card.selected.investor-card{border-color:var(--teal);box-shadow:0 0 30px rgba(23,195,178,.15)}
+.role-emoji{font-size:3rem;margin-bottom:12px}
+.role-title{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:8px}
+.role-card.entrepreneur .role-title{color:var(--gold)}
+.role-card.investor .role-title{color:var(--teal)}
+.role-desc{color:var(--text-dim);font-size:.95rem;margin-bottom:20px}
+.role-tasks{list-style:none;display:flex;flex-direction:column;gap:8px}
+.role-tasks li{display:flex;align-items:flex-start;gap:8px;font-size:.9rem;color:var(--text)}
+.role-tasks li::before{content:'✓';color:var(--lime);font-weight:700;flex-shrink:0}
+
+/* TABS */
+.tab-bar{display:flex;gap:4px;background:var(--card-bg);padding:6px;border-radius:var(--radius);border:1px solid var(--card-border);margin-bottom:32px;overflow-x:auto}
+.tab{flex:1;min-width:120px;padding:12px 16px;border-radius:var(--radius-sm);font-family:'Outfit',sans-serif;font-weight:600;font-size:.85rem;border:none;cursor:pointer;background:transparent;color:var(--text-dim);transition:all .2s;white-space:nowrap}
+.tab:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.tab.active{background:var(--gold);color:var(--navy-deep)}
+.tab-content{display:none;animation:fadeIn .4s ease}
+.tab-content.active{display:block}
+
+/* STEPS GRID */
+.steps-grid{display:grid;gap:20px;counter-reset:step}
+.step-card{display:grid;grid-template-columns:60px 1fr;gap:20px;padding:24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s;counter-increment:step}
+.step-card:hover{border-color:var(--gold);transform:translateX(4px)}
+.step-num{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--navy-deep);background:linear-gradient(135deg,var(--gold),var(--gold-light));flex-shrink:0}
+.step-content h3{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:600;color:var(--text-bright);margin-bottom:6px}
+.step-content p{color:var(--text-dim);font-size:.92rem}
+.step-content .tip{margin-top:10px;padding:10px 14px;background:rgba(23,195,178,.08);border-left:3px solid var(--teal);border-radius:0 var(--radius-xs) var(--radius-xs) 0;font-size:.85rem;color:var(--teal)}
+
+/* BUSINESS IDEAS */
+.ideas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.idea-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);overflow:hidden;transition:all .3s}
+.idea-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.idea-header{padding:20px 20px 12px;display:flex;align-items:center;gap:14px}
+.idea-icon{width:50px;height:50px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.idea-header h3{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text-bright)}
+.idea-header .idea-tag{font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.5px}
+.idea-body{padding:0 20px 16px}
+.idea-body p{color:var(--text-dim);font-size:.88rem;margin-bottom:14px}
+.idea-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.idea-stat{text-align:center;padding:10px 8px;background:rgba(255,255,255,.03);border-radius:var(--radius-xs);border:1px solid rgba(255,255,255,.05)}
+.idea-stat .label{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);font-weight:600}
+.idea-stat .value{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700}
+.idea-stat .value.cost{color:var(--coral)}
+.idea-stat .value.price{color:var(--sky)}
+.idea-stat .value.profit{color:var(--lime)}
+.idea-steps{font-size:.85rem;color:var(--text-dim)}
+.idea-steps strong{color:var(--text)}
+
+/* PITCH CARDS */
+.pitch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px}
+.pitch-card{background:var(--card-bg);border-radius:var(--radius);overflow:hidden;border:2px solid var(--card-border);transition:all .3s;position:relative}
+.pitch-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.pitch-banner{padding:20px 24px;position:relative;overflow:hidden}
+.pitch-banner::before{content:'';position:absolute;inset:0;opacity:.9}
+.pitch-banner *{position:relative;z-index:1}
+.pitch-banner .pitch-number{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;opacity:.7;margin-bottom:4px}
+.pitch-banner h3{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
+.pitch-banner .tagline{font-family:'Caveat',cursive;font-size:1.15rem;color:rgba(255,255,255,.8)}
+.pitch-body{padding:20px 24px}
+.pitch-field{margin-bottom:14px}
+.pitch-field .field-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.pitch-field .field-value{font-size:.92rem;color:var(--text)}
+.pitch-numbers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px;margin:16px 0;background:rgba(255,255,255,.03);border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.06)}
+.pitch-num-item{text-align:center}
+.pitch-num-item .p-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);font-weight:600}
+.pitch-num-item .p-value{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700}
+.pitch-footer{padding:16px 24px;border-top:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center}
+.invest-btn{padding:10px 24px;border-radius:20px;border:none;font-family:'Outfit',sans-serif;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .2s}
+.invest-btn.in{background:var(--lime);color:var(--navy-deep)}
+.invest-btn.in:hover{background:#8fd44f;transform:scale(1.05)}
+.invest-btn.out{background:transparent;color:var(--coral);border:1.5px solid var(--coral)}
+.invest-btn.out:hover{background:rgba(255,107,107,.1)}
+
+/* PITCH COLORS */
+.pitch-card.c1 .pitch-banner::before{background:linear-gradient(135deg,#e84545,#ff6b6b)}
+.pitch-card.c1 .field-label{color:var(--coral)}
+.pitch-card.c2 .pitch-banner::before{background:linear-gradient(135deg,#0f9688,#17c3b2)}
+.pitch-card.c2 .field-label{color:var(--teal)}
+.pitch-card.c3 .pitch-banner::before{background:linear-gradient(135deg,#5c3daf,#7c5cbf)}
+.pitch-card.c3 .field-label{color:var(--purple)}
+.pitch-card.c4 .pitch-banner::before{background:linear-gradient(135deg,#c77600,#f5a623)}
+.pitch-card.c4 .field-label{color:var(--gold)}
+.pitch-card.c5 .pitch-banner::before{background:linear-gradient(135deg,#1565c0,#42a5f5)}
+.pitch-card.c5 .field-label{color:var(--sky)}
+.pitch-card.c6 .pitch-banner::before{background:linear-gradient(135deg,#c2185b,#ff8fab)}
+.pitch-card.c6 .field-label{color:var(--pink)}
+
+/* 5 QUESTIONS */
+.questions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.q-card{padding:28px 24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s;position:relative;overflow:hidden}
+.q-card::after{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px}
+.q-card:nth-child(1)::after{background:var(--gold)}
+.q-card:nth-child(2)::after{background:var(--teal)}
+.q-card:nth-child(3)::after{background:var(--coral)}
+.q-card:nth-child(4)::after{background:var(--sky)}
+.q-card:nth-child(5)::after{background:var(--lime)}
+.q-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
+.q-num{font-family:'Fredoka',sans-serif;font-size:2rem;font-weight:700;opacity:.2;margin-bottom:8px}
+.q-card:nth-child(1) .q-num{color:var(--gold)}
+.q-card:nth-child(2) .q-num{color:var(--teal)}
+.q-card:nth-child(3) .q-num{color:var(--coral)}
+.q-card:nth-child(4) .q-num{color:var(--sky)}
+.q-card:nth-child(5) .q-num{color:var(--lime)}
+.q-card h3{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:600;color:var(--text-bright);margin-bottom:8px}
+.q-card p{color:var(--text-dim);font-size:.9rem;margin-bottom:12px}
+.q-example{padding:12px 14px;background:rgba(255,255,255,.03);border-radius:var(--radius-xs);font-size:.85rem}
+.q-example .ex-label{font-weight:600;color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.q-example p{margin:0;font-size:.85rem}
+
+/* VOCAB */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.vocab-card{padding:20px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s}
+.vocab-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.vocab-word{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;color:var(--gold);margin-bottom:6px}
+.vocab-def{color:var(--text-dim);font-size:.88rem}
+
+/* SHARK EVAL */
+.eval-section{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:32px;margin-top:24px}
+.eval-grid{display:grid;gap:12px;margin-bottom:24px}
+.eval-row{display:grid;grid-template-columns:1fr 80px 80px 80px;gap:8px;align-items:center;padding:12px 16px;border-radius:var(--radius-xs);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);transition:all .2s}
+.eval-row:hover{background:rgba(255,255,255,.05)}
+.eval-q{font-size:.9rem;color:var(--text)}
+.eval-opt{text-align:center}
+.eval-opt input[type="radio"]{display:none}
+.eval-opt label{display:block;width:36px;height:36px;border-radius:50%;border:2px solid var(--card-border);cursor:pointer;margin:0 auto;line-height:32px;text-align:center;font-size:.8rem;font-weight:700;transition:all .2s}
+.eval-opt.yes label{color:var(--lime)}
+.eval-opt.yes input:checked+label{background:var(--lime);color:var(--navy-deep);border-color:var(--lime)}
+.eval-opt.maybe label{color:var(--gold)}
+.eval-opt.maybe input:checked+label{background:var(--gold);color:var(--navy-deep);border-color:var(--gold)}
+.eval-opt.no label{color:var(--coral)}
+.eval-opt.no input:checked+label{background:var(--coral);color:#fff;border-color:var(--coral)}
+.eval-header{display:grid;grid-template-columns:1fr 80px 80px 80px;gap:8px;padding:8px 16px;margin-bottom:8px}
+.eval-header span{text-align:center;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim)}
+.eval-header span:first-child{text-align:left}
+
+/* DECISION BOX */
+.decision-box{padding:24px;background:rgba(245,166,35,.05);border:2px solid rgba(245,166,35,.2);border-radius:var(--radius);margin-top:24px}
+.decision-box h3{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--gold);margin-bottom:16px}
+.decision-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.d-btn{padding:12px 24px;border-radius:var(--radius-sm);border:2px solid;font-family:'Outfit',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;font-size:.9rem}
+.d-btn.deal-in{border-color:var(--lime);color:var(--lime)}
+.d-btn.deal-in:hover,.d-btn.deal-in.selected{background:var(--lime);color:var(--navy-deep)}
+.d-btn.deal-out{border-color:var(--coral);color:var(--coral)}
+.d-btn.deal-out:hover,.d-btn.deal-out.selected{background:var(--coral);color:#fff}
+.d-btn.deal-neg{border-color:var(--gold);color:var(--gold)}
+.d-btn.deal-neg:hover,.d-btn.deal-neg.selected{background:var(--gold);color:var(--navy-deep)}
+
+/* BUILD YOUR PITCH */
+.builder{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:32px;margin-top:32px}
+.builder h3{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);margin-bottom:24px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim)}
+.form-group input,.form-group textarea,.form-group select{padding:12px 16px;background:rgba(255,255,255,.05);border:1.5px solid var(--card-border);border-radius:var(--radius-xs);color:var(--text);font-family:'Outfit',sans-serif;font-size:.95rem;transition:all .2s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--gold);background:rgba(245,166,35,.05)}
+.form-group textarea{min-height:80px;resize:vertical}
+.calc-result{padding:20px;background:rgba(168,224,99,.08);border:1px solid rgba(168,224,99,.2);border-radius:var(--radius-sm);margin-top:16px;text-align:center}
+.calc-result .big-num{font-family:'Fredoka',sans-serif;font-size:2rem;font-weight:700;color:var(--lime)}
+
+/* TRACKER */
+.tracker{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:32px;margin-top:32px}
+.tracker h3{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--text-bright);margin-bottom:20px}
+.tracker-table{width:100%;border-collapse:separate;border-spacing:0}
+.tracker-table th{padding:10px 14px;background:var(--navy);color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;text-align:left;border-bottom:2px solid var(--gold)}
+.tracker-table td{padding:8px 14px;border-bottom:1px solid var(--card-border)}
+.tracker-table input{width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid var(--card-border);border-radius:var(--radius-xs);color:var(--text);font-family:'Outfit',sans-serif;font-size:.85rem;outline:none}
+.tracker-table input:focus{border-color:var(--gold)}
+.tracker-total{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;margin-top:16px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:var(--radius-sm)}
+.tracker-total .total-label{font-weight:600;color:var(--text)}
+.tracker-total .total-amount{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700}
+.total-amount.positive{color:var(--lime)}
+.total-amount.negative{color:var(--coral)}
+
+/* CLASSROOM FLOW */
+.flow-timeline{position:relative;padding-left:40px}
+.flow-timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),var(--teal),var(--coral),var(--purple))}
+.flow-item{position:relative;margin-bottom:24px;padding:20px 24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s}
+.flow-item:hover{border-color:var(--gold);transform:translateX(4px)}
+.flow-item::before{content:attr(data-time);position:absolute;left:-40px;top:20px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;background:var(--navy);border:2px solid var(--gold);color:var(--gold)}
+.flow-item h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;color:var(--text-bright);margin-bottom:4px}
+.flow-item .flow-time{font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:6px}
+.flow-item p{color:var(--text-dim);font-size:.9rem}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid var(--card-border);text-align:center}
+footer p{color:var(--text-dim);font-size:.85rem}
+footer .footer-tagline{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
+
+/* PRINT */
+.print-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy-deep);border:none;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(245,166,35,.4);transition:all .25s;display:flex;align-items:center;justify-content:center}
+.print-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(245,166,35,.6)}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);max-width:600px;width:100%;max-height:80vh;overflow-y:auto;padding:32px}
+.modal h3{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);margin-bottom:16px}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-dim);font-size:1.5rem;cursor:pointer}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .form-grid{grid-template-columns:1fr}
+  .eval-row{grid-template-columns:1fr;gap:12px}
+  .eval-header{display:none}
+  .eval-opt{display:inline-flex;gap:8px}
+  .pitch-grid,.ideas-grid{grid-template-columns:1fr}
+  .questions-grid{grid-template-columns:1fr}
+  nav .container{justify-content:center}
+  .nav-links{justify-content:center}
+}
+
+@media print{
+  .bg-effects,nav,.print-btn,.hero-actions,.tab-bar{display:none!important}
+  body{background:#fff;color:#333}
+  .section-title,.step-content h3,.vocab-word,.role-title{color:#0f2b46!important}
+}
+</style>
 </head>
+<body>
 
-<body class="min-h-screen bg-slate-50 text-slate-900">
-  <!-- Header -->
-  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
-      <div class="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-bold">🦈</div>
-      <div class="flex-1">
-        <div class="flex items-center justify-between gap-3">
-          <div>
-            <h1 class="text-lg sm:text-xl font-bold leading-tight">Shark Tank Classroom Pitch Library</h1>
-            <p class="text-xs sm:text-sm text-slate-600">
-              Pick a pitch, read the script, then tap “Shark Questions” to see answers.
-            </p>
-          </div>
-          <button id="tipsBtn"
-            class="shrink-0 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 active:scale-[0.99]">
-            💡 Tips
-          </button>
+<div class="bg-effects">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-logo"><span class="fin">🦈</span> Teen Summit Shark Tank</div>
+    <div class="nav-links">
+      <a href="#roles" class="active">Choose Role</a>
+      <a href="#learn">Learn</a>
+      <a href="#ideas">Business Ideas</a>
+      <a href="#pitches">Sample Pitches</a>
+      <a href="#5questions">5 Key Questions</a>
+      <a href="#evaluate">Evaluate</a>
+      <a href="#build">Build Yours</a>
+      <a href="#vocab">Vocab</a>
+      <a href="#classroom">Classroom</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-badge">🎓 Middle School Entrepreneurship Game</div>
+    <h1>
+      <span class="gold">Teen Summit</span><br>
+      <span class="teal">Shark Tank</span> <span class="coral">Game</span>
+    </h1>
+    <p class="hero-sub">Learn to build a business, pitch your ideas, and invest wisely. Every student plays as an <strong>Entrepreneur</strong> or a <strong>Shark Investor</strong>. Are you ready to make your first deal?</p>
+    <div class="hero-actions">
+      <a href="#roles" class="btn btn-gold">🚀 Start Playing</a>
+      <a href="#learn" class="btn btn-outline">📚 Learn First</a>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-num">$1–$10</div><div class="stat-label">Startup Budget</div></div>
+      <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-num">12+</div><div class="stat-label">Business Ideas</div></div>
+      <div class="stat-card"><div class="stat-icon">🎤</div><div class="stat-num">6</div><div class="stat-label">Sample Pitches</div></div>
+      <div class="stat-card"><div class="stat-icon">🦈</div><div class="stat-num">2</div><div class="stat-label">Player Roles</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION: CHOOSE YOUR ROLE -->
+<section id="roles">
+  <div class="container">
+    <div class="section-tag">🎭 Step 1</div>
+    <h2 class="section-title">Choose Your Role</h2>
+    <p class="section-desc">Every player picks one role. You are either building a business OR investing in someone else's. Choose wisely!</p>
+    <div class="role-picker">
+      <div class="role-card entrepreneur" onclick="selectRole(this,'entrepreneur')">
+        <div class="role-emoji">🚀</div>
+        <h3 class="role-title">Entrepreneur (Business Owner)</h3>
+        <p class="role-desc">You have a great idea and need money to make it happen. Pitch your business to the Sharks and convince them to invest!</p>
+        <ul class="role-tasks">
+          <li>Come up with a business idea that costs $1–$10 to start</li>
+          <li>Create a business plan answering the 5 Key Questions</li>
+          <li>Present your pitch to the class (2–3 minutes)</li>
+          <li>Negotiate a deal with investors</li>
+          <li>Run your business and track profits</li>
+          <li>Pay back investors their share of profits</li>
+        </ul>
+      </div>
+      <div class="role-card investor investor-card" onclick="selectRole(this,'investor')">
+        <div class="role-emoji">🦈</div>
+        <h3 class="role-title">Shark Investor</h3>
+        <p class="role-desc">You have cash to invest. Listen to pitches, ask tough questions, and decide which businesses are worth YOUR money!</p>
+        <ul class="role-tasks">
+          <li>Receive your investment cash from the teacher</li>
+          <li>Listen carefully to each business pitch</li>
+          <li>Use the Evaluation Checklist to score pitches</li>
+          <li>Ask smart questions about costs, customers, and plans</li>
+          <li>Decide: "I'm IN" or "I'm OUT" on each deal</li>
+          <li>Earn your share of profits from businesses you invest in</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: LEARN WHAT A BUSINESS IS -->
+<section id="learn" style="background:rgba(255,255,255,.02)">
+  <div class="container">
+    <div class="section-tag">📚 Learn</div>
+    <h2 class="section-title">What IS a Business?</h2>
+    <p class="section-desc">Before you start, let's learn the basics every entrepreneur needs to know.</p>
+
+    <div class="tab-bar">
+      <button class="tab active" onclick="showTab('tab-what')">What's a Business?</button>
+      <button class="tab" onclick="showTab('tab-steps')">10 Steps to Start</button>
+      <button class="tab" onclick="showTab('tab-money')">How Money Works</button>
+      <button class="tab" onclick="showTab('tab-mistakes')">Avoid Mistakes</button>
+    </div>
+
+    <!-- Tab: What is a business -->
+    <div class="tab-content active" id="tab-what">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+        <div class="q-card">
+          <div class="q-num">💡</div>
+          <h3>A Business Solves a Problem</h3>
+          <p>A business is when you sell a product (something people can hold) or a service (something you do for people) to earn money. Every good business starts by finding a problem people have and offering a solution.</p>
+          <div class="q-example"><div class="ex-label">Example</div><p>Students are always losing pencils → Sell pencil packs at school!</p></div>
         </div>
-
-        <!-- What Sharks Ask (CLICKABLE CHIPS) -->
-        <div class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 sm:p-4">
-          <div class="text-sm font-semibold mb-2">What Sharks Ask (tap a question):</div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
-            <button data-q="business" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
-              ✅ What is your business?
-              <div class="text-xs text-slate-500">What do you sell or do?</div>
-            </button>
-            <button data-q="customers" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
-              ✅ Who will buy it?
-              <div class="text-xs text-slate-500">Target customers</div>
-            </button>
-            <button data-q="startupCost" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
-              ✅ Cost to start?
-              <div class="text-xs text-slate-500">What you must buy first</div>
-            </button>
-            <button data-q="sellingPrice" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
-              ✅ Selling price?
-              <div class="text-xs text-slate-500">How much customers pay</div>
-            </button>
-            <button data-q="whySucceed" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
-              ✅ Why will it succeed?
-              <div class="text-xs text-slate-500">Why people will choose you</div>
-            </button>
-            <button data-q="investorProfit" class="qaChip rounded-xl bg-white border border-slate-200 p-2 text-left hover:bg-slate-50 active:scale-[0.99]">
-              ✅ How investors profit?
-              <div class="text-xs text-slate-500">How Sharks get paid back</div>
-            </button>
-          </div>
-
-          <div class="mt-2 text-xs text-slate-600">
-            Tip: select a pitch first — then these questions show that pitch’s answers.
-          </div>
+        <div class="q-card">
+          <div class="q-num">🔄</div>
+          <h3>How a Business Makes Money</h3>
+          <p>You spend money to create or buy something (that's your <strong>cost</strong>), then sell it for more than you spent. The difference is your <strong>profit</strong>. It's that simple!</p>
+          <div class="q-example"><div class="ex-label">The Formula</div><p><strong>Revenue</strong> (money coming in) − <strong>Costs</strong> (money going out) = <strong>Profit</strong> 💰</p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">🎯</div>
+          <h3>Know Your Customer</h3>
+          <p>Your <strong>customer</strong> is the person who buys from you. You need to know what they want, how much they'll pay, and where to find them. For this game, your customers are your classmates!</p>
+          <div class="q-example"><div class="ex-label">Ask yourself</div><p>Would my friends actually spend their own money on this?</p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">⚖️</div>
+          <h3>Supply & Demand</h3>
+          <p>If everyone wants something but nobody's selling it, you can charge more (<strong>high demand, low supply</strong>). If lots of people sell the same thing, you need to stand out or lower your price.</p>
+          <div class="q-example"><div class="ex-label">Think about it</div><p>If 5 students sell slime, but nobody sells bookmarks, which has less competition?</p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">🤝</div>
+          <h3>What is an Investor?</h3>
+          <p>An <strong>investor</strong> gives you money to help start or grow your business. In return, they get a percentage of your profits. They're taking a risk — if your business fails, they lose their money too!</p>
+          <div class="q-example"><div class="ex-label">Example Deal</div><p>A Shark invests $5 for 25% of profits. If you earn $20 profit, the Shark gets $5 back.</p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">📈</div>
+          <h3>Why Businesses Fail</h3>
+          <p>Most businesses fail because they don't plan, they spend too much, they price wrong, or nobody actually wants what they're selling. That's why research and planning matter!</p>
+          <div class="q-example"><div class="ex-label">Top reason for failure</div><p>Making something YOU like instead of something your CUSTOMERS want.</p></div>
         </div>
       </div>
     </div>
-  </header>
 
-  <!-- Main -->
-  <main class="max-w-6xl mx-auto px-4 py-6">
-    <!-- Controls -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <div class="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-4">
-        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
-          <div class="flex-1">
-            <label class="text-xs font-semibold text-slate-600">Search pitches</label>
-            <div class="mt-1 relative">
-              <input id="searchInput" type="text" placeholder="Search by name, type, or keywords..."
-                     class="w-full rounded-2xl border border-slate-200 px-4 py-3 pr-10 outline-none focus:ring-2 focus:ring-slate-900/10" />
-              <div class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">🔎</div>
-            </div>
-          </div>
+    <!-- Tab: 10 Steps -->
+    <div class="tab-content" id="tab-steps">
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">1</div><div class="step-content"><h3>Find a Problem to Solve</h3><p>Look around! What do your classmates need? What do they complain about? What would make their day easier or more fun? That's where business ideas come from.</p><div class="tip">💡 Tip: Ask 5 friends "What do you wish you could buy at school?" Their answers = your business idea!</div></div></div>
+        <div class="step-card"><div class="step-num">2</div><div class="step-content"><h3>Do Your Research</h3><p>Before spending money, find out if people will actually buy your product. Ask classmates if they'd buy it and how much they'd pay. Check if anyone else is already selling something similar.</p><div class="tip">💡 Tip: Create a quick 3-question survey and ask 10 people. That's real market research!</div></div></div>
+        <div class="step-card"><div class="step-num">3</div><div class="step-content"><h3>Make a Plan</h3><p>Write down: What will you sell? Who will buy it? How much does it cost to make? How much will you charge? Where will you sell it? This is your business plan!</p><div class="tip">💡 Tip: Use the "Build Your Pitch" section below to create your plan!</div></div></div>
+        <div class="step-card"><div class="step-num">4</div><div class="step-content"><h3>Calculate ALL Your Costs</h3><p>List everything you need to buy: supplies, materials, packaging, labels. Add it all up. This is your startup cost. Remember — in this game it must be between $1 and $10!</p><div class="tip">💡 Tip: Don't forget hidden costs like tape, bags, or markers for signs!</div></div></div>
+        <div class="step-card"><div class="step-num">5</div><div class="step-content"><h3>Set Your Price</h3><p>Your price must be MORE than what each item costs you to make. Charge at least 2× your cost per item. Too high? Nobody buys. Too low? You don't make money.</p><div class="tip">💡 Tip: If one bracelet costs you $0.50 to make, sell it for at least $1.00–$2.00!</div></div></div>
+        <div class="step-card"><div class="step-num">6</div><div class="step-content"><h3>Start Small — Test First!</h3><p>Don't make 100 items right away. Make 5–10, sell them, see what happens. Listen to feedback. Then improve and make more. This is called a "pilot" or test run.</p><div class="tip">💡 Tip: Starting small means if something doesn't work, you haven't wasted all your money!</div></div></div>
+        <div class="step-card"><div class="step-num">7</div><div class="step-content"><h3>Market Your Business</h3><p>Tell people about your product! Make flyers, tell friends, create a catchy business name. Word of mouth is the #1 way students sell. Make it easy for people to find you.</p><div class="tip">💡 Tip: Offer a "first customer discount" or a "buy 2 get 1 free" deal to get people talking!</div></div></div>
+        <div class="step-card"><div class="step-num">8</div><div class="step-content"><h3>Sell & Be Professional</h3><p>Have your products ready and looking good. Be friendly, give correct change, and thank every customer. Happy customers tell their friends = more sales for you!</p><div class="tip">💡 Tip: Presentation matters! A cookie in a nice bag sells better than one in a plain napkin.</div></div></div>
+        <div class="step-card"><div class="step-num">9</div><div class="step-content"><h3>Track Every Dollar</h3><p>Write down every sale (money in) and every expense (money out). At the end, subtract costs from sales. Positive number = profit! Negative = loss. Use the tracker below.</p><div class="tip">💡 Tip: Real business owners do this every day. It's called "bookkeeping."</div></div></div>
+        <div class="step-card"><div class="step-num">10</div><div class="step-content"><h3>Grow or Pivot</h3><p>Working great? Make more and expand! Not selling? Change your approach — new price, new product, new audience. Smart businesses adapt. Failing isn't bad — quitting without trying is!</p><div class="tip">💡 Tip: Many famous companies started by selling something completely different than what they sell now!</div></div></div>
+      </div>
+    </div>
 
-          <div class="sm:w-52">
-            <label class="text-xs font-semibold text-slate-600">Filter</label>
-            <select id="typeFilter"
-                    class="mt-1 w-full rounded-2xl border border-slate-200 px-3 py-3 outline-none focus:ring-2 focus:ring-slate-900/10">
-              <option value="all">All types</option>
-              <option value="Product">Product</option>
-              <option value="Service">Service</option>
-              <option value="Creative">Creative</option>
-              <option value="Events">Events</option>
-            </select>
-          </div>
+    <!-- Tab: How money works -->
+    <div class="tab-content" id="tab-money">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
+        <div class="q-card">
+          <div class="q-num">💵</div>
+          <h3>Revenue</h3>
+          <p>Revenue is ALL the money your business brings in from sales. If you sell 20 bracelets at $2 each, your revenue is $40. But that's NOT your profit yet!</p>
+          <div class="q-example"><div class="ex-label">Formula</div><p>Revenue = Price × Quantity Sold<br><strong>$2 × 20 bracelets = $40 revenue</strong></p></div>
         </div>
-
-        <div class="mt-4 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
-          <div class="text-sm text-slate-600">
-            <span id="countLabel" class="font-semibold text-slate-900">0</span> pitches shown
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <button id="exportBtn"
-              class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold border border-slate-200 bg-white hover:bg-slate-50">
-              ⬇️ Export JSON
-            </button>
-            <label class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer">
-              ⬆️ Import JSON
-              <input id="importInput" type="file" accept="application/json" class="hidden"/>
-            </label>
-            <button id="resetBtn"
-              class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800">
-              ♻️ Reset to Defaults
-            </button>
-          </div>
+        <div class="q-card">
+          <div class="q-num">📉</div>
+          <h3>Costs / Expenses</h3>
+          <p>Costs are everything you spend to run your business: supplies, materials, packaging. Subtract these from your revenue to find your real profit.</p>
+          <div class="q-example"><div class="ex-label">Example costs</div><p>Beads $3 + String $2 + Bags $1 = <strong>$6 total costs</strong></p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">🏆</div>
+          <h3>Profit</h3>
+          <p>Profit is what's LEFT after you subtract ALL costs from your revenue. This is YOUR money to keep (or share with investors)!</p>
+          <div class="q-example"><div class="ex-label">The Math</div><p>$40 revenue − $6 costs = <strong>$34 profit! 🎉</strong></p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">📊</div>
+          <h3>Markup</h3>
+          <p>Markup is how much you add to your cost to set your selling price. If something costs you $0.50 and you sell it for $2.00, your markup is $1.50 (or 300%).</p>
+          <div class="q-example"><div class="ex-label">Rule of thumb</div><p>Charge at least <strong>2× your cost</strong> for a healthy profit margin.</p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">⚖️</div>
+          <h3>Break Even</h3>
+          <p>Break even is when your revenue EQUALS your costs. You haven't made a profit yet, but you haven't lost money either. Everything after this point is profit!</p>
+          <div class="q-example"><div class="ex-label">Example</div><p>You spent $6. Each bracelet earns $2. After selling 3 bracelets ($6), you break even. Bracelet #4 is pure profit!</p></div>
+        </div>
+        <div class="q-card">
+          <div class="q-num">🤝</div>
+          <h3>How Investors Profit</h3>
+          <p>When a Shark invests in your business, you agree on a deal. Usually, the investor gets a <strong>percentage of your profits</strong>. The bigger the investment, the bigger their share.</p>
+          <div class="q-example"><div class="ex-label">Example Deal</div><p>Shark invests $3 for 30% of profits.<br>You earn $34 profit → Shark gets $10.20, you keep $23.80 🤝</p></div>
         </div>
       </div>
+    </div>
 
-      <!-- Quick ROI Calculator -->
-      <div class="rounded-2xl border border-slate-200 bg-white p-4">
-        <div class="flex items-center justify-between gap-2">
-          <h2 class="text-base font-bold">Quick ROI (Investor)</h2>
-          <span class="text-xs rounded-full bg-slate-100 px-2 py-1 text-slate-700">optional</span>
-        </div>
-        <p class="mt-1 text-sm text-slate-600">
-          Estimate investor return from profit & ownership.
-        </p>
+    <!-- Tab: Avoid Mistakes -->
+    <div class="tab-content" id="tab-mistakes">
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Spending All Your Money at Once</h3><p>Don't blow your entire budget on supplies before testing if anyone wants your product. Start with a small test batch. If it sells, buy more!</p></div></div>
+        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Pricing Too Low</h3><p>If you charge too little, you might sell a lot but still lose money! Always make sure your selling price is at least double your cost per item.</p></div></div>
+        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Copying Everyone Else</h3><p>If 5 people are already selling slime, don't be person #6! Find something unique or put a creative twist on an existing idea to stand out.</p></div></div>
+        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Not Tracking Your Money</h3><p>If you don't write down your sales and expenses, you won't know if you're making money or losing it. Keep a simple log of everything!</p></div></div>
+        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Ignoring Customer Feedback</h3><p>If customers say "it's too expensive" or "I wish it came in blue," LISTEN! Adjusting based on feedback is how smart businesses grow.</p></div></div>
+        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Giving Up Too Fast</h3><p>Your first day might be slow. That's normal! Adjust your strategy, try new marketing, and keep going. Most successful entrepreneurs failed before they succeeded.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="mt-3 grid grid-cols-2 gap-2">
-          <div>
-            <label class="text-xs font-semibold text-slate-600">Total Profit (projected)</label>
-            <input id="roiProfit" type="number" min="0" step="0.01" value="20"
-              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
-          </div>
-          <div>
-            <label class="text-xs font-semibold text-slate-600">Ownership %</label>
-            <input id="roiEquity" type="number" min="0" max="100" step="1" value="20"
-              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
-          </div>
-          <div>
-            <label class="text-xs font-semibold text-slate-600">Investment $</label>
-            <input id="roiInvest" type="number" min="0" step="0.01" value="10"
-              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
-          </div>
-          <div>
-            <label class="text-xs font-semibold text-slate-600">Investor Return</label>
-            <div id="roiOut"
-              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 bg-slate-50 text-slate-900 font-semibold">
-              $0.00
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-2 text-sm text-slate-600">
-          ROI %: <span id="roiPct" class="font-semibold text-slate-900">0%</span>
+<!-- SECTION: THE 5 KEY QUESTIONS -->
+<section id="5questions">
+  <div class="container">
+    <div class="section-tag">🔑 Essential Knowledge</div>
+    <h2 class="section-title">The 5 Questions Every Business Must Answer</h2>
+    <p class="section-desc">Whether you're pitching or investing, EVERY business must answer these 5 questions. If they can't, it's a red flag! 🚩</p>
+    <div class="questions-grid">
+      <div class="q-card">
+        <div class="q-num">01</div>
+        <h3>What Is Your Business?</h3>
+        <p>Describe exactly what you're selling in one clear sentence. Is it a product (something you sell) or a service (something you do for people)? What makes it special?</p>
+        <div class="q-example">
+          <div class="ex-label">Strong Answer</div>
+          <p>"I make custom friendship bracelets with school colors and names using beads and string."</p>
         </div>
       </div>
-    </section>
-
-    <!-- Pitches + Tracker -->
-    <section class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <!-- Pitch List -->
-      <div class="lg:col-span-2 rounded-2xl border border-slate-200 bg-white">
-        <div class="p-4 border-b border-slate-200">
-          <div class="flex items-center justify-between">
-            <h2 class="text-base font-bold">Pitch List</h2>
-            <span class="text-xs text-slate-600">Tap Script to read aloud • Tap Shark Questions for details</span>
-          </div>
-        </div>
-
-        <div id="pitchList" class="p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-      </div>
-
-      <!-- Investment Tracker -->
-      <div class="rounded-2xl border border-slate-200 bg-white p-4">
-        <div class="flex items-center justify-between gap-2">
-          <h2 class="text-base font-bold">Investor Notes & Bid Tracker</h2>
-          <button id="clearTrackerBtn" class="text-xs font-semibold text-slate-600 hover:text-slate-900 underline">
-            Clear
-          </button>
-        </div>
-
-        <div class="mt-3">
-          <label class="text-xs font-semibold text-slate-600">Selected pitch</label>
-          <div id="selectedPitchLabel" class="mt-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm">
-            None selected
-          </div>
-        </div>
-
-        <div class="mt-3 grid grid-cols-2 gap-2">
-          <div>
-            <label class="text-xs font-semibold text-slate-600">Your Bid $</label>
-            <input id="bidAmount" type="number" min="0" step="0.01" value="0"
-              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
-          </div>
-          <div>
-            <label class="text-xs font-semibold text-slate-600">Equity % asked</label>
-            <input id="bidEquity" type="number" min="0" max="100" step="1" value="0"
-              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
-          </div>
-        </div>
-
-        <div class="mt-3">
-          <label class="text-xs font-semibold text-slate-600">Projected total profit (from pitch)</label>
-          <input id="pitchProfitProjection" type="number" min="0" step="0.01" value="0"
-            class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
-        </div>
-
-        <div class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
-          <div class="text-xs font-semibold text-slate-600">Potential Investor Return</div>
-          <div id="trackerReturn" class="text-lg font-bold">$0.00</div>
-          <div class="text-sm text-slate-600">ROI: <span id="trackerROI" class="font-semibold text-slate-900">0%</span></div>
-        </div>
-
-        <div class="mt-3">
-          <label class="text-xs font-semibold text-slate-600">Investor notes (Why yes/no?)</label>
-          <textarea id="investorNotes" rows="4" placeholder="Risk? Demand? Profit? Competition?"
-            class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10"></textarea>
-        </div>
-
-        <div class="mt-3 flex gap-2">
-          <button id="saveDecisionBtn"
-            class="flex-1 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800">
-            Save Decision
-          </button>
-          <button id="exportTrackerBtn"
-            class="rounded-xl px-3 py-2 text-sm font-semibold border border-slate-200 bg-white hover:bg-slate-50">
-            Export Notes
-          </button>
-        </div>
-
-        <div class="mt-3">
-          <div class="text-xs font-semibold text-slate-600 mb-2">Saved decisions</div>
-          <div id="decisionsList" class="space-y-2"></div>
+      <div class="q-card">
+        <div class="q-num">02</div>
+        <h3>Who Will Buy It?</h3>
+        <p>Who is your <strong>target customer</strong>? Be specific! "Everyone" is not a good answer. Think about who would actually pull out their wallet and buy your product.</p>
+        <div class="q-example">
+          <div class="ex-label">Strong Answer</div>
+          <p>"6th–8th grade girls who like jewelry and want to match with their friend groups. Especially popular before dances and spirit weeks."</p>
         </div>
       </div>
-    </section>
-  </main>
-
-  <!-- Modal Backdrop -->
-  <div id="modalBackdrop" class="fixed inset-0 z-40 hidden">
-    <div class="absolute inset-0 bg-slate-900/50"></div>
-    <div class="absolute inset-0 flex items-end sm:items-center justify-center p-3 sm:p-6">
-      <!-- bottom-sheet on mobile, centered on larger screens -->
-      <div class="w-full sm:max-w-2xl rounded-3xl bg-white shadow-xl border border-slate-200 overflow-hidden">
-        <div class="flex items-start justify-between gap-3 p-4 border-b border-slate-200">
-          <div>
-            <div id="modalTitle" class="text-base sm:text-lg font-bold leading-tight">Modal Title</div>
-            <div id="modalSubtitle" class="text-xs sm:text-sm text-slate-600">Modal subtitle</div>
-          </div>
-          <button id="modalCloseBtn"
-                  class="shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50">
-            ✕
-          </button>
+      <div class="q-card">
+        <div class="q-num">03</div>
+        <h3>What Does It Cost to Start?</h3>
+        <p>List every single thing you need to buy and the total startup cost. Investors want to know exactly where their money is going. Be honest and detailed!</p>
+        <div class="q-example">
+          <div class="ex-label">Strong Answer</div>
+          <p>"Beads $3, string $1.50, clasps $1, small bags $1 = $6.50 total startup cost. This makes about 25 bracelets."</p>
         </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">04</div>
+        <h3>What's Your Selling Price?</h3>
+        <p>How much will you charge per item? Explain why that price is fair. Show the math: cost per item, selling price, and profit per item. Sharks love numbers!</p>
+        <div class="q-example">
+          <div class="ex-label">Strong Answer</div>
+          <p>"Each bracelet costs me $0.26 to make. I'll sell them for $1.50 each. That's $1.24 profit per bracelet, or a 477% markup!"</p>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">05</div>
+        <h3>Why Will It Succeed?</h3>
+        <p>What's your plan? How will people find out about your product? Why will they choose YOU over someone else? What's your advantage? This is where confidence and creativity matter!</p>
+        <div class="q-example">
+          <div class="ex-label">Strong Answer</div>
+          <p>"Nobody else at school sells custom jewelry. I'll take orders at lunch, offer free color matching, and give a 'buy 3 get 1 free' deal for friend groups."</p>
+        </div>
+      </div>
+    </div>
 
-        <div id="modalBody" class="p-4 max-h-[72vh] overflow-auto"></div>
+    <div style="margin-top:32px;padding:24px;background:rgba(23,195,178,.08);border:1px solid rgba(23,195,178,.2);border-radius:var(--radius)">
+      <h3 style="font-family:'Fredoka',sans-serif;color:var(--teal);margin-bottom:8px">🦈 Bonus Question for Sharks: How Do Investors Profit?</h3>
+      <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:12px">When you invest money in someone's business, you agree on a deal. Typically the entrepreneur offers a percentage of their profits in exchange for the investment. Before investing, do the math:</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px">
+        <div style="padding:14px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);font-size:.9rem"><strong style="color:var(--gold)">Example Deal:</strong> You invest $3 for 25% of profits</div>
+        <div style="padding:14px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);font-size:.9rem"><strong style="color:var(--gold)">If they profit $20:</strong> You get $5 back (25% of $20)</div>
+        <div style="padding:14px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);font-size:.9rem"><strong style="color:var(--gold)">Your ROI:</strong> Invested $3, got $5 = $2 profit! 📈</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="p-4 border-t border-slate-200 flex flex-col sm:flex-row gap-2 sm:justify-end">
-          <button id="modalCopyBtn"
-                  class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50">
-            📋 Copy text
-          </button>
-          <button id="modalOkBtn"
-                  class="rounded-xl bg-slate-900 text-white px-3 py-2 text-sm font-semibold hover:bg-slate-800">
-            Done
-          </button>
+<!-- SECTION: BUSINESS IDEAS -->
+<section id="ideas" style="background:rgba(255,255,255,.02)">
+  <div class="container">
+    <div class="section-tag">💡 Inspiration</div>
+    <h2 class="section-title">Business Ideas ($1–$10 to Start)</h2>
+    <p class="section-desc">All of these businesses can be started with $10 or less. Pick one, remix one, or come up with your own!</p>
+    <div class="ideas-grid" id="ideasGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: SAMPLE PITCHES -->
+<section id="pitches">
+  <div class="container">
+    <div class="section-tag">🎤 Sample Pitches</div>
+    <h2 class="section-title">6 Ready-to-Use Shark Tank Pitches</h2>
+    <p class="section-desc">Study these sample pitches to learn how to present YOUR business. Each one answers the 5 key questions and shows real numbers. Entrepreneurs can use these as-is, or create their own!</p>
+    <div class="pitch-grid" id="pitchGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: EVALUATE (Shark Tool) -->
+<section id="evaluate" style="background:rgba(255,255,255,.02)">
+  <div class="container">
+    <div class="section-tag">🦈 Shark Tools</div>
+    <h2 class="section-title">Shark Evaluation Scorecard</h2>
+    <p class="section-desc">Investors: Use this checklist to rate each pitch. Score each question, then make your decision!</p>
+
+    <div class="eval-section">
+      <div style="margin-bottom:20px">
+        <label style="font-size:.8rem;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px">Business Being Evaluated:</label>
+        <input type="text" id="evalBizName" placeholder="Type the business name..." style="display:block;width:100%;max-width:400px;margin-top:8px;padding:10px 14px;background:rgba(255,255,255,.05);border:1.5px solid var(--card-border);border-radius:var(--radius-xs);color:var(--text);font-family:'Outfit',sans-serif;font-size:.95rem;outline:none">
+      </div>
+      <div class="eval-header">
+        <span>Question</span><span style="color:var(--lime)">Yes ✓</span><span style="color:var(--gold)">Maybe</span><span style="color:var(--coral)">No ✗</span>
+      </div>
+      <div class="eval-grid" id="evalGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="decision-box">
+        <h3>🦈 My Shark Decision</h3>
+        <div class="decision-btns">
+          <button class="d-btn deal-in" onclick="selectDeal(this)">💰 I'M IN!</button>
+          <button class="d-btn deal-out" onclick="selectDeal(this)">👋 I'M OUT</button>
+          <button class="d-btn deal-neg" onclick="selectDeal(this)">🤝 LET'S NEGOTIATE</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <div class="form-group">
+            <label>Amount I'll Invest</label>
+            <input type="text" placeholder="$___">
+          </div>
+          <div class="form-group">
+            <label>% of Profits I Want</label>
+            <input type="text" placeholder="____%">
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:12px">
+          <label>Why I Made This Decision</label>
+          <textarea placeholder="Explain your reasoning..."></textarea>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Toast -->
-  <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden">
-    <div class="rounded-2xl bg-slate-900 text-white px-4 py-2 text-sm shadow-lg">Copied!</div>
+<!-- SECTION: BUILD YOUR PITCH -->
+<section id="build">
+  <div class="container">
+    <div class="section-tag">🔨 Create</div>
+    <h2 class="section-title">Build Your Own Business Pitch</h2>
+    <p class="section-desc">Entrepreneurs: Fill in this form to create your pitch. The profit calculator does the math for you!</p>
+
+    <div class="builder">
+      <h3>📝 My Business Pitch Card</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Business Name</label>
+          <input type="text" id="bizName" placeholder="e.g., Bracelet Boss" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Tagline (one catchy sentence)</label>
+          <input type="text" id="bizTagline" placeholder="e.g., Custom bracelets for every personality!" oninput="updatePreview()">
+        </div>
+        <div class="form-group full">
+          <label>What are you selling? (Answer Question #1)</label>
+          <textarea id="bizWhat" placeholder="Describe your product or service..." oninput="updatePreview()"></textarea>
+        </div>
+        <div class="form-group full">
+          <label>Who will buy it? (Answer Question #2)</label>
+          <textarea id="bizWho" placeholder="Describe your target customer..." oninput="updatePreview()"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Total Startup Cost ($1–$10)</label>
+          <input type="number" id="bizCost" min="1" max="10" step="0.5" placeholder="e.g., 6.50" oninput="calcProfit()">
+        </div>
+        <div class="form-group">
+          <label>Selling Price Per Item</label>
+          <input type="number" id="bizPrice" min="0.25" step="0.25" placeholder="e.g., 1.50" oninput="calcProfit()">
+        </div>
+        <div class="form-group">
+          <label>How Many Can You Make With Your Budget?</label>
+          <input type="number" id="bizQty" min="1" placeholder="e.g., 25" oninput="calcProfit()">
+        </div>
+        <div class="form-group">
+          <label>How Much Are You Asking From Sharks?</label>
+          <input type="number" id="bizAsk" min="0" step="0.5" placeholder="e.g., 3.00" oninput="calcProfit()">
+        </div>
+        <div class="form-group full">
+          <label>Why will your business succeed? (Answer Question #5)</label>
+          <textarea id="bizWhy" placeholder="Explain your plan, what makes you unique, and how you'll sell..." oninput="updatePreview()"></textarea>
+        </div>
+        <div class="form-group full">
+          <label>What % of profits will investors get?</label>
+          <input type="number" id="bizPercent" min="1" max="99" placeholder="e.g., 25" oninput="calcProfit()">
+        </div>
+      </div>
+
+      <div class="calc-result" id="calcResult">
+        <p style="color:var(--text-dim);margin-bottom:8px;font-size:.9rem">Fill in the numbers above to see your profit!</p>
+        <div class="big-num">$ —</div>
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <button class="btn btn-gold" onclick="window.print()">🖨️ Print My Pitch Card</button>
+      </div>
+    </div>
+
+    <!-- MONEY TRACKER -->
+    <div class="tracker">
+      <h3>💰 Money Tracker</h3>
+      <p style="color:var(--text-dim);font-size:.9rem;margin-bottom:20px">Keep track of every dollar spent and earned. This is how real businesses stay profitable!</p>
+
+      <h4 style="color:var(--coral);font-family:'Fredoka',sans-serif;margin-bottom:12px">📤 Expenses (Money Out)</h4>
+      <table class="tracker-table">
+        <thead><tr><th>Date</th><th>What I Bought</th><th>Qty</th><th>Cost</th></tr></thead>
+        <tbody id="expenseRows"></tbody>
+      </table>
+      <button class="btn btn-sm btn-outline" style="margin-top:12px;border-color:var(--coral);color:var(--coral)" onclick="addRow('expenseRows')">+ Add Expense</button>
+
+      <h4 style="color:var(--lime);font-family:'Fredoka',sans-serif;margin:24px 0 12px">📥 Sales (Money In)</h4>
+      <table class="tracker-table">
+        <thead><tr><th>Date</th><th>What I Sold</th><th>Qty</th><th>Amount</th></tr></thead>
+        <tbody id="salesRows"></tbody>
+      </table>
+      <button class="btn btn-sm btn-outline" style="margin-top:12px;border-color:var(--lime);color:var(--lime)" onclick="addRow('salesRows')">+ Add Sale</button>
+
+      <div class="tracker-total">
+        <span class="total-label">💰 Total Profit/Loss:</span>
+        <span class="total-amount positive" id="trackerTotal">$0.00</span>
+      </div>
+    </div>
   </div>
+</section>
+
+<!-- SECTION: VOCAB -->
+<section id="vocab" style="background:rgba(255,255,255,.02)">
+  <div class="container">
+    <div class="section-tag">📖 Vocabulary</div>
+    <h2 class="section-title">Business Words You Need to Know</h2>
+    <p class="section-desc">Master these terms and you'll sound like a real business pro. Sharks and Entrepreneurs both need to know these!</p>
+    <div class="vocab-grid" id="vocabGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: CLASSROOM FLOW -->
+<section id="classroom">
+  <div class="container">
+    <div class="section-tag">🏫 For the Teacher</div>
+    <h2 class="section-title">How to Run the Game in Class</h2>
+    <p class="section-desc">Follow this timeline to run a smooth, fun, and educational Shark Tank session!</p>
+
+    <div class="flow-timeline">
+      <div class="flow-item" data-time="1"><h4>Introduce the Game</h4><div class="flow-time">⏱ 5–10 minutes</div><p>Explain the rules: each student gets a set amount of cash ($1–$10). They choose to be an Entrepreneur or a Shark. Hand out the money and let students explore the business ideas section.</p></div>
+      <div class="flow-item" data-time="2"><h4>Teach the Basics</h4><div class="flow-time">⏱ 10–15 minutes</div><p>Walk through the "What IS a Business?" and "5 Key Questions" sections as a class. Make sure every student understands revenue, costs, and profit before they start planning.</p></div>
+      <div class="flow-item" data-time="3"><h4>Entrepreneurs Plan Their Pitch</h4><div class="flow-time">⏱ 15–20 minutes</div><p>Entrepreneurs use the "Build Your Pitch" section or sample pitch cards to create their presentation. They must answer all 5 key questions and have real numbers. Sharks can review the evaluation checklist.</p></div>
+      <div class="flow-item" data-time="4"><h4>Shark Tank Presentations!</h4><div class="flow-time">⏱ 2–3 minutes per pitch</div><p>Each Entrepreneur stands up and presents their pitch. Sharks listen, take notes on their evaluation scorecards, and can ask 2–3 questions after each pitch.</p></div>
+      <div class="flow-item" data-time="5"><h4>Sharks Make Deals</h4><div class="flow-time">⏱ 10 minutes</div><p>After all pitches, Sharks decide who to invest in. They physically hand their cash to the Entrepreneurs they believe in and agree on the profit-sharing percentage.</p></div>
+      <div class="flow-item" data-time="6"><h4>Run the Businesses (Optional Extended Play)</h4><div class="flow-time">⏱ 1–5 days</div><p>If doing an extended game, Entrepreneurs actually create and sell their products over the week. They track money using the tracker. At the end, they calculate profits and pay investors.</p></div>
+      <div class="flow-item" data-time="7"><h4>Final Results & Awards</h4><div class="flow-time">⏱ 10 minutes</div><p>Announce results! Awards: Most Profitable Business, Best Pitch, Smartest Shark (highest ROI), Most Creative Business, Best Teamwork, and Comeback Award (best pivot from failure).</p></div>
+    </div>
+
+    <div style="margin-top:40px;padding:28px;background:linear-gradient(135deg,rgba(245,166,35,.08),rgba(23,195,178,.08));border:1px solid rgba(245,166,35,.2);border-radius:var(--radius)">
+      <h3 style="font-family:'Fredoka',sans-serif;color:var(--gold);margin-bottom:12px">🏆 Award Ideas</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
+        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🥇 <strong>Most Profitable</strong><br><span style="color:var(--text-dim);font-size:.8rem">Highest total profit</span></div>
+        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🎤 <strong>Best Pitcher</strong><br><span style="color:var(--text-dim);font-size:.8rem">Most convincing presentation</span></div>
+        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🦈 <strong>Smartest Shark</strong><br><span style="color:var(--text-dim);font-size:.8rem">Best return on investment</span></div>
+        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🎨 <strong>Most Creative</strong><br><span style="color:var(--text-dim);font-size:.8rem">Most original business idea</span></div>
+        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🤝 <strong>Best Teamwork</strong><br><span style="color:var(--text-dim);font-size:.8rem">Best entrepreneur + investor team</span></div>
+        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🔄 <strong>Comeback Kid</strong><br><span style="color:var(--text-dim);font-size:.8rem">Best recovery from setback</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p class="footer-tagline">🦈 Teen Summit Shark Tank Game 🦈</p>
+    <p>Learn. Invest. Build. Profit. — Every great entrepreneur started somewhere!</p>
+  </div>
+</footer>
+
+<!-- PRINT BTN -->
+<button class="print-btn" onclick="window.print()" title="Print this page">🖨️</button>
 
 <script>
-/* ---------------------------
-   Default Pitch Data
---------------------------- */
-const DEFAULT_PITCHES = [
-  {
-    id: "snack-bundles",
-    title: "Snack Attack Packs",
-    type: "Product",
-    keywords: ["snack", "candy", "chips", "bundles", "hungry"],
-    business: "We sell snack bundles (chips + candy/gum) for quick, convenient snacks at school.",
-    customers: "Students who get hungry between classes or want a cheaper option than vending machines.",
-    startupCost: 15,
-    unitCost: 0.50,
-    sellingPrice: 1.50,
-    whySucceed: "High demand, repeat customers, easy to restock, bundles feel like a deal.",
-    investorProfit: "Investors earn a share of profit from every bundle sold (ownership percentage).",
-    askMoney: 15,
-    askEquity: 20,
-    profitProjection: 20,
-    script: [
-      "Hello Sharks! My name is ____ and today I’m presenting my business called Snack Attack Packs.",
-      "The problem is students often get hungry between classes and don’t want expensive vending prices.",
-      "My solution is snack bundles that are quick to buy and easy to carry.",
-      "It costs about $0.50 per item, and we sell bundles for $1.50, so profit is strong.",
-      "Our customers are students who want convenient snacks, and we’ll market with posters and word of mouth.",
-      "We are asking for $15 for 20% ownership, and investors earn money from every bundle sold.",
-      "Thank you Sharks — I’m ready for questions!"
-    ]
-  },
-  {
-    id: "friendship-bands",
-    title: "Friendship Bands",
-    type: "Creative",
-    keywords: ["bracelets", "beads", "custom", "gifts", "school colors"],
-    business: "We make and sell custom bracelets (names, school colors, themes).",
-    customers: "Students who like personalized accessories or want gifts for friends.",
-    startupCost: 10,
-    unitCost: 0.40,
-    sellingPrice: 2.00,
-    whySucceed: "Custom products feel special, low cost to make, lots of designs for trends.",
-    investorProfit: "Investors get a share of profit from each bracelet sold.",
-    askMoney: 10,
-    askEquity: 25,
-    profitProjection: 18,
-    script: [
-      "Hello Sharks! I’m ____ and my business is Friendship Bands.",
-      "The problem is students want unique accessories, but custom items can be hard to find.",
-      "Our solution is bracelets with names, colors, and themes people choose.",
-      "Each bracelet costs about $0.40 to make, and we sell them for $2.00.",
-      "Our customers are students who love personalized style and gifts.",
-      "We’re asking for $10 for 25% ownership so we can buy beads and string in bulk.",
-      "Thank you Sharks — we’re ready for your questions!"
-    ]
-  },
-  {
-    id: "study-buddy",
-    title: "Study Buddy Support",
-    type: "Service",
-    keywords: ["homework", "tutoring", "study", "organization"],
-    business: "We provide homework help, study planning, and organization support (planners, checklists).",
-    customers: "Students who want help understanding assignments or staying organized.",
-    startupCost: 5,
-    unitCost: 0.10,
-    sellingPrice: 2.00,
-    whySucceed: "Services have low inventory cost and strong demand before tests.",
-    investorProfit: "Investors earn from each paid session or package sold.",
-    askMoney: 5,
-    askEquity: 15,
-    profitProjection: 15,
-    script: [
-      "Hello Sharks! I’m ____ and my business is Study Buddy Support.",
-      "The problem is many students feel stressed because they don’t understand homework or can’t stay organized.",
-      "Our solution is short help sessions plus simple checklists and study plans.",
-      "Startup cost is low because we only need a few printed guides.",
-      "We charge $2 per session or offer weekly packages.",
-      "We’re asking for $5 for 15% ownership, and investors profit from each session we sell.",
-      "Thank you — we’re ready for questions!"
-    ]
-  },
-  {
-    id: "study-notes",
-    title: "Study Notes Station",
-    type: "Service",
-    keywords: ["notes", "study guides", "flashcards", "tests"],
-    business: "We create and sell study notes, quiz sheets, and flashcards for class topics.",
-    customers: "Students who want quick study help before quizzes and tests.",
-    startupCost: 8,
-    unitCost: 0.15,
-    sellingPrice: 1.00,
-    whySucceed: "Students always need review materials; we can update notes for new topics.",
-    investorProfit: "Investors earn a share of profits from each set of notes sold.",
-    askMoney: 8,
-    askEquity: 20,
-    profitProjection: 12,
-    script: [
-      "Hello Sharks! I’m ____ and my business is Study Notes Station.",
-      "The problem is students sometimes don’t know what to study or don’t have good notes.",
-      "Our solution is clear study sheets, flashcards, and mini practice quizzes.",
-      "Printing costs are low, and we sell each set for $1.",
-      "Our customers are students preparing for quizzes and tests.",
-      "We’re asking for $8 for 20% ownership, and investors profit from every study set sold.",
-      "Thank you Sharks — questions?"
-    ]
-  }
+// ── DATA ──
+const ideas = [
+  { name:"Custom Friendship Bracelets", icon:"📿", color:"#f5a623", bg:"rgba(245,166,35,.12)", tag:"Craft", tagColor:"#f5a623", cost:"$3–$6", price:"$1–$2 each", profit:"200–400%", desc:"Buy beads and string in bulk. Make custom bracelets with names, school colors, or trendy styles. Take orders at lunch.", steps:"Buy supplies at dollar store → Make 15–25 bracelets → Take orders with color choices → Deliver next day" },
+  { name:"Snack Packs", icon:"🍿", color:"#ff6b6b", bg:"rgba(255,107,107,.12)", tag:"Food", tagColor:"#ff6b6b", cost:"$5–$10", price:"$1–$2 each", profit:"50–150%", desc:"Buy candy, chips, or drinks in bulk. Sell individual items. Everyone gets hungry! Great for events and after school.", steps:"Buy bulk at warehouse store → Sort into individual portions → Sell at lunch/after school → Restock weekly" },
+  { name:"Study Guide Kits", icon:"📚", color:"#64b5f6", bg:"rgba(100,181,246,.12)", tag:"Service", tagColor:"#64b5f6", cost:"$2–$5", price:"$2–$4 each", profit:"200–400%", desc:"Create printed study guides, flashcard sets, or planner pages. Print them neatly. Students always need help studying!", steps:"Pick popular subjects → Create guides on computer → Print at home/library → Sell before test weeks" },
+  { name:"Custom Slime", icon:"🧪", color:"#a8e063", bg:"rgba(168,224,99,.12)", tag:"Craft", tagColor:"#a8e063", cost:"$4–$8", price:"$2–$4 each", profit:"150–300%", desc:"Make custom slime in different colors, scents, and textures. Glitter, glow-in-the-dark, and crunchy options are popular!", steps:"Buy glue + activator in bulk → Make batches at home → Package in small containers → Offer custom colors" },
+  { name:"Sticker Sheets", icon:"🎨", color:"#7c5cbf", bg:"rgba(124,92,191,.12)", tag:"Design", tagColor:"#7c5cbf", cost:"$3–$7", price:"$1–$3 per sheet", profit:"200–500%", desc:"Design stickers on a computer, print on sticker paper. Themes: school spirit, memes, motivational quotes, animals.", steps:"Design on free apps → Print on sticker paper → Cut into sheets → Sell themed packs" },
+  { name:"Pencil & Supply Packs", icon:"✏️", color:"#17c3b2", bg:"rgba(23,195,178,.12)", tag:"Essentials", tagColor:"#17c3b2", cost:"$3–$8", price:"$1–$3 per pack", profit:"100–200%", desc:"Bundle pencils, erasers, and highlighters into themed packs. Everyone forgets supplies. Easy sell every single day!", steps:"Buy in bulk at dollar store → Bundle 3–5 items per pack → Add a label/bag → Sell from locker or at lunch" },
+  { name:"Tutoring Sessions", icon:"🎓", color:"#f5a623", bg:"rgba(245,166,35,.12)", tag:"Service", tagColor:"#f5a623", cost:"$0–$2", price:"$2–$5 per session", profit:"Very High!", desc:"If you're great at math, reading, or any subject — teach others! Almost zero cost. Just your brain and time.", steps:"Pick your best subject → Make flyers → Schedule 15-min sessions → Meet at library or lunch" },
+  { name:"Bookmarks & Keychains", icon:"🔖", color:"#ff8fab", bg:"rgba(255,143,171,.12)", tag:"Craft", tagColor:"#ff8fab", cost:"$2–$5", price:"$1–$3 each", profit:"200–400%", desc:"Make unique bookmarks from cardstock or beaded keychains. Low cost, easy to make, and everyone uses them!", steps:"Buy cardstock/beads → Design and create → Add tassels or charms → Sell at school events" },
+  { name:"Baked Goods", icon:"🍪", color:"#e8941a", bg:"rgba(232,148,26,.12)", tag:"Food", tagColor:"#e8941a", cost:"$3–$8", price:"$1–$2 each", profit:"100–300%", desc:"Bake cookies, brownies, or rice crispy treats at home. Package them nicely. Homemade snacks always sell out!", steps:"Bake a batch at home → Wrap individually → Price and label → Sell at lunch (check school rules first!)" },
+  { name:"Custom Drawings / Portraits", icon:"🖼️", color:"#42a5f5", bg:"rgba(66,165,245,.12)", tag:"Art", tagColor:"#42a5f5", cost:"$1–$3", price:"$2–$5 each", profit:"300–500%", desc:"If you can draw, take custom orders! Sketch portraits, pet drawings, or cartoon versions of classmates.", steps:"Show samples of your work → Take orders with photo references → Complete in 1–2 days → Deliver" },
+  { name:"Positive Quote Cards", icon:"💌", color:"#7c5cbf", bg:"rgba(124,92,191,.12)", tag:"Design", tagColor:"#7c5cbf", cost:"$1–$4", price:"$0.50–$2 each", profit:"200–400%", desc:"Design small cards with motivational or funny quotes. Print on cardstock. Great for lockers, gifts, or pick-me-ups!", steps:"Write/find quotes → Design on phone or computer → Print and cut → Sell as singles or packs" },
+  { name:"Hair Accessories", icon:"🎀", color:"#ff8fab", bg:"rgba(255,143,171,.12)", tag:"Fashion", tagColor:"#ff8fab", cost:"$3–$8", price:"$1–$3 each", profit:"100–300%", desc:"Make scrunchies, beaded hair clips, or ribbon bows. Fashion accessories are always in demand at school!", steps:"Buy fabric/ribbons/clips → Make at home → Display variety → Sell at school or take custom orders" },
 ];
 
-const STORAGE_KEY = "classroom_sharktank_pitches_v1";
-const DECISIONS_KEY = "classroom_sharktank_decisions_v1";
+const pitches = [
+  { name:"Bracelet Boss", tagline:"Custom friendship bracelets for every personality!", color:"c1",
+    what:"I make custom friendship bracelets using beads and string. Each one is personalized with the buyer's name, favorite colors, or school colors. I also offer matching sets for friend groups.",
+    who:"6th–8th grade students who like accessories, especially girls who want to match with friends. Big demand before dances, spirit weeks, and birthdays.",
+    startup:"$6", ask:"$3", askPercent:"25%", price:"$1.50", qty:"25", revenue:"$37.50", totalCost:"$9", profit:"$28.50", investorReturn:"$7.13",
+    why:"Nobody else at school sells custom jewelry. I take orders at lunch with a color chart. I offer a 'buy 3 get 1 free' deal for friend groups. Delivery next day guaranteed!",
+    howInvestorsProfit:"Invest $3 for 25% of profits. If I make $28.50 profit, you get $7.13 back — that's a $4.13 gain on a $3 investment!"
+  },
+  { name:"Snack Attack", tagline:"The tastiest snacks at the best prices!", color:"c2",
+    what:"I buy popular snacks and candy in bulk from the dollar store and sell them individually at school. Variety packs with chips, candy bars, and gum.",
+    who:"ALL students! Everyone gets hungry between classes. Especially busy during testing weeks and after-school activities when there's no time for the cafeteria.",
+    startup:"$8", ask:"$4", askPercent:"30%", price:"$1.00", qty:"40", revenue:"$40", totalCost:"$12", profit:"$28",investorReturn:"$8.40",
+    why:"I surveyed 20 classmates and 18 said they'd buy snacks at school. I'll have a printed menu, sell at the same spot every day, and rotate flavors weekly to keep it fresh.",
+    howInvestorsProfit:"Invest $4 for 30% of profits. Expected profit is $28 → your share is $8.40. That's more than double your investment!"
+  },
+  { name:"Study Star Kits", tagline:"Ace every test with study packs made by students!", color:"c3",
+    what:"I create subject-specific study guides with key terms, practice problems, and memory tricks. Printed on colorful paper, folded into neat kits with highlighters.",
+    who:"Students who struggle with tests or want better grades. Demand spikes right before midterms, finals, and big unit tests. Parents might buy these too!",
+    startup:"$5", ask:"$3", askPercent:"25%", price:"$3.00", qty:"10", revenue:"$30", totalCost:"$8", profit:"$22", investorReturn:"$5.50",
+    why:"I'm an A student in math and science. My guides use simple language and real examples — not textbook stuff. I'll sell them 3 days before every major test. No competition!",
+    howInvestorsProfit:"Invest $3 for 25% of profits. I'm projecting $22 profit → you get $5.50 back. Almost double your money, and demand is guaranteed before every test!"
+  },
+  { name:"Slime Factory", tagline:"Satisfying slime in every color and scent!", color:"c4",
+    what:"Handmade slime in 8+ varieties: glitter, fluffy, crunchy, butter, glow-in-the-dark, and scented. Each container is decorated and labeled.",
+    who:"5th–7th graders who love fidget toys and sensory items. Slime is a proven seller — kids trade and collect different types. Popular as gifts and stress relievers.",
+    startup:"$7", ask:"$3", askPercent:"20%", price:"$2.50", qty:"20", revenue:"$50", totalCost:"$10", profit:"$40", investorReturn:"$8.00",
+    why:"I've been making slime for 2 years and have perfected my recipes. I'll bring free samples to build hype, offer 'mystery slime' grab bags, and take custom scent orders.",
+    howInvestorsProfit:"Invest $3 for 20% of profits. Projected profit is $40 → you get $8 back. That's almost 3× your investment!"
+  },
+  { name:"Sticker Studio", tagline:"Original designs you can't find anywhere else!", color:"c5",
+    what:"I design and print original sticker sheets with themes: school mascots, funny memes, motivational quotes, cute animals, and seasonal designs.",
+    who:"Students who decorate their notebooks, water bottles, laptops, and lockers. Stickers are collectible — people buy multiple sheets! Especially popular with creative students.",
+    startup:"$6", ask:"$2", askPercent:"20%", price:"$2.00", qty:"20", revenue:"$40", totalCost:"$8", profit:"$32", investorReturn:"$6.40",
+    why:"I'm a strong digital artist and use free design apps. My designs are 100% original — you literally cannot buy these anywhere else. I'll release new themed drops every 2 weeks.",
+    howInvestorsProfit:"Invest $2 for 20% of profits. Projected $32 profit → you receive $6.40. That's over 3× your original investment!"
+  },
+  { name:"Cookie Crew", tagline:"Fresh-baked cookies that taste like happiness!", color:"c6",
+    what:"Homemade cookies baked fresh and individually wrapped. Rotating flavors: chocolate chip, snickerdoodle, double chocolate, and seasonal specials (pumpkin in fall!).",
+    who:"Everyone loves cookies! Students, teachers, and staff. Premium customers are people buying for birthdays or treats for friends. Teachers buy for classroom parties.",
+    startup:"$6", ask:"$4", askPercent:"30%", price:"$1.50", qty:"30", revenue:"$45", totalCost:"$10", profit:"$35", investorReturn:"$10.50",
+    why:"My family recipe has won 2 local bake-offs. I package each cookie in a clear bag with a label. I'll offer 'Cookie of the Week' to keep people coming back. Pre-orders at lunch!",
+    howInvestorsProfit:"Invest $4 for 30% of profits. Expected $35 profit → you receive $10.50. That's more than 2.5× your money back!"
+  },
+];
 
-let pitches = loadPitches();
-let selectedPitchId = null;
+const evalQuestions = [
+  "Would I actually buy this product myself?",
+  "Is the price fair for what you get?",
+  "Do I believe they can sell this many?",
+  "Are the profit numbers realistic and honest?",
+  "Does this person seem prepared and confident?",
+  "Is there a real need for this product at school?",
+  "Is the startup cost $10 or less?",
+  "Could this business grow over time?",
+  "Is this better or different from what's already available?",
+  "Would I trust this person with my money?",
+];
 
-/* ---------------------------
-   Helpers
---------------------------- */
-function money(n) {
-  const x = Number(n || 0);
-  return x.toLocaleString(undefined, { style: "currency", currency: "USD" });
-}
-function calcInvestorReturn(totalProfit, equityPct) {
-  const p = Math.max(0, Number(totalProfit || 0));
-  const e = Math.max(0, Math.min(100, Number(equityPct || 0)));
-  return p * (e / 100);
-}
-function calcRoiPct(investment, investorReturn) {
-  const inv = Math.max(0, Number(investment || 0));
-  if (!inv) return 0;
-  return ((Math.max(0, investorReturn) - inv) / inv) * 100;
-}
-function toast(msg="Copied!") {
-  const t = document.getElementById("toast");
-  t.querySelector("div").textContent = msg;
-  t.classList.remove("hidden");
-  setTimeout(()=>t.classList.add("hidden"), 900);
-}
-function escapeHtml(str) {
-  return String(str ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-function tagClass(type) {
-  switch(type) {
-    case "Service": return "bg-emerald-50 border-emerald-200 text-emerald-800";
-    case "Product": return "bg-blue-50 border-blue-200 text-blue-800";
-    case "Creative": return "bg-fuchsia-50 border-fuchsia-200 text-fuchsia-800";
-    case "Events": return "bg-amber-50 border-amber-200 text-amber-900";
-    default: return "bg-slate-50 border-slate-200 text-slate-700";
-  }
-}
+const vocabTerms = [
+  { word:"Entrepreneur", def:"A person who starts and runs their own business. That could be YOU!" },
+  { word:"Revenue", def:"All the money your business brings in from sales BEFORE subtracting costs." },
+  { word:"Profit", def:"The money left AFTER you subtract costs from revenue. This is what you keep!" },
+  { word:"Loss", def:"When your costs are MORE than your revenue. You lost money. Time to pivot!" },
+  { word:"Investment", def:"Money put into a business with the hope of earning more money back." },
+  { word:"Investor", def:"A person who gives money to a business in exchange for a share of profits." },
+  { word:"Startup Cost", def:"The total money needed to get your business started before making any sales." },
+  { word:"Market Research", def:"Learning about your customers — what they want, what they'll pay, and who else is selling." },
+  { word:"Supply & Demand", def:"High demand + low supply = charge more. Low demand or high supply = lower prices." },
+  { word:"Markup", def:"The amount you add to your cost to set your selling price. Higher markup = more profit per item." },
+  { word:"Break Even", def:"The point where revenue equals costs. After this, every sale is pure profit!" },
+  { word:"ROI", def:"Return on Investment — how much profit compared to how much was invested. Higher = better!" },
+  { word:"Pitch", def:"A short presentation to convince people to invest in or buy from your business." },
+  { word:"Target Customer", def:"The specific group of people most likely to buy your product." },
+  { word:"Competition", def:"Other people selling the same or similar products. Know them, then be better!" },
+  { word:"Bulk Buying", def:"Buying large quantities at a lower per-item price. Key to keeping costs down!" },
+];
 
-/* ---------------------------
-   Persistence
---------------------------- */
-function loadPitches() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return structuredClone(DEFAULT_PITCHES);
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed) || parsed.length === 0) return structuredClone(DEFAULT_PITCHES);
-    return parsed;
-  } catch {
-    return structuredClone(DEFAULT_PITCHES);
-  }
-}
-function savePitches() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(pitches, null, 2));
-}
-function loadDecisions() {
-  try {
-    const raw = localStorage.getItem(DECISIONS_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-function saveDecisions(list) {
-  localStorage.setItem(DECISIONS_KEY, JSON.stringify(list, null, 2));
+// ── RENDER FUNCTIONS ──
+
+function renderIdeas() {
+  const grid = document.getElementById('ideasGrid');
+  grid.innerHTML = ideas.map(i => `
+    <div class="idea-card">
+      <div class="idea-header">
+        <div class="idea-icon" style="background:${i.bg}">${i.icon}</div>
+        <div>
+          <h3>${i.name}</h3>
+          <span class="idea-tag" style="background:${i.bg};color:${i.color}">${i.tag}</span>
+        </div>
+      </div>
+      <div class="idea-body">
+        <p>${i.desc}</p>
+        <div class="idea-stats">
+          <div class="idea-stat"><div class="label">Cost</div><div class="value cost">${i.cost}</div></div>
+          <div class="idea-stat"><div class="label">Sell For</div><div class="value price">${i.price}</div></div>
+          <div class="idea-stat"><div class="label">Profit</div><div class="value profit">${i.profit}</div></div>
+        </div>
+        <div class="idea-steps"><strong>How to do it:</strong> ${i.steps}</div>
+      </div>
+    </div>
+  `).join('');
 }
 
-/* ---------------------------
-   Rendering
---------------------------- */
 function renderPitches() {
-  const listEl = document.getElementById("pitchList");
-  listEl.innerHTML = "";
-
-  const q = document.getElementById("searchInput").value.trim().toLowerCase();
-  const filter = document.getElementById("typeFilter").value;
-
-  const filtered = pitches.filter(p => {
-    const matchesFilter = (filter === "all") || (p.type === filter);
-    const blob = [p.title, p.type, ...(p.keywords||[]), p.business, p.customers].join(" ").toLowerCase();
-    const matchesQuery = !q || blob.includes(q);
-    return matchesFilter && matchesQuery;
-  });
-
-  document.getElementById("countLabel").textContent = filtered.length;
-
-  filtered.forEach(p => {
-    const selected = p.id === selectedPitchId;
-    const card = document.createElement("div");
-    card.className = [
-      "rounded-2xl border bg-white p-4 shadow-sm hover:shadow transition",
-      selected ? "border-slate-900 ring-2 ring-slate-900/10" : "border-slate-200"
-    ].join(" ");
-
-    card.innerHTML = `
-      <div class="flex items-start justify-between gap-2">
+  const grid = document.getElementById('pitchGrid');
+  grid.innerHTML = pitches.map((p, idx) => `
+    <div class="pitch-card ${p.color}">
+      <div class="pitch-banner">
+        <div class="pitch-number">Pitch #${idx + 1}</div>
+        <h3>${p.name}</h3>
+        <div class="tagline">${p.tagline}</div>
+      </div>
+      <div class="pitch-body">
+        <div class="pitch-field">
+          <div class="field-label">❶ What Is Your Business?</div>
+          <div class="field-value">${p.what}</div>
+        </div>
+        <div class="pitch-field">
+          <div class="field-label">❷ Who Will Buy It?</div>
+          <div class="field-value">${p.who}</div>
+        </div>
+        <div class="pitch-field">
+          <div class="field-label">❸ Cost to Start</div>
+          <div class="field-value">My money: ${p.startup} | Asking Sharks for: ${p.ask} (${p.askPercent} of profits)</div>
+        </div>
+        <div class="pitch-numbers">
+          <div class="pitch-num-item"><div class="p-label">Price Each</div><div class="p-value" style="color:var(--sky)">${p.price}</div></div>
+          <div class="pitch-num-item"><div class="p-label">Can Make</div><div class="p-value" style="color:var(--gold)">${p.qty}</div></div>
+          <div class="pitch-num-item"><div class="p-label">Profit</div><div class="p-value" style="color:var(--lime)">${p.profit}</div></div>
+        </div>
+        <div class="pitch-field">
+          <div class="field-label">❹ Selling Price & Revenue</div>
+          <div class="field-value">${p.price} × ${p.qty} items = ${p.revenue} revenue | Total costs: ${p.totalCost}</div>
+        </div>
+        <div class="pitch-field">
+          <div class="field-label">❺ Why It Will Succeed</div>
+          <div class="field-value">${p.why}</div>
+        </div>
+        <div class="pitch-field">
+          <div class="field-label">🦈 How Investors Profit</div>
+          <div class="field-value">${p.howInvestorsProfit}</div>
+        </div>
+      </div>
+      <div class="pitch-footer">
+        <span style="font-size:.85rem;color:var(--text-dim)">Deal: ${p.ask} for ${p.askPercent}</span>
         <div>
-          <div class="flex items-center gap-2">
-            <div class="text-sm font-bold">${escapeHtml(p.title)}</div>
-            <span class="text-[11px] rounded-full border px-2 py-0.5 ${tagClass(p.type)}">${escapeHtml(p.type)}</span>
-          </div>
-          <div class="mt-1 text-xs text-slate-600">
-            Ask: <span class="font-semibold">${money(p.askMoney)}</span> for <span class="font-semibold">${Number(p.askEquity||0)}%</span>
-            • Start: <span class="font-semibold">${money(p.startupCost)}</span>
-          </div>
+          <button class="invest-btn in" onclick="this.classList.toggle('selected')">I'm In! 💰</button>
+          <button class="invest-btn out" onclick="this.classList.toggle('selected')">I'm Out 👋</button>
         </div>
-
-        <button class="selectBtn shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold hover:bg-slate-50">
-          ${selected ? "Selected" : "Select"}
-        </button>
       </div>
+    </div>
+  `).join('');
+}
 
-      <div class="mt-3 flex flex-col sm:flex-row gap-2">
-        <button class="scriptBtn flex-1 rounded-xl bg-slate-900 text-white px-3 py-2 text-sm font-semibold hover:bg-slate-800">
-          🎤 Read Script
-        </button>
-        <button class="infoBtn flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50">
-          📌 Shark Questions
-        </button>
-      </div>
+function renderEval() {
+  const grid = document.getElementById('evalGrid');
+  grid.innerHTML = evalQuestions.map((q, i) => `
+    <div class="eval-row">
+      <div class="eval-q">${q}</div>
+      <div class="eval-opt yes"><input type="radio" name="eq${i}" id="eq${i}y"><label for="eq${i}y">✓</label></div>
+      <div class="eval-opt maybe"><input type="radio" name="eq${i}" id="eq${i}m"><label for="eq${i}m">~</label></div>
+      <div class="eval-opt no"><input type="radio" name="eq${i}" id="eq${i}n"><label for="eq${i}n">✗</label></div>
+    </div>
+  `).join('');
+}
 
-      <div class="mt-3 text-xs text-slate-600 line-clamp-3">
-        ${escapeHtml(p.business)}
+function renderVocab() {
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = vocabTerms.map(v => `
+    <div class="vocab-card">
+      <div class="vocab-word">${v.word}</div>
+      <div class="vocab-def">${v.def}</div>
+    </div>
+  `).join('');
+}
+
+// ── INTERACTIONS ──
+
+function selectRole(el, role) {
+  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function showTab(tabId) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function selectDeal(btn) {
+  document.querySelectorAll('.d-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function calcProfit() {
+  const cost = parseFloat(document.getElementById('bizCost').value) || 0;
+  const price = parseFloat(document.getElementById('bizPrice').value) || 0;
+  const qty = parseInt(document.getElementById('bizQty').value) || 0;
+  const ask = parseFloat(document.getElementById('bizAsk').value) || 0;
+  const pct = parseFloat(document.getElementById('bizPercent').value) || 0;
+
+  const revenue = price * qty;
+  const totalCost = cost + ask;
+  const profit = revenue - totalCost;
+  const investorShare = profit * (pct / 100);
+  const yourProfit = profit - investorShare;
+
+  const el = document.getElementById('calcResult');
+  if (cost > 0 && price > 0 && qty > 0) {
+    const profitColor = profit >= 0 ? 'var(--lime)' : 'var(--coral)';
+    el.innerHTML = `
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px;text-align:center">
+        <div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Revenue</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--sky)">$${revenue.toFixed(2)}</div></div>
+        <div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Total Costs</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--coral)">$${totalCost.toFixed(2)}</div></div>
+        <div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Total Profit</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:${profitColor}">$${profit.toFixed(2)}</div></div>
+        ${pct > 0 ? `<div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Investor Gets</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--gold)">$${investorShare.toFixed(2)}</div></div>` : ''}
       </div>
+      <div style="font-size:.85rem;color:var(--text-dim);margin-bottom:8px">Your Take-Home Profit:</div>
+      <div class="big-num" style="color:${profitColor}">$${(pct > 0 ? yourProfit : profit).toFixed(2)}</div>
+      ${profit > 0 ? `<div style="margin-top:8px;font-size:.85rem;color:var(--teal)">🎉 Cost per item: $${(totalCost/qty).toFixed(2)} | Profit per item: $${((revenue-totalCost)/qty).toFixed(2)} | Markup: ${(((price - totalCost/qty)/(totalCost/qty))*100).toFixed(0)}%</div>` : ''}
     `;
-
-    card.querySelector(".selectBtn").addEventListener("click", () => selectPitch(p.id));
-    card.querySelector(".scriptBtn").addEventListener("click", () => openScriptModal(p.id));
-    card.querySelector(".infoBtn").addEventListener("click", () => openInfoModal(p.id));
-
-    listEl.appendChild(card);
-  });
-}
-
-function selectPitch(id) {
-  selectedPitchId = id;
-  const p = pitches.find(x => x.id === id);
-  document.getElementById("selectedPitchLabel").textContent = p ? `${p.title} (${p.type})` : "None selected";
-  document.getElementById("bidAmount").value = p ? p.askMoney : 0;
-  document.getElementById("bidEquity").value = p ? p.askEquity : 0;
-  document.getElementById("pitchProfitProjection").value = p ? p.profitProjection : 0;
-  updateTrackerROI();
-  renderPitches();
-}
-
-/* ---------------------------
-   Modals
---------------------------- */
-const modalBackdrop = document.getElementById("modalBackdrop");
-const modalTitle = document.getElementById("modalTitle");
-const modalSubtitle = document.getElementById("modalSubtitle");
-const modalBody = document.getElementById("modalBody");
-const modalCloseBtn = document.getElementById("modalCloseBtn");
-const modalOkBtn = document.getElementById("modalOkBtn");
-const modalCopyBtn = document.getElementById("modalCopyBtn");
-let currentModalCopyText = "";
-
-function openModal({title, subtitle, bodyHtml, copyText}) {
-  modalTitle.textContent = title;
-  modalSubtitle.textContent = subtitle || "";
-  modalBody.innerHTML = bodyHtml || "";
-  currentModalCopyText = copyText || "";
-  modalBackdrop.classList.remove("hidden");
-  document.body.classList.add("overflow-hidden");
-  setTimeout(()=>modalCloseBtn.focus(), 0);
-}
-function closeModal() {
-  modalBackdrop.classList.add("hidden");
-  document.body.classList.remove("overflow-hidden");
-}
-modalCloseBtn.addEventListener("click", closeModal);
-modalOkBtn.addEventListener("click", closeModal);
-modalBackdrop.addEventListener("click", (e) => { if (e.target === modalBackdrop) closeModal(); });
-document.addEventListener("keydown", (e) => { if (!modalBackdrop.classList.contains("hidden") && e.key === "Escape") closeModal(); });
-modalCopyBtn.addEventListener("click", async () => {
-  if (!currentModalCopyText) return toast("Nothing to copy");
-  try { await navigator.clipboard.writeText(currentModalCopyText); toast("Copied!"); }
-  catch { toast("Copy blocked"); }
-});
-
-function openScriptModal(pitchId) {
-  const p = pitches.find(x => x.id === pitchId);
-  if (!p) return;
-  const scriptText = (p.script || []).map((line, idx) => `${idx+1}. ${line}`).join("\n");
-  const body = `
-    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-      <div class="text-xs font-semibold text-slate-600 mb-1">Student Script (read it out loud)</div>
-      <pre class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900 font-medium">${escapeHtml(scriptText)}</pre>
-    </div>
-    <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-      <div class="rounded-2xl border border-slate-200 p-3">
-        <div class="text-xs font-semibold text-slate-600">Suggested Ask</div>
-        <div class="text-lg font-bold">${money(p.askMoney)} for ${Number(p.askEquity||0)}%</div>
-      </div>
-      <div class="rounded-2xl border border-slate-200 p-3">
-        <div class="text-xs font-semibold text-slate-600">Quick Numbers</div>
-        <div class="text-sm mt-1">
-          Startup: <span class="font-semibold">${money(p.startupCost)}</span><br/>
-          Unit Cost: <span class="font-semibold">${money(p.unitCost)}</span><br/>
-          Sell Price: <span class="font-semibold">${money(p.sellingPrice)}</span>
-        </div>
-      </div>
-    </div>
-  `;
-  openModal({
-    title: `🎤 Script: ${p.title}`,
-    subtitle: "This is the script a student can read during their pitch.",
-    bodyHtml: body,
-    copyText: scriptText
-  });
-}
-
-function qaBlock(label, value, compact=false) {
-  return `
-    <div class="rounded-2xl border border-slate-200 ${compact ? "p-3" : "p-4"}">
-      <div class="text-xs font-semibold text-slate-600">${escapeHtml(label)}</div>
-      <div class="mt-1 text-sm text-slate-900 leading-relaxed">${escapeHtml(value)}</div>
-    </div>
-  `;
-}
-
-function openInfoModal(pitchId) {
-  const p = pitches.find(x => x.id === pitchId);
-  if (!p) return;
-
-  const qas = `
-What is your business?
-${p.business}
-
-Who will buy it?
-${p.customers}
-
-Cost to start?
-${money(p.startupCost)} (startup)
-
-Selling price?
-${money(p.sellingPrice)} (per sale)
-
-Why will it succeed?
-${p.whySucceed}
-
-How investors profit?
-${p.investorProfit}
-  `.trim();
-
-  const body = `
-    <div class="grid grid-cols-1 gap-3">
-      ${qaBlock("What is your business?", p.business)}
-      ${qaBlock("Who will buy it?", p.customers)}
-      ${qaBlock("Cost to start?", `${money(p.startupCost)} (startup cost)`)}
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        ${qaBlock("Selling price?", `${money(p.sellingPrice)} per sale`, true)}
-        ${qaBlock("Unit cost?", `${money(p.unitCost)} per item`, true)}
-      </div>
-      ${qaBlock("Why will it succeed?", p.whySucceed)}
-      ${qaBlock("How investors profit?", p.investorProfit)}
-      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
-        <div class="text-xs font-semibold text-slate-600">Suggested Ask</div>
-        <div class="text-lg font-bold">${money(p.askMoney)} for ${Number(p.askEquity||0)}%</div>
-      </div>
-    </div>
-  `;
-
-  openModal({
-    title: `📌 Shark Questions: ${p.title}`,
-    subtitle: "These are the answers Sharks expect to hear.",
-    bodyHtml: body,
-    copyText: qas
-  });
-}
-
-/* ---------------------------
-   Clickable Top “What Sharks Ask”
-   (shows selected pitch answer)
---------------------------- */
-function openTopQuestion(qKey) {
-  const p = pitches.find(x => x.id === selectedPitchId);
-  if (!p) {
-    openModal({
-      title: "Select a pitch first",
-      subtitle: "",
-      bodyHtml: `<div class="text-sm text-slate-700">Tap <span class="font-semibold">Select</span> on a pitch card, then tap a Shark question up top.</div>`,
-      copyText: ""
-    });
-    return;
   }
+}
 
-  const map = {
-    business: { label: "What is your business?", value: p.business, hint: "Say what you sell/do in one sentence." },
-    customers: { label: "Who will buy it?", value: p.customers, hint: "Name the customer group and why they care." },
-    startupCost: { label: "Cost to start?", value: `${money(p.startupCost)} (startup cost)`, hint: "List what you must buy first." },
-    sellingPrice: { label: "Selling price?", value: `${money(p.sellingPrice)} per sale`, hint: "How much the customer pays." },
-    whySucceed: { label: "Why will it succeed?", value: p.whySucceed, hint: "Explain demand, uniqueness, and how you’ll sell." },
-    investorProfit: { label: "How investors profit?", value: p.investorProfit, hint: "Explain how investors get paid back." }
-  };
+function updatePreview() { /* placeholder for future preview */ }
 
-  const item = map[qKey] || map.business;
-
-  const copyText = `${item.label}\n${item.value}`;
-  const body = `
-    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-      <div class="text-xs font-semibold text-slate-600 mb-1">${escapeHtml(item.label)}</div>
-      <div class="text-sm text-slate-900 leading-relaxed font-medium">${escapeHtml(item.value)}</div>
-    </div>
-    <div class="mt-3 text-sm text-slate-700">
-      <span class="font-semibold">Tip:</span> ${escapeHtml(item.hint)}
-    </div>
-    <div class="mt-3 rounded-2xl border border-slate-200 p-3">
-      <div class="text-xs font-semibold text-slate-600">Selected pitch</div>
-      <div class="text-sm font-semibold">${escapeHtml(p.title)} <span class="text-xs text-slate-500">(${escapeHtml(p.type)})</span></div>
-    </div>
+// ── TRACKER ──
+function addRow(tableId) {
+  const tbody = document.getElementById(tableId);
+  const row = document.createElement('tr');
+  row.innerHTML = `
+    <td><input type="date"></td>
+    <td><input type="text" placeholder="Description..."></td>
+    <td><input type="number" min="1" placeholder="0" onchange="updateTotal()"></td>
+    <td><input type="number" min="0" step="0.25" placeholder="$0.00" onchange="updateTotal()"></td>
   `;
+  tbody.appendChild(row);
+}
 
-  openModal({
-    title: `✅ ${item.label}`,
-    subtitle: "Tap Copy to copy this answer.",
-    bodyHtml: body,
-    copyText
+function updateTotal() {
+  let expenses = 0, sales = 0;
+  document.querySelectorAll('#expenseRows tr').forEach(row => {
+    const val = parseFloat(row.querySelectorAll('input')[3]?.value) || 0;
+    expenses += val;
   });
-}
-
-/* attach click handlers for the chips */
-document.querySelectorAll(".qaChip").forEach(btn => {
-  btn.addEventListener("click", () => openTopQuestion(btn.getAttribute("data-q")));
-});
-
-/* ---------------------------
-   Tips Modal
---------------------------- */
-function openTipsModal() {
-  const tipsText = `
-PITCH TIPS (STUDENT-FRIENDLY)
-1) Start with your business name and what you sell.
-2) Say the problem first, then your solution.
-3) Explain who will buy it (your customers).
-4) Share simple numbers: cost, price, profit.
-5) Ask for money and say what % you offer.
-6) End confidently: “I’m ready for questions!”
-
-INVESTOR QUESTION IDEAS
-• How will you advertise?
-• What if nobody buys it?
-• Who is your competition?
-• How will you improve the product?
-• How fast can you make more?
-• What’s your profit per sale?
-
-PRACTICE
-• Read slowly and clearly.
-• Make eye contact with 1 person at a time.
-• If you mess up, pause and continue.
-  `.trim();
-
-  openModal({
-    title: "💡 Pitch Tips",
-    subtitle: "Quick coaching + strong questions investors can ask.",
-    bodyHtml: `<div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-      <pre class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900 font-medium">${escapeHtml(tipsText)}</pre>
-    </div>`,
-    copyText: tipsText
+  document.querySelectorAll('#salesRows tr').forEach(row => {
+    const val = parseFloat(row.querySelectorAll('input')[3]?.value) || 0;
+    sales += val;
   });
+  const total = sales - expenses;
+  const el = document.getElementById('trackerTotal');
+  el.textContent = `$${total.toFixed(2)}`;
+  el.className = 'total-amount ' + (total >= 0 ? 'positive' : 'negative');
 }
 
-/* ---------------------------
-   Export / Import
---------------------------- */
-function download(filename, text) {
-  const blob = new Blob([text], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
-document.getElementById("exportBtn").addEventListener("click", () => download("pitches.json", JSON.stringify(pitches, null, 2)));
-document.getElementById("resetBtn").addEventListener("click", () => {
-  pitches = structuredClone(DEFAULT_PITCHES);
-  selectedPitchId = null;
-  savePitches();
-  renderPitches();
-  selectPitch(pitches[0]?.id || null);
-  toast("Reset!");
-});
-document.getElementById("importInput").addEventListener("change", async (e) => {
-  const file = e.target.files && e.target.files[0];
-  if (!file) return;
-  try {
-    const text = await file.text();
-    const parsed = JSON.parse(text);
-    if (!Array.isArray(parsed)) throw new Error("JSON must be an array of pitches");
-    parsed.forEach(p => {
-      if (!p.id || !p.title) throw new Error("Each pitch must have id and title");
-      if (!Array.isArray(p.script)) p.script = ["Hello Sharks! My name is ____ and my business is ____."];
-      if (!p.type) p.type = "Product";
-      if (!Array.isArray(p.keywords)) p.keywords = [];
-      if (p.askMoney == null) p.askMoney = 10;
-      if (p.askEquity == null) p.askEquity = 20;
-      if (p.profitProjection == null) p.profitProjection = 0;
-      if (p.startupCost == null) p.startupCost = p.askMoney;
-      if (p.unitCost == null) p.unitCost = 0;
-      if (p.sellingPrice == null) p.sellingPrice = 1;
-      if (!p.business) p.business = "";
-      if (!p.customers) p.customers = "";
-      if (!p.whySucceed) p.whySucceed = "";
-      if (!p.investorProfit) p.investorProfit = "";
-    });
-    pitches = parsed;
-    savePitches();
-    selectedPitchId = null;
-    renderPitches();
-    selectPitch(pitches[0]?.id || null);
-    toast("Imported!");
-  } catch (err) {
-    openModal({
-      title: "Import Error",
-      subtitle: "Your JSON file could not be imported.",
-      bodyHtml: `<div class="text-sm text-slate-700">${escapeHtml(String(err.message || err))}</div>`,
-      copyText: ""
-    });
-  } finally {
-    e.target.value = "";
-  }
-});
-
-/* ---------------------------
-   Search & Filter
---------------------------- */
-document.getElementById("searchInput").addEventListener("input", renderPitches);
-document.getElementById("typeFilter").addEventListener("change", renderPitches);
-
-/* ---------------------------
-   ROI Calculators
---------------------------- */
-function updateQuickROI() {
-  const profit = Number(document.getElementById("roiProfit").value || 0);
-  const equity = Number(document.getElementById("roiEquity").value || 0);
-  const inv = Number(document.getElementById("roiInvest").value || 0);
-  const ret = calcInvestorReturn(profit, equity);
-  const roi = calcRoiPct(inv, ret);
-  document.getElementById("roiOut").textContent = money(ret);
-  document.getElementById("roiPct").textContent = `${roi.toFixed(1)}%`;
-}
-["roiProfit","roiEquity","roiInvest"].forEach(id => document.getElementById(id).addEventListener("input", updateQuickROI));
-
-function updateTrackerROI() {
-  const bid = Number(document.getElementById("bidAmount").value || 0);
-  const eq = Number(document.getElementById("bidEquity").value || 0);
-  const projProfit = Number(document.getElementById("pitchProfitProjection").value || 0);
-  const ret = calcInvestorReturn(projProfit, eq);
-  const roi = calcRoiPct(bid, ret);
-  document.getElementById("trackerReturn").textContent = money(ret);
-  document.getElementById("trackerROI").textContent = `${roi.toFixed(1)}%`;
-}
-["bidAmount","bidEquity","pitchProfitProjection"].forEach(id => document.getElementById(id).addEventListener("input", updateTrackerROI));
-
-/* ---------------------------
-   Decisions
---------------------------- */
-function renderDecisions() {
-  const list = loadDecisions();
-  const el = document.getElementById("decisionsList");
-  el.innerHTML = "";
-  if (list.length === 0) {
-    el.innerHTML = `<div class="text-sm text-slate-500">No saved decisions yet.</div>`;
-    return;
-  }
-  list.slice().reverse().forEach(d => {
-    const wrap = document.createElement("div");
-    wrap.className = "rounded-2xl border border-slate-200 p-3 bg-white";
-    wrap.innerHTML = `
-      <div class="flex items-start justify-between gap-2">
-        <div>
-          <div class="text-sm font-bold">${escapeHtml(d.pitchTitle || "Unknown pitch")}</div>
-          <div class="text-xs text-slate-600 mt-0.5">
-            Bid: <span class="font-semibold">${money(d.bidAmount)}</span> for <span class="font-semibold">${Number(d.bidEquity||0)}%</span>
-            • Return: <span class="font-semibold">${money(d.investorReturn)}</span>
-            • ROI: <span class="font-semibold">${Number(d.roiPct||0).toFixed(1)}%</span>
-          </div>
-        </div>
-        <button class="delBtn rounded-xl border border-slate-200 bg-white px-2 py-1 text-xs font-semibold hover:bg-slate-50">Delete</button>
-      </div>
-      <div class="mt-2 text-sm text-slate-700 whitespace-pre-wrap">${escapeHtml(d.notes || "")}</div>
-      <div class="mt-2 text-[11px] text-slate-500">${escapeHtml(d.timestamp || "")}</div>
-    `;
-    wrap.querySelector(".delBtn").addEventListener("click", () => {
-      const all = loadDecisions().filter(x => x._key !== d._key);
-      saveDecisions(all);
-      renderDecisions();
-    });
-    el.appendChild(wrap);
+// ── NAV ACTIVE STATE ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
   });
-}
-
-document.getElementById("saveDecisionBtn").addEventListener("click", () => {
-  const p = pitches.find(x => x.id === selectedPitchId);
-  if (!p) return toast("Select a pitch first");
-
-  const bidAmount = Number(document.getElementById("bidAmount").value || 0);
-  const bidEquity = Number(document.getElementById("bidEquity").value || 0);
-  const projProfit = Number(document.getElementById("pitchProfitProjection").value || 0);
-  const notes = document.getElementById("investorNotes").value || "";
-
-  const investorReturn = calcInvestorReturn(projProfit, bidEquity);
-  const roiPct = calcRoiPct(bidAmount, investorReturn);
-
-  const now = new Date();
-  const record = {
-    _key: `${now.toISOString()}_${p.id}_${bidAmount}_${bidEquity}`,
-    pitchId: p.id,
-    pitchTitle: p.title,
-    bidAmount,
-    bidEquity,
-    projectedProfit: projProfit,
-    investorReturn,
-    roiPct,
-    notes,
-    timestamp: now.toLocaleString()
-  };
-
-  const all = loadDecisions();
-  all.push(record);
-  saveDecisions(all);
-  renderDecisions();
-  toast("Saved!");
-});
-document.getElementById("exportTrackerBtn").addEventListener("click", () => download("investor_notes.json", JSON.stringify(loadDecisions(), null, 2)));
-document.getElementById("clearTrackerBtn").addEventListener("click", () => {
-  document.getElementById("bidAmount").value = 0;
-  document.getElementById("bidEquity").value = 0;
-  document.getElementById("pitchProfitProjection").value = 0;
-  document.getElementById("investorNotes").value = "";
-  updateTrackerROI();
-  toast("Cleared");
 });
 
-document.getElementById("tipsBtn").addEventListener("click", openTipsModal);
-
-/* ---------------------------
-   Init
---------------------------- */
-savePitches();
+// ── INIT ──
+renderIdeas();
 renderPitches();
-updateQuickROI();
-renderDecisions();
-selectPitch(pitches[0]?.id || null);
-updateTrackerROI();
+renderEval();
+renderVocab();
+// Add initial tracker rows
+for (let i = 0; i < 4; i++) { addRow('expenseRows'); addRow('salesRows'); }
 </script>
 </body>
 </html>
