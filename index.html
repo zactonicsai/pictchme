@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Classroom Shark Tank Pitch Library</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
+      <div class="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-bold">🦈</div>
+      <div class="flex-1">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <h1 class="text-lg sm:text-xl font-bold leading-tight">Shark Tank Classroom Pitch Library</h1>
+            <p class="text-xs sm:text-sm text-slate-600">Pick a pitch, read the script, and review the “Shark Questions” info.</p>
+          </div>
+          <button id="tipsBtn" class="shrink-0 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800 active:scale-[0.99]">
+            💡 Tips
+          </button>
+        </div>
+
+        <!-- What Sharks Ask -->
+        <div class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 sm:p-4">
+          <div class="text-sm font-semibold mb-2">What Sharks Ask (Include these in every pitch):</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-sm text-slate-700">
+            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ What is your business?</div>
+            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Who will buy it?</div>
+            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Cost to start?</div>
+            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Selling price?</div>
+            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ Why will it succeed?</div>
+            <div class="rounded-xl bg-white border border-slate-200 p-2">✅ How investors profit?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto px-4 py-6">
+    <!-- Controls -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+          <div class="flex-1">
+            <label class="text-xs font-semibold text-slate-600">Search pitches</label>
+            <div class="mt-1 relative">
+              <input id="searchInput" type="text" placeholder="Search by name, type, or keywords..."
+                     class="w-full rounded-2xl border border-slate-200 px-4 py-3 pr-10 outline-none focus:ring-2 focus:ring-slate-900/10" />
+              <div class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">🔎</div>
+            </div>
+          </div>
+
+          <div class="sm:w-52">
+            <label class="text-xs font-semibold text-slate-600">Filter</label>
+            <select id="typeFilter"
+                    class="mt-1 w-full rounded-2xl border border-slate-200 px-3 py-3 outline-none focus:ring-2 focus:ring-slate-900/10">
+              <option value="all">All types</option>
+              <option value="Product">Product</option>
+              <option value="Service">Service</option>
+              <option value="Creative">Creative</option>
+              <option value="Events">Events</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+          <div class="text-sm text-slate-600">
+            <span id="countLabel" class="font-semibold text-slate-900">0</span> pitches shown
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <button id="exportBtn"
+              class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold border border-slate-200 bg-white hover:bg-slate-50">
+              ⬇️ Export JSON
+            </button>
+            <label class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer">
+              ⬆️ Import JSON
+              <input id="importInput" type="file" accept="application/json" class="hidden"/>
+            </label>
+            <button id="resetBtn"
+              class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800">
+              ♻️ Reset to Defaults
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick ROI Calculator -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-4">
+        <div class="flex items-center justify-between gap-2">
+          <h2 class="text-base font-bold">Quick ROI (Investor)</h2>
+          <span class="text-xs rounded-full bg-slate-100 px-2 py-1 text-slate-700">optional</span>
+        </div>
+        <p class="mt-1 text-sm text-slate-600">
+          Estimate investor return from profit & ownership.
+        </p>
+
+        <div class="mt-3 grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-xs font-semibold text-slate-600">Total Profit (projected)</label>
+            <input id="roiProfit" type="number" min="0" step="0.01" value="20"
+              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-600">Ownership %</label>
+            <input id="roiEquity" type="number" min="0" max="100" step="1" value="20"
+              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-600">Investment $</label>
+            <input id="roiInvest" type="number" min="0" step="0.01" value="10"
+              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-600">Investor Return</label>
+            <div id="roiOut"
+              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 bg-slate-50 text-slate-900 font-semibold">
+              $0.00
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2 text-sm text-slate-600">
+          ROI %: <span id="roiPct" class="font-semibold text-slate-900">0%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pitches + Tracker -->
+    <section class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <!-- Pitch List -->
+      <div class="lg:col-span-2 rounded-2xl border border-slate-200 bg-white">
+        <div class="p-4 border-b border-slate-200">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold">Pitch List</h2>
+            <span class="text-xs text-slate-600">Tap a card → choose Script or Shark Questions</span>
+          </div>
+        </div>
+
+        <div id="pitchList" class="p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- cards rendered here -->
+        </div>
+      </div>
+
+      <!-- Investment Tracker -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-4">
+        <div class="flex items-center justify-between gap-2">
+          <h2 class="text-base font-bold">Investor Notes & Bid Tracker</h2>
+          <button id="clearTrackerBtn" class="text-xs font-semibold text-slate-600 hover:text-slate-900 underline">
+            Clear
+          </button>
+        </div>
+
+        <div class="mt-3">
+          <label class="text-xs font-semibold text-slate-600">Selected pitch</label>
+          <div id="selectedPitchLabel" class="mt-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm">
+            None selected
+          </div>
+        </div>
+
+        <div class="mt-3 grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-xs font-semibold text-slate-600">Your Bid $</label>
+            <input id="bidAmount" type="number" min="0" step="0.01" value="0"
+              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-600">Equity % asked</label>
+            <input id="bidEquity" type="number" min="0" max="100" step="1" value="0"
+              class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <label class="text-xs font-semibold text-slate-600">Projected total profit (from pitch)</label>
+          <input id="pitchProfitProjection" type="number" min="0" step="0.01" value="0"
+            class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10" />
+        </div>
+
+        <div class="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <div class="text-xs font-semibold text-slate-600">Potential Investor Return</div>
+          <div id="trackerReturn" class="text-lg font-bold">$0.00</div>
+          <div class="text-sm text-slate-600">ROI: <span id="trackerROI" class="font-semibold text-slate-900">0%</span></div>
+        </div>
+
+        <div class="mt-3">
+          <label class="text-xs font-semibold text-slate-600">Investor notes (Why yes/no?)</label>
+          <textarea id="investorNotes" rows="4" placeholder="Risk? Demand? Profit? Competition?"
+            class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 outline-none focus:ring-2 focus:ring-slate-900/10"></textarea>
+        </div>
+
+        <div class="mt-3 flex gap-2">
+          <button id="saveDecisionBtn"
+            class="flex-1 rounded-xl px-3 py-2 text-sm font-semibold bg-slate-900 text-white hover:bg-slate-800">
+            Save Decision
+          </button>
+          <button id="exportTrackerBtn"
+            class="rounded-xl px-3 py-2 text-sm font-semibold border border-slate-200 bg-white hover:bg-slate-50">
+            Export Notes
+          </button>
+        </div>
+
+        <div class="mt-3">
+          <div class="text-xs font-semibold text-slate-600 mb-2">Saved decisions</div>
+          <div id="decisionsList" class="space-y-2"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Backdrop -->
+  <div id="modalBackdrop" class="fixed inset-0 z-40 hidden">
+    <div class="absolute inset-0 bg-slate-900/50"></div>
+    <div class="absolute inset-0 flex items-end sm:items-center justify-center p-3 sm:p-6">
+      <div id="modalPanel"
+           class="w-full sm:max-w-2xl rounded-3xl bg-white shadow-xl border border-slate-200 overflow-hidden">
+        <!-- Modal header -->
+        <div class="flex items-start justify-between gap-3 p-4 border-b border-slate-200">
+          <div>
+            <div id="modalTitle" class="text-base sm:text-lg font-bold leading-tight">Modal Title</div>
+            <div id="modalSubtitle" class="text-xs sm:text-sm text-slate-600">Modal subtitle</div>
+          </div>
+          <button id="modalCloseBtn"
+                  class="shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50">
+            ✕
+          </button>
+        </div>
+
+        <!-- Modal content -->
+        <div id="modalBody" class="p-4 max-h-[72vh] overflow-auto"></div>
+
+        <!-- Modal footer -->
+        <div class="p-4 border-t border-slate-200 flex flex-col sm:flex-row gap-2 sm:justify-end">
+          <button id="modalCopyBtn"
+                  class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50">
+            📋 Copy text
+          </button>
+          <button id="modalOkBtn"
+                  class="rounded-xl bg-slate-900 text-white px-3 py-2 text-sm font-semibold hover:bg-slate-800">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden">
+    <div class="rounded-2xl bg-slate-900 text-white px-4 py-2 text-sm shadow-lg">Copied!</div>
+  </div>
+
+<script>
+/* ---------------------------
+   Default Pitch Data
+--------------------------- */
+const DEFAULT_PITCHES = [
+  {
+    id: "snack-bundles",
+    title: "Snack Attack Packs",
+    type: "Product",
+    keywords: ["snack", "candy", "chips", "bundles", "hungry"],
+    business: "We sell snack bundles (chips + candy/gum) for quick, convenient snacks at school.",
+    customers: "Students who get hungry between classes or want a cheaper option than vending machines.",
+    startupCost: 15,
+    unitCost: 0.50,
+    sellingPrice: 1.50,
+    whySucceed: "High demand, repeat customers, easy to restock, bundles feel like a deal.",
+    investorProfit: "Investors earn a share of profit from every bundle sold (ownership percentage).",
+    askMoney: 15,
+    askEquity: 20,
+    profitProjection: 20, // projected total profit for the “round” (editable)
+    script: [
+      "Hello Sharks! My name is ____ and today I’m presenting my business called Snack Attack Packs.",
+      "The problem is students often get hungry between classes and don’t want expensive vending prices.",
+      "My solution is snack bundles that are quick to buy and easy to carry.",
+      "It costs about $0.50 per item, and we sell bundles for $1.50, so profit is strong.",
+      "Our customers are students who want convenient snacks, and we’ll market with posters and word of mouth.",
+      "We are asking for $15 for 20% ownership, and investors earn money from every bundle sold.",
+      "Thank you Sharks — I’m ready for questions!"
+    ]
+  },
+  {
+    id: "friendship-bands",
+    title: "Friendship Bands",
+    type: "Creative",
+    keywords: ["bracelets", "beads", "custom", "gifts", "school colors"],
+    business: "We make and sell custom bracelets (names, school colors, themes).",
+    customers: "Students who like personalized accessories or want gifts for friends.",
+    startupCost: 10,
+    unitCost: 0.40,
+    sellingPrice: 2.00,
+    whySucceed: "Custom products feel special, low cost to make, lots of designs for trends.",
+    investorProfit: "Investors get a share of profit from each bracelet sold.",
+    askMoney: 10,
+    askEquity: 25,
+    profitProjection: 18,
+    script: [
+      "Hello Sharks! I’m ____ and my business is Friendship Bands.",
+      "The problem is students want unique accessories, but custom items can be hard to find.",
+      "Our solution is bracelets with names, colors, and themes people choose.",
+      "Each bracelet costs about $0.40 to make, and we sell them for $2.00.",
+      "Our customers are students who love personalized style and gifts.",
+      "We’re asking for $10 for 25% ownership so we can buy beads and string in bulk.",
+      "Thank you Sharks — we’re ready for your questions!"
+    ]
+  },
+  {
+    id: "study-buddy",
+    title: "Study Buddy Support",
+    type: "Service",
+    keywords: ["homework", "tutoring", "study", "organization"],
+    business: "We provide homework help, study planning, and organization support (planners, checklists).",
+    customers: "Students who want help understanding assignments or staying organized.",
+    startupCost: 5,
+    unitCost: 0.10,
+    sellingPrice: 2.00,
+    whySucceed: "Services have low inventory cost and strong demand before tests.",
+    investorProfit: "Investors earn from each paid session or package sold.",
+    askMoney: 5,
+    askEquity: 15,
+    profitProjection: 15,
+    script: [
+      "Hello Sharks! I’m ____ and my business is Study Buddy Support.",
+      "The problem is many students feel stressed because they don’t understand homework or can’t stay organized.",
+      "Our solution is short help sessions plus simple checklists and study plans.",
+      "Startup cost is low because we only need a few printed guides.",
+      "We charge $2 per session or offer weekly packages.",
+      "We’re asking for $5 for 15% ownership, and investors profit from each session we sell.",
+      "Thank you — we’re ready for questions!"
+    ]
+  },
+  {
+    id: "study-notes",
+    title: "Study Notes Station",
+    type: "Service",
+    keywords: ["notes", "study guides", "flashcards", "tests"],
+    business: "We create and sell study notes, quiz sheets, and flashcards for class topics.",
+    customers: "Students who want quick study help before quizzes and tests.",
+    startupCost: 8,
+    unitCost: 0.15,
+    sellingPrice: 1.00,
+    whySucceed: "Students always need review materials; we can update notes for new topics.",
+    investorProfit: "Investors earn a share of profits from each set of notes sold.",
+    askMoney: 8,
+    askEquity: 20,
+    profitProjection: 12,
+    script: [
+      "Hello Sharks! I’m ____ and my business is Study Notes Station.",
+      "The problem is students sometimes don’t know what to study or don’t have good notes.",
+      "Our solution is clear study sheets, flashcards, and mini practice quizzes.",
+      "Printing costs are low, and we sell each set for $1.",
+      "Our customers are students preparing for quizzes and tests.",
+      "We’re asking for $8 for 20% ownership, and investors profit from every study set sold.",
+      "Thank you Sharks — questions?"
+    ]
+  },
+  {
+    id: "oops-kits",
+    title: "Oops Supply Kits",
+    type: "Product",
+    keywords: ["pencils", "erasers", "school supplies", "forgot"],
+    business: "We sell mini emergency supply kits (pencil, eraser, paper, etc.).",
+    customers: "Students who forget supplies or want backups in their backpack/locker.",
+    startupCost: 12,
+    unitCost: 1.00,
+    sellingPrice: 2.50,
+    whySucceed: "Convenience sells; students forget supplies often; repeat customers.",
+    investorProfit: "Investors earn a share of profit per kit sold.",
+    askMoney: 12,
+    askEquity: 20,
+    profitProjection: 16,
+    script: [
+      "Hello Sharks! I’m ____ and my business is Oops Supply Kits.",
+      "The problem is students forget supplies and get stuck in class.",
+      "My solution is a small kit with the essentials so students can stay prepared.",
+      "Each kit costs about $1 to make and sells for $2.50.",
+      "Customers are students who want backups and teachers who recommend preparedness.",
+      "I’m asking for $12 for 20% ownership, and investors profit from each kit sold.",
+      "Thank you Sharks — I’m ready for questions!"
+    ]
+  },
+  {
+    id: "brain-break",
+    title: "Brain Break Games",
+    type: "Events",
+    keywords: ["games", "trivia", "tournament", "fun"],
+    business: "We run quick game sessions (trivia, puzzles, mini-tournaments) during approved times.",
+    customers: "Students who want fun, low-cost entertainment with friends.",
+    startupCost: 8,
+    unitCost: 0.05,
+    sellingPrice: 1.00,
+    whySucceed: "Entertainment attracts crowds; we can rotate games to stay fresh.",
+    investorProfit: "Investors earn from entry fees and small add-ons like puzzle sheets.",
+    askMoney: 8,
+    askEquity: 20,
+    profitProjection: 14,
+    script: [
+      "Hello Sharks! I’m ____ and my business is Brain Break Games.",
+      "The problem is students want fun activities during free time, but there aren’t many options.",
+      "Our solution is quick trivia and puzzle challenges with entry fees and prizes.",
+      "Startup cost is small, and we charge $1 per game session.",
+      "Customers are students who want a fun brain break with friends.",
+      "We’re asking for $8 for 20% ownership, and investors profit from each entry fee.",
+      "Thank you Sharks — questions?"
+    ]
+  }
+];
+
+const STORAGE_KEY = "classroom_sharktank_pitches_v1";
+const DECISIONS_KEY = "classroom_sharktank_decisions_v1";
+
+/* ---------------------------
+   State
+--------------------------- */
+let pitches = loadPitches();
+let selectedPitchId = null;
+
+/* ---------------------------
+   Helpers
+--------------------------- */
+function money(n) {
+  const x = Number(n || 0);
+  return x.toLocaleString(undefined, { style: "currency", currency: "USD" });
+}
+
+function calcInvestorReturn(totalProfit, equityPct) {
+  const p = Math.max(0, Number(totalProfit || 0));
+  const e = Math.max(0, Math.min(100, Number(equityPct || 0)));
+  return p * (e / 100);
+}
+
+function calcRoiPct(investment, investorReturn) {
+  const inv = Math.max(0, Number(investment || 0));
+  if (!inv) return 0;
+  return ((Math.max(0, investorReturn) - inv) / inv) * 100;
+}
+
+function toast(msg="Copied!") {
+  const t = document.getElementById("toast");
+  t.querySelector("div").textContent = msg;
+  t.classList.remove("hidden");
+  setTimeout(()=>t.classList.add("hidden"), 900);
+}
+
+/* ---------------------------
+   Persistence
+--------------------------- */
+function loadPitches() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return structuredClone(DEFAULT_PITCHES);
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed) || parsed.length === 0) return structuredClone(DEFAULT_PITCHES);
+    return parsed;
+  } catch {
+    return structuredClone(DEFAULT_PITCHES);
+  }
+}
+
+function savePitches() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(pitches, null, 2));
+}
+
+function loadDecisions() {
+  try {
+    const raw = localStorage.getItem(DECISIONS_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveDecisions(list) {
+  localStorage.setItem(DECISIONS_KEY, JSON.stringify(list, null, 2));
+}
+
+/* ---------------------------
+   Rendering
+--------------------------- */
+function renderPitches() {
+  const listEl = document.getElementById("pitchList");
+  listEl.innerHTML = "";
+
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  const filter = document.getElementById("typeFilter").value;
+
+  const filtered = pitches.filter(p => {
+    const matchesFilter = (filter === "all") || (p.type === filter);
+    const blob = [
+      p.title, p.type, ...(p.keywords||[]),
+      p.business, p.customers
+    ].join(" ").toLowerCase();
+    const matchesQuery = !q || blob.includes(q);
+    return matchesFilter && matchesQuery;
+  });
+
+  document.getElementById("countLabel").textContent = filtered.length;
+
+  filtered.forEach(p => {
+    const card = document.createElement("div");
+    const selected = p.id === selectedPitchId;
+
+    card.className = [
+      "rounded-2xl border bg-white p-4 shadow-sm hover:shadow transition",
+      selected ? "border-slate-900 ring-2 ring-slate-900/10" : "border-slate-200"
+    ].join(" ");
+
+    card.innerHTML = `
+      <div class="flex items-start justify-between gap-2">
+        <div>
+          <div class="flex items-center gap-2">
+            <div class="text-sm font-bold">${escapeHtml(p.title)}</div>
+            <span class="text-[11px] rounded-full border px-2 py-0.5 ${tagClass(p.type)}">${escapeHtml(p.type)}</span>
+          </div>
+          <div class="mt-1 text-xs text-slate-600">
+            Ask: <span class="font-semibold">${money(p.askMoney)}</span> for <span class="font-semibold">${Number(p.askEquity||0)}%</span>
+            • Start: <span class="font-semibold">${money(p.startupCost)}</span>
+          </div>
+        </div>
+
+        <button class="selectBtn shrink-0 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-semibold hover:bg-slate-50">
+          ${selected ? "Selected" : "Select"}
+        </button>
+      </div>
+
+      <div class="mt-3 flex flex-col sm:flex-row gap-2">
+        <button class="scriptBtn flex-1 rounded-xl bg-slate-900 text-white px-3 py-2 text-sm font-semibold hover:bg-slate-800">
+          🎤 Read Script
+        </button>
+        <button class="infoBtn flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold hover:bg-slate-50">
+          📌 Shark Questions
+        </button>
+      </div>
+
+      <div class="mt-3 text-xs text-slate-600 line-clamp-3">
+        ${escapeHtml(p.business)}
+      </div>
+    `;
+
+    card.querySelector(".selectBtn").addEventListener("click", () => selectPitch(p.id));
+    card.querySelector(".scriptBtn").addEventListener("click", () => openScriptModal(p.id));
+    card.querySelector(".infoBtn").addEventListener("click", () => openInfoModal(p.id));
+
+    listEl.appendChild(card);
+  });
+}
+
+function tagClass(type) {
+  switch(type) {
+    case "Service": return "bg-emerald-50 border-emerald-200 text-emerald-800";
+    case "Product": return "bg-blue-50 border-blue-200 text-blue-800";
+    case "Creative": return "bg-fuchsia-50 border-fuchsia-200 text-fuchsia-800";
+    case "Events": return "bg-amber-50 border-amber-200 text-amber-900";
+    default: return "bg-slate-50 border-slate-200 text-slate-700";
+  }
+}
+
+function selectPitch(id) {
+  selectedPitchId = id;
+  const p = pitches.find(x => x.id === id);
+  document.getElementById("selectedPitchLabel").textContent = p ? `${p.title} (${p.type})` : "None selected";
+  // default tracker values from pitch
+  document.getElementById("bidAmount").value = p ? p.askMoney : 0;
+  document.getElementById("bidEquity").value = p ? p.askEquity : 0;
+  document.getElementById("pitchProfitProjection").value = p ? p.profitProjection : 0;
+  updateTrackerROI();
+  renderPitches();
+}
+
+/* ---------------------------
+   Modals
+--------------------------- */
+const modalBackdrop = document.getElementById("modalBackdrop");
+const modalTitle = document.getElementById("modalTitle");
+const modalSubtitle = document.getElementById("modalSubtitle");
+const modalBody = document.getElementById("modalBody");
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+const modalOkBtn = document.getElementById("modalOkBtn");
+const modalCopyBtn = document.getElementById("modalCopyBtn");
+
+let currentModalCopyText = "";
+
+function openModal({title, subtitle, bodyHtml, copyText}) {
+  modalTitle.textContent = title;
+  modalSubtitle.textContent = subtitle || "";
+  modalBody.innerHTML = bodyHtml || "";
+  currentModalCopyText = copyText || "";
+
+  modalBackdrop.classList.remove("hidden");
+  document.body.classList.add("overflow-hidden");
+
+  // focus close for accessibility
+  setTimeout(()=>modalCloseBtn.focus(), 0);
+}
+
+function closeModal() {
+  modalBackdrop.classList.add("hidden");
+  document.body.classList.remove("overflow-hidden");
+}
+
+modalCloseBtn.addEventListener("click", closeModal);
+modalOkBtn.addEventListener("click", closeModal);
+modalBackdrop.addEventListener("click", (e) => {
+  if (e.target === modalBackdrop) closeModal();
+});
+document.addEventListener("keydown", (e) => {
+  if (!modalBackdrop.classList.contains("hidden") && e.key === "Escape") closeModal();
+});
+
+modalCopyBtn.addEventListener("click", async () => {
+  if (!currentModalCopyText) return toast("Nothing to copy");
+  try {
+    await navigator.clipboard.writeText(currentModalCopyText);
+    toast("Copied!");
+  } catch {
+    toast("Copy blocked");
+  }
+});
+
+function openScriptModal(pitchId) {
+  const p = pitches.find(x => x.id === pitchId);
+  if (!p) return;
+
+  const scriptText = (p.script || []).map((line, idx) => `${idx+1}. ${line}`).join("\n");
+
+  const body = `
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+      <div class="text-xs font-semibold text-slate-600 mb-1">Student Script (read it out loud)</div>
+      <pre class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900 font-medium">${escapeHtml(scriptText)}</pre>
+    </div>
+
+    <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div class="rounded-2xl border border-slate-200 p-3">
+        <div class="text-xs font-semibold text-slate-600">Suggested Ask</div>
+        <div class="text-lg font-bold">${money(p.askMoney)} for ${Number(p.askEquity||0)}%</div>
+        <div class="text-xs text-slate-600 mt-1">You can negotiate: change money or % during Q&A.</div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-3">
+        <div class="text-xs font-semibold text-slate-600">Quick Numbers</div>
+        <div class="text-sm mt-1">
+          Startup: <span class="font-semibold">${money(p.startupCost)}</span><br/>
+          Unit Cost: <span class="font-semibold">${money(p.unitCost)}</span><br/>
+          Sell Price: <span class="font-semibold">${money(p.sellingPrice)}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 text-sm text-slate-700">
+      <div class="font-semibold mb-1">Practice Tip:</div>
+      Speak slowly. Smile. Pause after each sentence. If you forget a line, just say it in your own words.
+    </div>
+  `;
+
+  openModal({
+    title: `🎤 Script: ${p.title}`,
+    subtitle: "This is the speech students can read as their pitch script.",
+    bodyHtml: body,
+    copyText: scriptText
+  });
+}
+
+function openInfoModal(pitchId) {
+  const p = pitches.find(x => x.id === pitchId);
+  if (!p) return;
+
+  const qas = `
+What is your business?
+${p.business}
+
+Who will buy it?
+${p.customers}
+
+Cost to start?
+${money(p.startupCost)} (startup)
+
+Selling price?
+${money(p.sellingPrice)} (per sale)
+
+Why will it succeed?
+${p.whySucceed}
+
+How investors profit?
+${p.investorProfit}
+  `.trim();
+
+  const body = `
+    <div class="grid grid-cols-1 gap-3">
+      ${qaBlock("What is your business?", p.business)}
+      ${qaBlock("Who will buy it?", p.customers)}
+      ${qaBlock("Cost to start?", `${money(p.startupCost)} (startup cost)`)}
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        ${qaBlock("Selling price?", `${money(p.sellingPrice)} per sale`, true)}
+        ${qaBlock("Unit cost?", `${money(p.unitCost)} per item`, true)}
+      </div>
+
+      ${qaBlock("Why will it succeed?", p.whySucceed)}
+      ${qaBlock("How investors profit?", p.investorProfit)}
+
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+        <div class="text-xs font-semibold text-slate-600">Suggested Ask</div>
+        <div class="text-lg font-bold">${money(p.askMoney)} for ${Number(p.askEquity||0)}%</div>
+        <div class="text-xs text-slate-600 mt-1">Use this as a starting point for negotiation.</div>
+      </div>
+    </div>
+  `;
+
+  openModal({
+    title: `📌 Shark Questions: ${p.title}`,
+    subtitle: "These are the answers Sharks expect to hear (students can memorize or read).",
+    bodyHtml: body,
+    copyText: qas
+  });
+}
+
+function qaBlock(label, value, compact=false) {
+  return `
+    <div class="rounded-2xl border border-slate-200 ${compact ? "p-3" : "p-4"}">
+      <div class="text-xs font-semibold text-slate-600">${escapeHtml(label)}</div>
+      <div class="mt-1 text-sm text-slate-900 leading-relaxed">${escapeHtml(value)}</div>
+    </div>
+  `;
+}
+
+function openTipsModal() {
+  const tipsText = `
+PITCH TIPS (STUDENT-FRIENDLY)
+1) Start with your business name and what you sell.
+2) Say the problem first, then your solution.
+3) Explain who will buy it (your customers).
+4) Share simple numbers: cost, price, profit.
+5) Ask for money and say what % you offer.
+6) End confidently: “I’m ready for questions!”
+
+INVESTOR QUESTION IDEAS
+• How will you advertise?
+• What if nobody buys it?
+• Who is your competition?
+• How will you improve the product?
+• How fast can you make more?
+• What’s your profit per sale?
+
+PRACTICE
+• Read slowly and clearly.
+• Make eye contact with 1 person at a time.
+• If you mess up, pause and continue.
+  `.trim();
+
+  const body = `
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <pre class="whitespace-pre-wrap text-sm leading-relaxed text-slate-900 font-medium">${escapeHtml(tipsText)}</pre>
+    </div>
+
+    <div class="mt-3 text-sm text-slate-700">
+      <span class="font-semibold">Teacher tip:</span> Let students practice in pairs for 2 minutes before pitching.
+    </div>
+  `;
+
+  openModal({
+    title: "💡 Pitch Tips",
+    subtitle: "Quick coaching + strong questions investors can ask.",
+    bodyHtml: body,
+    copyText: tipsText
+  });
+}
+
+/* ---------------------------
+   Export / Import
+--------------------------- */
+function download(filename, text) {
+  const blob = new Blob([text], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById("exportBtn").addEventListener("click", () => {
+  download("pitches.json", JSON.stringify(pitches, null, 2));
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  pitches = structuredClone(DEFAULT_PITCHES);
+  selectedPitchId = null;
+  savePitches();
+  renderPitches();
+  selectPitch(null);
+  toast("Reset!");
+});
+
+document.getElementById("importInput").addEventListener("change", async (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+
+  try {
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    if (!Array.isArray(parsed)) throw new Error("JSON must be an array of pitches");
+    // minimal validation
+    parsed.forEach(p => {
+      if (!p.id || !p.title) throw new Error("Each pitch must have id and title");
+      if (!p.script || !Array.isArray(p.script)) p.script = ["Hello Sharks! My name is ____ and my business is ____."];
+      if (!p.type) p.type = "Product";
+      if (!p.keywords) p.keywords = [];
+      if (p.askMoney == null) p.askMoney = 10;
+      if (p.askEquity == null) p.askEquity = 20;
+      if (p.profitProjection == null) p.profitProjection = 0;
+    });
+
+    pitches = parsed;
+    savePitches();
+    selectedPitchId = null;
+    renderPitches();
+    selectPitch(null);
+    toast("Imported!");
+  } catch (err) {
+    openModal({
+      title: "Import Error",
+      subtitle: "Your JSON file could not be imported.",
+      bodyHtml: `<div class="text-sm text-slate-700">${escapeHtml(String(err.message || err))}</div>`,
+      copyText: ""
+    });
+  } finally {
+    e.target.value = "";
+  }
+});
+
+/* ---------------------------
+   Search & Filter
+--------------------------- */
+document.getElementById("searchInput").addEventListener("input", renderPitches);
+document.getElementById("typeFilter").addEventListener("change", renderPitches);
+
+/* ---------------------------
+   ROI Calculators
+--------------------------- */
+function updateQuickROI() {
+  const profit = Number(document.getElementById("roiProfit").value || 0);
+  const equity = Number(document.getElementById("roiEquity").value || 0);
+  const inv = Number(document.getElementById("roiInvest").value || 0);
+
+  const ret = calcInvestorReturn(profit, equity);
+  const roi = calcRoiPct(inv, ret);
+
+  document.getElementById("roiOut").textContent = money(ret);
+  document.getElementById("roiPct").textContent = `${roi.toFixed(1)}%`;
+}
+
+["roiProfit","roiEquity","roiInvest"].forEach(id => {
+  document.getElementById(id).addEventListener("input", updateQuickROI);
+});
+
+function updateTrackerROI() {
+  const bid = Number(document.getElementById("bidAmount").value || 0);
+  const eq = Number(document.getElementById("bidEquity").value || 0);
+  const projProfit = Number(document.getElementById("pitchProfitProjection").value || 0);
+
+  const ret = calcInvestorReturn(projProfit, eq);
+  const roi = calcRoiPct(bid, ret);
+
+  document.getElementById("trackerReturn").textContent = money(ret);
+  document.getElementById("trackerROI").textContent = `${roi.toFixed(1)}%`;
+}
+
+["bidAmount","bidEquity","pitchProfitProjection"].forEach(id => {
+  document.getElementById(id).addEventListener("input", updateTrackerROI);
+});
+
+/* ---------------------------
+   Decisions (Notes)
+--------------------------- */
+function renderDecisions() {
+  const list = loadDecisions();
+  const el = document.getElementById("decisionsList");
+  el.innerHTML = "";
+
+  if (list.length === 0) {
+    el.innerHTML = `<div class="text-sm text-slate-500">No saved decisions yet.</div>`;
+    return;
+  }
+
+  list.slice().reverse().forEach((d, idx) => {
+    const wrap = document.createElement("div");
+    wrap.className = "rounded-2xl border border-slate-200 p-3 bg-white";
+    wrap.innerHTML = `
+      <div class="flex items-start justify-between gap-2">
+        <div>
+          <div class="text-sm font-bold">${escapeHtml(d.pitchTitle || "Unknown pitch")}</div>
+          <div class="text-xs text-slate-600 mt-0.5">
+            Bid: <span class="font-semibold">${money(d.bidAmount)}</span> for <span class="font-semibold">${Number(d.bidEquity||0)}%</span>
+            • Return: <span class="font-semibold">${money(d.investorReturn)}</span>
+            • ROI: <span class="font-semibold">${Number(d.roiPct||0).toFixed(1)}%</span>
+          </div>
+        </div>
+        <button class="delBtn rounded-xl border border-slate-200 bg-white px-2 py-1 text-xs font-semibold hover:bg-slate-50">Delete</button>
+      </div>
+      <div class="mt-2 text-sm text-slate-700 whitespace-pre-wrap">${escapeHtml(d.notes || "")}</div>
+      <div class="mt-2 text-[11px] text-slate-500">${escapeHtml(d.timestamp || "")}</div>
+    `;
+    wrap.querySelector(".delBtn").addEventListener("click", () => {
+      const all = loadDecisions();
+      // delete by matching timestamp+title+bid (simple)
+      const targetKey = d._key;
+      const kept = all.filter(x => x._key !== targetKey);
+      saveDecisions(kept);
+      renderDecisions();
+    });
+    el.appendChild(wrap);
+  });
+}
+
+document.getElementById("saveDecisionBtn").addEventListener("click", () => {
+  const p = pitches.find(x => x.id === selectedPitchId);
+  if (!p) {
+    toast("Select a pitch first");
+    return;
+  }
+
+  const bidAmount = Number(document.getElementById("bidAmount").value || 0);
+  const bidEquity = Number(document.getElementById("bidEquity").value || 0);
+  const projProfit = Number(document.getElementById("pitchProfitProjection").value || 0);
+  const notes = document.getElementById("investorNotes").value || "";
+
+  const investorReturn = calcInvestorReturn(projProfit, bidEquity);
+  const roiPct = calcRoiPct(bidAmount, investorReturn);
+
+  const now = new Date();
+  const record = {
+    _key: `${now.toISOString()}_${p.id}_${bidAmount}_${bidEquity}`,
+    pitchId: p.id,
+    pitchTitle: p.title,
+    bidAmount,
+    bidEquity,
+    projectedProfit: projProfit,
+    investorReturn,
+    roiPct,
+    notes,
+    timestamp: now.toLocaleString()
+  };
+
+  const all = loadDecisions();
+  all.push(record);
+  saveDecisions(all);
+  renderDecisions();
+  toast("Saved!");
+});
+
+document.getElementById("exportTrackerBtn").addEventListener("click", () => {
+  const all = loadDecisions();
+  download("investor_notes.json", JSON.stringify(all, null, 2));
+});
+
+document.getElementById("clearTrackerBtn").addEventListener("click", () => {
+  document.getElementById("bidAmount").value = 0;
+  document.getElementById("bidEquity").value = 0;
+  document.getElementById("pitchProfitProjection").value = 0;
+  document.getElementById("investorNotes").value = "";
+  updateTrackerROI();
+  toast("Cleared");
+});
+
+document.getElementById("tipsBtn").addEventListener("click", openTipsModal);
+
+/* ---------------------------
+   Small utilities
+--------------------------- */
+function escapeHtml(str) {
+  return String(str ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+/* ---------------------------
+   Init
+--------------------------- */
+savePitches();           // ensure stored on first load
+renderPitches();
+updateQuickROI();
+renderDecisions();
+selectPitch(pitches[0]?.id || null); // default select first pitch
+</script>
+</body>
+</html>
