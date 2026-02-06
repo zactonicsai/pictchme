@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,1086 +7,118 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy:#0f2b46;--navy-deep:#091c30;--gold:#f5a623;--gold-light:#ffd873;
-  --teal:#17c3b2;--teal-dark:#0f9688;--coral:#ff6b6b;--coral-dark:#e84545;
-  --lime:#a8e063;--purple:#7c5cbf;--pink:#ff8fab;--sky:#64b5f6;
-  --bg:#0a1628;--card-bg:#12243d;--card-border:#1e3a5f;
-  --text:#e8edf4;--text-dim:#8899aa;--text-bright:#ffffff;
-  --radius:16px;--radius-sm:10px;--radius-xs:6px;
-}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+[data-theme="dark"]{--bg:#0a1628;--bg2:#0e1e35;--card:#12243d;--card2:#162b4a;--bdr:#1e3a5f;--bdr2:#2d5a8a;--tx:#e0e8f0;--txd:#7a8fa3;--txb:#fff;--navbg:rgba(10,22,40,.88);--inbg:rgba(255,255,255,.05);--inbd:#1e3a5f;--code:rgba(255,255,255,.06);--scbg:#0d1f36;--scbd:#1a3356;--schl:rgba(245,166,35,.06);--orb:.12}
+[data-theme="light"]{--bg:#f4f6f9;--bg2:#edf0f5;--card:#fff;--card2:#f8f9fb;--bdr:#d8dde6;--bdr2:#b0bac8;--tx:#2c3e50;--txd:#6b7d92;--txb:#0f2b46;--navbg:rgba(255,255,255,.92);--inbg:rgba(0,0,0,.03);--inbd:#d0d7e0;--code:rgba(0,0,0,.04);--scbg:#fefefe;--scbd:#e0e4ea;--schl:rgba(245,166,35,.08);--orb:.05}
+:root{--nv:#0f2b46;--gd:#f5a623;--gl:#ffd873;--gdim:rgba(245,166,35,.15);--tl:#17c3b2;--cr:#ff6b6b;--lm:#4caf50;--pr:#7c5cbf;--pk:#ff8fab;--sk:#42a5f5;--r:14px;--rs:10px;--rx:6px}
+html{scroll-behavior:smooth}body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);line-height:1.65;overflow-x:hidden;transition:background .3s,color .3s}
+.bg-fx{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.bg-fx .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:var(--orb);animation:of 25s ease-in-out infinite}.o1{width:500px;height:500px;background:var(--tl);top:-10%;left:-8%}.o2{width:420px;height:420px;background:var(--gd);bottom:-12%;right:-8%;animation-delay:-9s}.o3{width:360px;height:360px;background:var(--cr);top:45%;left:55%;animation-delay:-16s}@keyframes of{0%,100%{transform:translate(0,0)}33%{transform:translate(40px,-50px)}66%{transform:translate(-30px,40px)}}
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gd);border-radius:10px}
+.c{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+nav{position:sticky;top:0;z-index:100;background:var(--navbg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,166,35,.12);padding:10px 0;transition:background .3s}nav .c{display:flex;align-items:center;justify-content:space-between;gap:8px}.nlogo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem;color:var(--gd);display:flex;align-items:center;gap:6px;white-space:nowrap}.nlinks{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;flex:1}.nlinks a{color:var(--txd);text-decoration:none;font-size:.73rem;font-weight:500;padding:5px 9px;border-radius:18px;transition:all .2s;white-space:nowrap}.nlinks a:hover,.nlinks a.act{color:var(--gd);background:var(--gdim)}.thm{background:var(--card);border:1px solid var(--bdr);color:var(--tx);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0}.thm:hover{border-color:var(--gd);transform:scale(1.1)}
+.hero{text-align:center;padding:60px 0 40px}.hbdg{display:inline-block;background:linear-gradient(135deg,rgba(245,166,35,.15),rgba(23,195,178,.15));border:1px solid rgba(245,166,35,.2);color:var(--gd);font-weight:600;font-size:.82rem;padding:7px 18px;border-radius:24px;margin-bottom:20px;animation:fd .5s ease-out}.hero h1{font-family:'Fredoka',sans-serif;font-size:clamp(2.2rem,5.5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:14px;animation:fd .5s ease-out .1s both}.hero h1 .gd{color:var(--gd)}.hero h1 .tl{color:var(--tl)}.hero h1 .cr{color:var(--cr)}.hsub{font-size:1.05rem;color:var(--txd);max-width:620px;margin:0 auto 28px;animation:fd .5s ease-out .15s both}.hact{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fd .5s ease-out .2s both}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:26px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.92rem;border:none;cursor:pointer;transition:all .25s;text-decoration:none;white-space:nowrap}.bgd{background:linear-gradient(135deg,var(--gd),#e8941a);color:var(--nv);box-shadow:0 3px 16px rgba(245,166,35,.25)}.bgd:hover{transform:translateY(-2px);box-shadow:0 5px 24px rgba(245,166,35,.4)}.bol{background:transparent;color:var(--tl);border:2px solid var(--tl)}.bol:hover{background:rgba(23,195,178,.08);transform:translateY(-2px)}.bsm{padding:8px 16px;font-size:.82rem;border-radius:20px}.bxs{padding:6px 12px;font-size:.75rem;border-radius:16px}
+.sbar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:32px 0}.sc{text-align:center;padding:18px 10px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);transition:all .3s}.sc:hover{border-color:var(--gd);transform:translateY(-3px)}.si{font-size:1.6rem;margin-bottom:6px}.sn{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:var(--gd)}.sl{font-size:.7rem;color:var(--txd);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+@keyframes fd{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}@keyframes fi{from{opacity:0}to{opacity:1}}@keyframes su{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+section{padding:50px 0}.stag{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--tl);margin-bottom:10px;padding:5px 12px;border-radius:16px;background:rgba(23,195,178,.08);border:1px solid rgba(23,195,178,.15)}.stit{font-family:'Fredoka',sans-serif;font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:700;color:var(--txb);margin-bottom:6px}.sdsc{font-size:1rem;color:var(--txd);max-width:680px;margin-bottom:32px}
+.rpk{display:grid;grid-template-columns:1fr 1fr;gap:20px}.rc{padding:28px 24px;border-radius:var(--r);border:2px solid var(--bdr);background:var(--card);cursor:pointer;transition:all .3s}.rc:hover{transform:translateY(-3px)}.rc.sel.ent{border-color:var(--gd);box-shadow:0 0 24px rgba(245,166,35,.12)}.rc.sel.inv{border-color:var(--tl);box-shadow:0 0 24px rgba(23,195,178,.12)}.remj{font-size:2.5rem;margin-bottom:10px}.rtit{font-family:'Fredoka',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:6px}.rc.ent .rtit{color:var(--gd)}.rc.inv .rtit{color:var(--tl)}.rdsc{color:var(--txd);font-size:.9rem;margin-bottom:16px}.rtsk{list-style:none;display:flex;flex-direction:column;gap:6px}.rtsk li{display:flex;align-items:flex-start;gap:7px;font-size:.85rem}.rtsk li::before{content:'✓';color:var(--lm);font-weight:700;flex-shrink:0}
+.tbar{display:flex;gap:3px;background:var(--card);padding:5px;border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:28px;overflow-x:auto}.tb{flex:1;min-width:100px;padding:10px 12px;border-radius:var(--rs);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem;border:none;cursor:pointer;background:transparent;color:var(--txd);transition:all .2s;white-space:nowrap}.tb:hover{color:var(--tx)}.tb.act{background:var(--gd);color:var(--nv)}.tc{display:none;animation:fi .35s ease}.tc.act{display:block}
+.sg{display:grid;gap:14px}.scd{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:18px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);transition:all .3s}.scd:hover{border-color:var(--gd)}.snm{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:700;color:var(--nv);background:linear-gradient(135deg,var(--gd),var(--gl));flex-shrink:0}.scn h3{font-family:'Fredoka',sans-serif;font-size:1rem;color:var(--txb);margin-bottom:3px}.scn p{color:var(--txd);font-size:.86rem}.tip{margin-top:6px;padding:7px 10px;background:rgba(23,195,178,.06);border-left:3px solid var(--tl);border-radius:0 var(--rx) var(--rx) 0;font-size:.8rem;color:var(--tl)}
+.qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}.qc{padding:22px 18px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);transition:all .3s;position:relative;overflow:hidden}.qc::after{content:'';position:absolute;top:0;left:0;width:4px;height:100%}.qc:nth-child(1)::after{background:var(--gd)}.qc:nth-child(2)::after{background:var(--tl)}.qc:nth-child(3)::after{background:var(--cr)}.qc:nth-child(4)::after{background:var(--sk)}.qc:nth-child(5)::after{background:var(--lm)}.qc:hover{transform:translateY(-2px)}.qn{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;opacity:.2;margin-bottom:4px}.qc:nth-child(1) .qn{color:var(--gd)}.qc:nth-child(2) .qn{color:var(--tl)}.qc:nth-child(3) .qn{color:var(--cr)}.qc:nth-child(4) .qn{color:var(--sk)}.qc:nth-child(5) .qn{color:var(--lm)}.qc h3{font-family:'Fredoka',sans-serif;font-size:1rem;color:var(--txb);margin-bottom:5px}.qc p{color:var(--txd);font-size:.86rem;margin-bottom:8px}.qex{padding:8px 10px;background:var(--code);border-radius:var(--rx);font-size:.8rem}.qex .el{font-weight:700;color:var(--gd);font-size:.68rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}.ic{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;transition:all .3s}.ic:hover{border-color:var(--gd);transform:translateY(-3px)}.ih{padding:14px 14px 8px;display:flex;align-items:center;gap:10px}.ii{width:40px;height:40px;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}.ih h3{font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--txb)}.it{font-size:.6rem;font-weight:600;padding:2px 7px;border-radius:8px;text-transform:uppercase}.ib{padding:0 14px 12px}.ib>p{color:var(--txd);font-size:.82rem;margin-bottom:10px}.ist{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:8px}.is{text-align:center;padding:6px 4px;background:var(--code);border-radius:var(--rx)}.is .lb{font-size:.58rem;text-transform:uppercase;color:var(--txd);font-weight:600}.is .vl{font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:700}.vco{color:var(--cr)}.vpr{color:var(--sk)}.vpf{color:var(--lm)}.isp{font-size:.78rem;color:var(--txd)}.isp strong{color:var(--tx)}
 
-/* ANIMATED BACKGROUND */
-.bg-effects{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.bg-effects .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;animation:float 20s ease-in-out infinite}
-.orb-1{width:500px;height:500px;background:var(--teal);top:-10%;left:-5%;animation-delay:0s}
-.orb-2{width:400px;height:400px;background:var(--gold);bottom:-10%;right:-5%;animation-delay:-7s}
-.orb-3{width:350px;height:350px;background:var(--coral);top:40%;left:50%;animation-delay:-14s}
-@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.1)}66%{transform:translate(-20px,30px) scale(.9)}}
+/* ═══ PITCH SCRIPTS ═══ */
+.psg{display:grid;gap:28px}.pf{background:var(--card);border:2px solid var(--bdr);border-radius:var(--r);overflow:hidden;transition:all .3s}.pb{padding:20px 24px;position:relative;overflow:hidden}.pb::before{content:'';position:absolute;inset:0;opacity:.92}.pb *{position:relative;z-index:1}.pb .pnum{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;opacity:.6;color:#fff;margin-bottom:2px}.pb h3{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}.pb .ptag{font-family:'Caveat',cursive;font-size:1.05rem;color:rgba(255,255,255,.75)}
+.pf.c1 .pb::before{background:linear-gradient(135deg,#d32f2f,#ff5252)}.pf.c2 .pb::before{background:linear-gradient(135deg,#00897b,#26a69a)}.pf.c3 .pb::before{background:linear-gradient(135deg,#4527a0,#7e57c2)}.pf.c4 .pb::before{background:linear-gradient(135deg,#e65100,#ff9800)}.pf.c5 .pb::before{background:linear-gradient(135deg,#1565c0,#42a5f5)}.pf.c6 .pb::before{background:linear-gradient(135deg,#ad1457,#ec407a)}.pf.c7 .pb::before{background:linear-gradient(135deg,#2e7d32,#66bb6a)}.pf.c8 .pb::before{background:linear-gradient(135deg,#4e342e,#8d6e63)}.pf.c9 .pb::before{background:linear-gradient(135deg,#283593,#5c6bc0)}.pf.c10 .pb::before{background:linear-gradient(135deg,#bf360c,#ff7043)}
+.pbd{padding:0 24px 24px}.slb{display:flex;align-items:center;gap:8px;margin:18px 0 10px;font-family:'Fredoka',sans-serif;font-size:.82rem;font-weight:600;color:var(--gd);text-transform:uppercase;letter-spacing:.5px}.slb .ll{flex:1;height:1px;background:var(--bdr)}
+.sbx{background:var(--scbg);border:1.5px solid var(--scbd);border-radius:var(--rs);padding:20px;position:relative;margin-bottom:14px}.sbx::before{content:'📜 READ ALOUD';position:absolute;top:-10px;left:14px;background:var(--gd);color:var(--nv);font-size:.62rem;font-weight:700;padding:2px 10px;border-radius:10px;letter-spacing:.4px}.stx{font-size:.93rem;line-height:1.85;color:var(--tx)}.stx .hl{background:var(--schl);border-bottom:2px solid var(--gd);padding:1px 3px;border-radius:2px;font-weight:600;color:var(--gd)}.stx .ps{display:block;text-align:center;color:var(--txd);font-style:italic;font-size:.78rem;margin:6px 0;opacity:.7}
+.pns{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;padding:14px;background:var(--code);border-radius:var(--rs);border:1px solid var(--bdr);margin:10px 0}.pn{text-align:center;padding:6px 3px}.pn .pl{font-size:.58rem;text-transform:uppercase;letter-spacing:.4px;color:var(--txd);font-weight:600;margin-bottom:1px}.pn .pv{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700}
+.qas{margin-top:14px}.qag{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.qab{padding:7px 14px;border-radius:18px;border:1.5px solid var(--bdr);background:var(--card);color:var(--tx);font-family:'Outfit',sans-serif;font-weight:600;font-size:.76rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px}.qab:hover{border-color:var(--gd);background:var(--gdim);color:var(--gd)}.qab.act{border-color:var(--gd);background:var(--gd);color:var(--nv)}.qan{display:none;padding:14px;background:var(--scbg);border:1px solid var(--scbd);border-radius:var(--rs);margin-top:6px;animation:su .3s ease}.qan.vis{display:block}.qan h4{font-family:'Fredoka',sans-serif;font-size:.88rem;color:var(--gd);margin-bottom:5px}.qan p{font-size:.86rem;color:var(--tx);line-height:1.7}.qan .sln{padding:10px 12px;background:var(--schl);border-left:3px solid var(--gd);border-radius:0 var(--rx) var(--rx) 0;margin-top:8px;font-size:.86rem;font-style:italic;color:var(--tx)}
+.prb{background:var(--card2);border:1.5px solid var(--bdr);border-radius:var(--rs);padding:18px;margin-top:14px}.prb h4{font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--tl);margin-bottom:10px}.prt{width:100%;border-collapse:collapse;font-size:.78rem}.prt th{padding:7px 8px;background:var(--nv);color:var(--gd);font-size:.65rem;text-transform:uppercase;letter-spacing:.4px;font-weight:700;text-align:left}.prt td{padding:7px 8px;border-bottom:1px solid var(--bdr);color:var(--tx)}.pos{color:var(--lm)}.neg{color:var(--cr)}.prbar{height:7px;border-radius:4px;transition:width .6s ease}
+.pdf{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:14px 24px;border-top:1px solid var(--bdr);background:var(--code)}.dsum{font-size:.86rem;color:var(--txd)}.dsum strong{color:var(--gd)}.dbs{display:flex;gap:6px}.db{padding:9px 18px;border-radius:18px;border:2px solid;font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;transition:all .2s;background:transparent}.db.din{border-color:var(--lm);color:var(--lm)}.db.din:hover,.db.din.sel{background:var(--lm);color:var(--nv)}.db.dou{border-color:var(--cr);color:var(--cr)}.db.dou:hover,.db.dou.sel{background:var(--cr);color:#fff}.db.dng{border-color:var(--gd);color:var(--gd)}.db.dng:hover,.db.dng.sel{background:var(--gd);color:var(--nv)}
 
-/* SCROLLBAR */
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-track{background:var(--navy-deep)}
-::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px}
-
-/* LAYOUT */
-.container{max-width:1200px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(10,22,40,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,166,35,.15);padding:12px 0}
-nav .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.nav-logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.25rem;color:var(--gold);display:flex;align-items:center;gap:8px}
-.nav-logo .fin{font-size:1.5rem}
-.nav-links{display:flex;gap:4px;flex-wrap:wrap}
-.nav-links a{color:var(--text-dim);text-decoration:none;font-size:.8rem;font-weight:500;padding:6px 12px;border-radius:20px;transition:all .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--gold);background:rgba(245,166,35,.1)}
-
-/* HERO */
-.hero{text-align:center;padding:80px 0 60px;position:relative}
-.hero-badge{display:inline-block;background:linear-gradient(135deg,rgba(245,166,35,.15),rgba(23,195,178,.15));border:1px solid rgba(245,166,35,.25);color:var(--gold);font-weight:600;font-size:.85rem;padding:8px 20px;border-radius:30px;margin-bottom:24px;letter-spacing:.5px;animation:fadeDown .6s ease-out}
-.hero h1{font-family:'Fredoka',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;line-height:1.1;margin-bottom:16px;animation:fadeDown .6s ease-out .1s both}
-.hero h1 .gold{color:var(--gold);text-shadow:0 0 40px rgba(245,166,35,.3)}
-.hero h1 .teal{color:var(--teal)}
-.hero h1 .coral{color:var(--coral)}
-.hero-sub{font-size:1.15rem;color:var(--text-dim);max-width:650px;margin:0 auto 36px;animation:fadeDown .6s ease-out .2s both}
-.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeDown .6s ease-out .3s both}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:30px;font-family:'Outfit',sans-serif;font-weight:600;font-size:1rem;border:none;cursor:pointer;transition:all .25s;text-decoration:none}
-.btn-gold{background:linear-gradient(135deg,var(--gold),#e8941a);color:var(--navy-deep);box-shadow:0 4px 20px rgba(245,166,35,.3)}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(245,166,35,.5)}
-.btn-outline{background:transparent;color:var(--teal);border:2px solid var(--teal)}
-.btn-outline:hover{background:rgba(23,195,178,.1);transform:translateY(-2px)}
-.btn-sm{padding:10px 20px;font-size:.85rem}
-
-/* STATS BAR */
-.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:40px 0}
-.stat-card{text-align:center;padding:24px 16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s}
-.stat-card:hover{border-color:var(--gold);transform:translateY(-4px)}
-.stat-icon{font-size:2rem;margin-bottom:8px}
-.stat-num{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:var(--gold)}
-.stat-label{font-size:.8rem;color:var(--text-dim);font-weight:500;text-transform:uppercase;letter-spacing:.5px}
-
-@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-/* SECTIONS */
-section{padding:60px 0}
-.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:12px;padding:6px 14px;border-radius:20px;background:rgba(23,195,178,.1);border:1px solid rgba(23,195,178,.2)}
-.section-title{font-family:'Fredoka',sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:var(--text-bright);margin-bottom:8px}
-.section-desc{font-size:1.05rem;color:var(--text-dim);max-width:700px;margin-bottom:40px}
-
-/* ROLE PICKER */
-.role-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:40px}
-.role-card{position:relative;padding:32px 28px;border-radius:var(--radius);border:2px solid var(--card-border);background:var(--card-bg);cursor:pointer;transition:all .3s;overflow:hidden}
-.role-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s}
-.role-card:hover{transform:translateY(-4px)}
-.role-card.entrepreneur::before{background:linear-gradient(135deg,rgba(245,166,35,.08),transparent)}
-.role-card.investor::before{background:linear-gradient(135deg,rgba(23,195,178,.08),transparent)}
-.role-card:hover::before,.role-card.selected::before{opacity:1}
-.role-card.selected{border-color:var(--gold);box-shadow:0 0 30px rgba(245,166,35,.15)}
-.role-card.selected.investor-card{border-color:var(--teal);box-shadow:0 0 30px rgba(23,195,178,.15)}
-.role-emoji{font-size:3rem;margin-bottom:12px}
-.role-title{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:8px}
-.role-card.entrepreneur .role-title{color:var(--gold)}
-.role-card.investor .role-title{color:var(--teal)}
-.role-desc{color:var(--text-dim);font-size:.95rem;margin-bottom:20px}
-.role-tasks{list-style:none;display:flex;flex-direction:column;gap:8px}
-.role-tasks li{display:flex;align-items:flex-start;gap:8px;font-size:.9rem;color:var(--text)}
-.role-tasks li::before{content:'✓';color:var(--lime);font-weight:700;flex-shrink:0}
-
-/* TABS */
-.tab-bar{display:flex;gap:4px;background:var(--card-bg);padding:6px;border-radius:var(--radius);border:1px solid var(--card-border);margin-bottom:32px;overflow-x:auto}
-.tab{flex:1;min-width:120px;padding:12px 16px;border-radius:var(--radius-sm);font-family:'Outfit',sans-serif;font-weight:600;font-size:.85rem;border:none;cursor:pointer;background:transparent;color:var(--text-dim);transition:all .2s;white-space:nowrap}
-.tab:hover{color:var(--text);background:rgba(255,255,255,.05)}
-.tab.active{background:var(--gold);color:var(--navy-deep)}
-.tab-content{display:none;animation:fadeIn .4s ease}
-.tab-content.active{display:block}
-
-/* STEPS GRID */
-.steps-grid{display:grid;gap:20px;counter-reset:step}
-.step-card{display:grid;grid-template-columns:60px 1fr;gap:20px;padding:24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s;counter-increment:step}
-.step-card:hover{border-color:var(--gold);transform:translateX(4px)}
-.step-num{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka',sans-serif;font-size:1.4rem;font-weight:700;color:var(--navy-deep);background:linear-gradient(135deg,var(--gold),var(--gold-light));flex-shrink:0}
-.step-content h3{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:600;color:var(--text-bright);margin-bottom:6px}
-.step-content p{color:var(--text-dim);font-size:.92rem}
-.step-content .tip{margin-top:10px;padding:10px 14px;background:rgba(23,195,178,.08);border-left:3px solid var(--teal);border-radius:0 var(--radius-xs) var(--radius-xs) 0;font-size:.85rem;color:var(--teal)}
-
-/* BUSINESS IDEAS */
-.ideas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
-.idea-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);overflow:hidden;transition:all .3s}
-.idea-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.idea-header{padding:20px 20px 12px;display:flex;align-items:center;gap:14px}
-.idea-icon{width:50px;height:50px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
-.idea-header h3{font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text-bright)}
-.idea-header .idea-tag{font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.5px}
-.idea-body{padding:0 20px 16px}
-.idea-body p{color:var(--text-dim);font-size:.88rem;margin-bottom:14px}
-.idea-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
-.idea-stat{text-align:center;padding:10px 8px;background:rgba(255,255,255,.03);border-radius:var(--radius-xs);border:1px solid rgba(255,255,255,.05)}
-.idea-stat .label{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);font-weight:600}
-.idea-stat .value{font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:700}
-.idea-stat .value.cost{color:var(--coral)}
-.idea-stat .value.price{color:var(--sky)}
-.idea-stat .value.profit{color:var(--lime)}
-.idea-steps{font-size:.85rem;color:var(--text-dim)}
-.idea-steps strong{color:var(--text)}
-
-/* PITCH CARDS */
-.pitch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px}
-.pitch-card{background:var(--card-bg);border-radius:var(--radius);overflow:hidden;border:2px solid var(--card-border);transition:all .3s;position:relative}
-.pitch-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
-.pitch-banner{padding:20px 24px;position:relative;overflow:hidden}
-.pitch-banner::before{content:'';position:absolute;inset:0;opacity:.9}
-.pitch-banner *{position:relative;z-index:1}
-.pitch-banner .pitch-number{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;opacity:.7;margin-bottom:4px}
-.pitch-banner h3{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:#fff}
-.pitch-banner .tagline{font-family:'Caveat',cursive;font-size:1.15rem;color:rgba(255,255,255,.8)}
-.pitch-body{padding:20px 24px}
-.pitch-field{margin-bottom:14px}
-.pitch-field .field-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.pitch-field .field-value{font-size:.92rem;color:var(--text)}
-.pitch-numbers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:16px;margin:16px 0;background:rgba(255,255,255,.03);border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.06)}
-.pitch-num-item{text-align:center}
-.pitch-num-item .p-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);font-weight:600}
-.pitch-num-item .p-value{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700}
-.pitch-footer{padding:16px 24px;border-top:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center}
-.invest-btn{padding:10px 24px;border-radius:20px;border:none;font-family:'Outfit',sans-serif;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .2s}
-.invest-btn.in{background:var(--lime);color:var(--navy-deep)}
-.invest-btn.in:hover{background:#8fd44f;transform:scale(1.05)}
-.invest-btn.out{background:transparent;color:var(--coral);border:1.5px solid var(--coral)}
-.invest-btn.out:hover{background:rgba(255,107,107,.1)}
-
-/* PITCH COLORS */
-.pitch-card.c1 .pitch-banner::before{background:linear-gradient(135deg,#e84545,#ff6b6b)}
-.pitch-card.c1 .field-label{color:var(--coral)}
-.pitch-card.c2 .pitch-banner::before{background:linear-gradient(135deg,#0f9688,#17c3b2)}
-.pitch-card.c2 .field-label{color:var(--teal)}
-.pitch-card.c3 .pitch-banner::before{background:linear-gradient(135deg,#5c3daf,#7c5cbf)}
-.pitch-card.c3 .field-label{color:var(--purple)}
-.pitch-card.c4 .pitch-banner::before{background:linear-gradient(135deg,#c77600,#f5a623)}
-.pitch-card.c4 .field-label{color:var(--gold)}
-.pitch-card.c5 .pitch-banner::before{background:linear-gradient(135deg,#1565c0,#42a5f5)}
-.pitch-card.c5 .field-label{color:var(--sky)}
-.pitch-card.c6 .pitch-banner::before{background:linear-gradient(135deg,#c2185b,#ff8fab)}
-.pitch-card.c6 .field-label{color:var(--pink)}
-
-/* 5 QUESTIONS */
-.questions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
-.q-card{padding:28px 24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s;position:relative;overflow:hidden}
-.q-card::after{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:4px 0 0 4px}
-.q-card:nth-child(1)::after{background:var(--gold)}
-.q-card:nth-child(2)::after{background:var(--teal)}
-.q-card:nth-child(3)::after{background:var(--coral)}
-.q-card:nth-child(4)::after{background:var(--sky)}
-.q-card:nth-child(5)::after{background:var(--lime)}
-.q-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.15)}
-.q-num{font-family:'Fredoka',sans-serif;font-size:2rem;font-weight:700;opacity:.2;margin-bottom:8px}
-.q-card:nth-child(1) .q-num{color:var(--gold)}
-.q-card:nth-child(2) .q-num{color:var(--teal)}
-.q-card:nth-child(3) .q-num{color:var(--coral)}
-.q-card:nth-child(4) .q-num{color:var(--sky)}
-.q-card:nth-child(5) .q-num{color:var(--lime)}
-.q-card h3{font-family:'Fredoka',sans-serif;font-size:1.15rem;font-weight:600;color:var(--text-bright);margin-bottom:8px}
-.q-card p{color:var(--text-dim);font-size:.9rem;margin-bottom:12px}
-.q-example{padding:12px 14px;background:rgba(255,255,255,.03);border-radius:var(--radius-xs);font-size:.85rem}
-.q-example .ex-label{font-weight:600;color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.q-example p{margin:0;font-size:.85rem}
-
-/* VOCAB */
-.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.vocab-card{padding:20px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s}
-.vocab-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.vocab-word{font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;color:var(--gold);margin-bottom:6px}
-.vocab-def{color:var(--text-dim);font-size:.88rem}
-
-/* SHARK EVAL */
-.eval-section{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:32px;margin-top:24px}
-.eval-grid{display:grid;gap:12px;margin-bottom:24px}
-.eval-row{display:grid;grid-template-columns:1fr 80px 80px 80px;gap:8px;align-items:center;padding:12px 16px;border-radius:var(--radius-xs);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);transition:all .2s}
-.eval-row:hover{background:rgba(255,255,255,.05)}
-.eval-q{font-size:.9rem;color:var(--text)}
-.eval-opt{text-align:center}
-.eval-opt input[type="radio"]{display:none}
-.eval-opt label{display:block;width:36px;height:36px;border-radius:50%;border:2px solid var(--card-border);cursor:pointer;margin:0 auto;line-height:32px;text-align:center;font-size:.8rem;font-weight:700;transition:all .2s}
-.eval-opt.yes label{color:var(--lime)}
-.eval-opt.yes input:checked+label{background:var(--lime);color:var(--navy-deep);border-color:var(--lime)}
-.eval-opt.maybe label{color:var(--gold)}
-.eval-opt.maybe input:checked+label{background:var(--gold);color:var(--navy-deep);border-color:var(--gold)}
-.eval-opt.no label{color:var(--coral)}
-.eval-opt.no input:checked+label{background:var(--coral);color:#fff;border-color:var(--coral)}
-.eval-header{display:grid;grid-template-columns:1fr 80px 80px 80px;gap:8px;padding:8px 16px;margin-bottom:8px}
-.eval-header span{text-align:center;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim)}
-.eval-header span:first-child{text-align:left}
-
-/* DECISION BOX */
-.decision-box{padding:24px;background:rgba(245,166,35,.05);border:2px solid rgba(245,166,35,.2);border-radius:var(--radius);margin-top:24px}
-.decision-box h3{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--gold);margin-bottom:16px}
-.decision-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.d-btn{padding:12px 24px;border-radius:var(--radius-sm);border:2px solid;font-family:'Outfit',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;font-size:.9rem}
-.d-btn.deal-in{border-color:var(--lime);color:var(--lime)}
-.d-btn.deal-in:hover,.d-btn.deal-in.selected{background:var(--lime);color:var(--navy-deep)}
-.d-btn.deal-out{border-color:var(--coral);color:var(--coral)}
-.d-btn.deal-out:hover,.d-btn.deal-out.selected{background:var(--coral);color:#fff}
-.d-btn.deal-neg{border-color:var(--gold);color:var(--gold)}
-.d-btn.deal-neg:hover,.d-btn.deal-neg.selected{background:var(--gold);color:var(--navy-deep)}
-
-/* BUILD YOUR PITCH */
-.builder{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:32px;margin-top:32px}
-.builder h3{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);margin-bottom:24px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group.full{grid-column:1/-1}
-.form-group label{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim)}
-.form-group input,.form-group textarea,.form-group select{padding:12px 16px;background:rgba(255,255,255,.05);border:1.5px solid var(--card-border);border-radius:var(--radius-xs);color:var(--text);font-family:'Outfit',sans-serif;font-size:.95rem;transition:all .2s;outline:none}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--gold);background:rgba(245,166,35,.05)}
-.form-group textarea{min-height:80px;resize:vertical}
-.calc-result{padding:20px;background:rgba(168,224,99,.08);border:1px solid rgba(168,224,99,.2);border-radius:var(--radius-sm);margin-top:16px;text-align:center}
-.calc-result .big-num{font-family:'Fredoka',sans-serif;font-size:2rem;font-weight:700;color:var(--lime)}
-
-/* TRACKER */
-.tracker{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:32px;margin-top:32px}
-.tracker h3{font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--text-bright);margin-bottom:20px}
-.tracker-table{width:100%;border-collapse:separate;border-spacing:0}
-.tracker-table th{padding:10px 14px;background:var(--navy);color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;text-align:left;border-bottom:2px solid var(--gold)}
-.tracker-table td{padding:8px 14px;border-bottom:1px solid var(--card-border)}
-.tracker-table input{width:100%;padding:8px;background:rgba(255,255,255,.04);border:1px solid var(--card-border);border-radius:var(--radius-xs);color:var(--text);font-family:'Outfit',sans-serif;font-size:.85rem;outline:none}
-.tracker-table input:focus{border-color:var(--gold)}
-.tracker-total{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;margin-top:16px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:var(--radius-sm)}
-.tracker-total .total-label{font-weight:600;color:var(--text)}
-.tracker-total .total-amount{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700}
-.total-amount.positive{color:var(--lime)}
-.total-amount.negative{color:var(--coral)}
-
-/* CLASSROOM FLOW */
-.flow-timeline{position:relative;padding-left:40px}
-.flow-timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gold),var(--teal),var(--coral),var(--purple))}
-.flow-item{position:relative;margin-bottom:24px;padding:20px 24px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);transition:all .3s}
-.flow-item:hover{border-color:var(--gold);transform:translateX(4px)}
-.flow-item::before{content:attr(data-time);position:absolute;left:-40px;top:20px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;background:var(--navy);border:2px solid var(--gold);color:var(--gold)}
-.flow-item h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;color:var(--text-bright);margin-bottom:4px}
-.flow-item .flow-time{font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:6px}
-.flow-item p{color:var(--text-dim);font-size:.9rem}
-
-/* FOOTER */
-footer{padding:40px 0;border-top:1px solid var(--card-border);text-align:center}
-footer p{color:var(--text-dim);font-size:.85rem}
-footer .footer-tagline{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--gold);margin-bottom:8px}
-
-/* PRINT */
-.print-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:56px;height:56px;border-radius:50%;background:var(--gold);color:var(--navy-deep);border:none;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(245,166,35,.4);transition:all .25s;display:flex;align-items:center;justify-content:center}
-.print-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(245,166,35,.6)}
-
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px}
-.modal-overlay.active{display:flex}
-.modal{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);max-width:600px;width:100%;max-height:80vh;overflow-y:auto;padding:32px}
-.modal h3{font-family:'Fredoka',sans-serif;font-size:1.5rem;color:var(--gold);margin-bottom:16px}
-.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--text-dim);font-size:1.5rem;cursor:pointer}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .form-grid{grid-template-columns:1fr}
-  .eval-row{grid-template-columns:1fr;gap:12px}
-  .eval-header{display:none}
-  .eval-opt{display:inline-flex;gap:8px}
-  .pitch-grid,.ideas-grid{grid-template-columns:1fr}
-  .questions-grid{grid-template-columns:1fr}
-  nav .container{justify-content:center}
-  .nav-links{justify-content:center}
-}
-
-@media print{
-  .bg-effects,nav,.print-btn,.hero-actions,.tab-bar{display:none!important}
-  body{background:#fff;color:#333}
-  .section-title,.step-content h3,.vocab-word,.role-title{color:#0f2b46!important}
-}
+/* ═══ VOCAB, EVAL, BUILDER, TRACKER ═══ */
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}.vc{padding:14px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);transition:all .3s}.vc:hover{border-color:var(--gd)}.vw{font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--gd);margin-bottom:3px}.vd{color:var(--txd);font-size:.82rem}
+.es{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin-top:16px}.eh{display:grid;grid-template-columns:1fr 65px 65px 65px;gap:5px;padding:5px 10px;margin-bottom:5px}.eh span{text-align:center;font-size:.63rem;font-weight:700;text-transform:uppercase;color:var(--txd)}.eh span:first-child{text-align:left}.eg{display:grid;gap:6px;margin-bottom:16px}.er{display:grid;grid-template-columns:1fr 65px 65px 65px;gap:5px;align-items:center;padding:9px 10px;border-radius:var(--rx);background:var(--code)}.eq{font-size:.83rem}.eo{text-align:center}.eo input[type="radio"]{display:none}.eo label{display:block;width:30px;height:30px;border-radius:50%;border:2px solid var(--bdr);cursor:pointer;margin:0 auto;line-height:26px;text-align:center;font-size:.72rem;font-weight:700;transition:all .2s}.eo.yes label{color:var(--lm)}.eo.yes input:checked+label{background:var(--lm);color:var(--nv);border-color:var(--lm)}.eo.may label{color:var(--gd)}.eo.may input:checked+label{background:var(--gd);color:var(--nv);border-color:var(--gd)}.eo.no label{color:var(--cr)}.eo.no input:checked+label{background:var(--cr);color:#fff;border-color:var(--cr)}
+.dbox{padding:18px;background:var(--gdim);border:2px solid rgba(245,166,35,.2);border-radius:var(--r);margin-top:16px}.dbox h3{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--gd);margin-bottom:10px}.dbts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.dbt{padding:9px 18px;border-radius:var(--rs);border:2px solid;font-family:'Outfit',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;font-size:.83rem}.dbt.di{border-color:var(--lm);color:var(--lm)}.dbt.di:hover,.dbt.di.sel{background:var(--lm);color:var(--nv)}.dbt.do{border-color:var(--cr);color:var(--cr)}.dbt.do:hover,.dbt.do.sel{background:var(--cr);color:#fff}.dbt.dn{border-color:var(--gd);color:var(--gd)}.dbt.dn:hover,.dbt.dn.sel{background:var(--gd);color:var(--nv)}
+.bld{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin-top:24px}.bld h3{font-family:'Fredoka',sans-serif;font-size:1.2rem;color:var(--gd);margin-bottom:16px}.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fgp{display:flex;flex-direction:column;gap:4px}.fgp.fu{grid-column:1/-1}.fgp label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--txd)}.fgp input,.fgp textarea{padding:9px 12px;background:var(--inbg);border:1.5px solid var(--inbd);border-radius:var(--rx);color:var(--tx);font-family:'Outfit',sans-serif;font-size:.88rem;transition:all .2s;outline:none}.fgp input:focus,.fgp textarea:focus{border-color:var(--gd)}.fgp textarea{min-height:60px;resize:vertical}.cres{padding:16px;background:rgba(76,175,80,.06);border:1px solid rgba(76,175,80,.15);border-radius:var(--rs);margin-top:12px;text-align:center}.cres .bn{font-family:'Fredoka',sans-serif;font-size:1.6rem;font-weight:700;color:var(--lm)}
+.trk{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin-top:24px}.trk h3{font-family:'Fredoka',sans-serif;font-size:1.1rem;color:var(--txb);margin-bottom:14px}.tt{width:100%;border-collapse:collapse}.tt th{padding:7px 8px;background:var(--nv);color:var(--gd);font-size:.65rem;text-transform:uppercase;font-weight:700;text-align:left}.tt td{padding:5px 8px;border-bottom:1px solid var(--bdr)}.tt input{width:100%;padding:6px;background:var(--inbg);border:1px solid var(--inbd);border-radius:var(--rx);color:var(--tx);font-family:'Outfit',sans-serif;font-size:.8rem;outline:none}.tt input:focus{border-color:var(--gd)}.ttl{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;margin-top:12px;background:var(--gdim);border-radius:var(--rs)}.tla{font-weight:600}.tam{font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700}.tam.pos{color:var(--lm)}.tam.neg{color:var(--cr)}
+.ftl{position:relative;padding-left:34px}.ftl::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--gd),var(--tl),var(--cr),var(--pr),var(--lm))}.fi{position:relative;margin-bottom:18px;padding:16px 18px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);transition:all .3s}.fi:hover{border-color:var(--gd)}.fi::before{content:attr(data-t);position:absolute;left:-34px;top:16px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:700;background:var(--bg);border:2px solid var(--gd);color:var(--gd)}.fi h4{font-family:'Fredoka',sans-serif;font-size:.95rem;color:var(--txb);margin-bottom:2px}.ft{font-size:.76rem;color:var(--gd);font-weight:600;margin-bottom:3px}.fi p{color:var(--txd);font-size:.84rem}
+footer{padding:28px 0;border-top:1px solid var(--bdr);text-align:center}footer .ftt{font-family:'Fredoka',sans-serif;font-size:1rem;color:var(--gd);margin-bottom:3px}footer p{color:var(--txd);font-size:.8rem}
+.prn{position:fixed;bottom:18px;right:18px;z-index:50;width:46px;height:46px;border-radius:50%;background:var(--gd);color:var(--nv);border:none;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 14px rgba(245,166,35,.3);transition:all .25s;display:flex;align-items:center;justify-content:center}.prn:hover{transform:scale(1.1)}
+@media(max-width:768px){.rpk,.fg{grid-template-columns:1fr}.ig,.qg{grid-template-columns:1fr}.sbar{grid-template-columns:repeat(2,1fr)}.er{grid-template-columns:1fr;text-align:center}.eh{display:none}.er .eq{text-align:left;margin-bottom:3px}.er .eo{display:inline-block}.pns{grid-template-columns:repeat(2,1fr)}.qab{font-size:.7rem;padding:5px 10px}.pdf{flex-direction:column;text-align:center}.dbs{justify-content:center}nav .nlinks{display:none}.hero{padding:40px 0 28px}.hero h1{font-size:2rem}section{padding:34px 0}}
+@media(max-width:480px){.sbar{grid-template-columns:1fr 1fr}.c{padding:0 12px}.pns{grid-template-columns:1fr 1fr}}
+@media print{.bg-fx,nav,.prn,.hact,.tbar,.dbs,.qag,.thm{display:none!important}body{background:#fff;color:#222}[data-theme]{--card:#fff;--bdr:#ddd;--tx:#222;--txd:#555;--txb:#111;--code:#f5f5f5;--scbg:#fafafa;--scbd:#ddd}}
 </style>
 </head>
 <body>
-
-<div class="bg-effects">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
-
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <div class="nav-logo"><span class="fin">🦈</span> Teen Summit Shark Tank</div>
-    <div class="nav-links">
-      <a href="#roles" class="active">Choose Role</a>
-      <a href="#learn">Learn</a>
-      <a href="#ideas">Business Ideas</a>
-      <a href="#pitches">Sample Pitches</a>
-      <a href="#5questions">5 Key Questions</a>
-      <a href="#evaluate">Evaluate</a>
-      <a href="#build">Build Yours</a>
-      <a href="#vocab">Vocab</a>
-      <a href="#classroom">Classroom</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="container">
-    <div class="hero-badge">🎓 Middle School Entrepreneurship Game</div>
-    <h1>
-      <span class="gold">Teen Summit</span><br>
-      <span class="teal">Shark Tank</span> <span class="coral">Game</span>
-    </h1>
-    <p class="hero-sub">Learn to build a business, pitch your ideas, and invest wisely. Every student plays as an <strong>Entrepreneur</strong> or a <strong>Shark Investor</strong>. Are you ready to make your first deal?</p>
-    <div class="hero-actions">
-      <a href="#roles" class="btn btn-gold">🚀 Start Playing</a>
-      <a href="#learn" class="btn btn-outline">📚 Learn First</a>
-    </div>
-    <div class="stats-bar">
-      <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-num">$1–$10</div><div class="stat-label">Startup Budget</div></div>
-      <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-num">12+</div><div class="stat-label">Business Ideas</div></div>
-      <div class="stat-card"><div class="stat-icon">🎤</div><div class="stat-num">6</div><div class="stat-label">Sample Pitches</div></div>
-      <div class="stat-card"><div class="stat-icon">🦈</div><div class="stat-num">2</div><div class="stat-label">Player Roles</div></div>
-    </div>
-  </div>
-</header>
-
-<!-- SECTION: CHOOSE YOUR ROLE -->
-<section id="roles">
-  <div class="container">
-    <div class="section-tag">🎭 Step 1</div>
-    <h2 class="section-title">Choose Your Role</h2>
-    <p class="section-desc">Every player picks one role. You are either building a business OR investing in someone else's. Choose wisely!</p>
-    <div class="role-picker">
-      <div class="role-card entrepreneur" onclick="selectRole(this,'entrepreneur')">
-        <div class="role-emoji">🚀</div>
-        <h3 class="role-title">Entrepreneur (Business Owner)</h3>
-        <p class="role-desc">You have a great idea and need money to make it happen. Pitch your business to the Sharks and convince them to invest!</p>
-        <ul class="role-tasks">
-          <li>Come up with a business idea that costs $1–$10 to start</li>
-          <li>Create a business plan answering the 5 Key Questions</li>
-          <li>Present your pitch to the class (2–3 minutes)</li>
-          <li>Negotiate a deal with investors</li>
-          <li>Run your business and track profits</li>
-          <li>Pay back investors their share of profits</li>
-        </ul>
-      </div>
-      <div class="role-card investor investor-card" onclick="selectRole(this,'investor')">
-        <div class="role-emoji">🦈</div>
-        <h3 class="role-title">Shark Investor</h3>
-        <p class="role-desc">You have cash to invest. Listen to pitches, ask tough questions, and decide which businesses are worth YOUR money!</p>
-        <ul class="role-tasks">
-          <li>Receive your investment cash from the teacher</li>
-          <li>Listen carefully to each business pitch</li>
-          <li>Use the Evaluation Checklist to score pitches</li>
-          <li>Ask smart questions about costs, customers, and plans</li>
-          <li>Decide: "I'm IN" or "I'm OUT" on each deal</li>
-          <li>Earn your share of profits from businesses you invest in</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: LEARN WHAT A BUSINESS IS -->
-<section id="learn" style="background:rgba(255,255,255,.02)">
-  <div class="container">
-    <div class="section-tag">📚 Learn</div>
-    <h2 class="section-title">What IS a Business?</h2>
-    <p class="section-desc">Before you start, let's learn the basics every entrepreneur needs to know.</p>
-
-    <div class="tab-bar">
-      <button class="tab active" onclick="showTab('tab-what')">What's a Business?</button>
-      <button class="tab" onclick="showTab('tab-steps')">10 Steps to Start</button>
-      <button class="tab" onclick="showTab('tab-money')">How Money Works</button>
-      <button class="tab" onclick="showTab('tab-mistakes')">Avoid Mistakes</button>
-    </div>
-
-    <!-- Tab: What is a business -->
-    <div class="tab-content active" id="tab-what">
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
-        <div class="q-card">
-          <div class="q-num">💡</div>
-          <h3>A Business Solves a Problem</h3>
-          <p>A business is when you sell a product (something people can hold) or a service (something you do for people) to earn money. Every good business starts by finding a problem people have and offering a solution.</p>
-          <div class="q-example"><div class="ex-label">Example</div><p>Students are always losing pencils → Sell pencil packs at school!</p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">🔄</div>
-          <h3>How a Business Makes Money</h3>
-          <p>You spend money to create or buy something (that's your <strong>cost</strong>), then sell it for more than you spent. The difference is your <strong>profit</strong>. It's that simple!</p>
-          <div class="q-example"><div class="ex-label">The Formula</div><p><strong>Revenue</strong> (money coming in) − <strong>Costs</strong> (money going out) = <strong>Profit</strong> 💰</p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">🎯</div>
-          <h3>Know Your Customer</h3>
-          <p>Your <strong>customer</strong> is the person who buys from you. You need to know what they want, how much they'll pay, and where to find them. For this game, your customers are your classmates!</p>
-          <div class="q-example"><div class="ex-label">Ask yourself</div><p>Would my friends actually spend their own money on this?</p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">⚖️</div>
-          <h3>Supply & Demand</h3>
-          <p>If everyone wants something but nobody's selling it, you can charge more (<strong>high demand, low supply</strong>). If lots of people sell the same thing, you need to stand out or lower your price.</p>
-          <div class="q-example"><div class="ex-label">Think about it</div><p>If 5 students sell slime, but nobody sells bookmarks, which has less competition?</p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">🤝</div>
-          <h3>What is an Investor?</h3>
-          <p>An <strong>investor</strong> gives you money to help start or grow your business. In return, they get a percentage of your profits. They're taking a risk — if your business fails, they lose their money too!</p>
-          <div class="q-example"><div class="ex-label">Example Deal</div><p>A Shark invests $5 for 25% of profits. If you earn $20 profit, the Shark gets $5 back.</p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">📈</div>
-          <h3>Why Businesses Fail</h3>
-          <p>Most businesses fail because they don't plan, they spend too much, they price wrong, or nobody actually wants what they're selling. That's why research and planning matter!</p>
-          <div class="q-example"><div class="ex-label">Top reason for failure</div><p>Making something YOU like instead of something your CUSTOMERS want.</p></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab: 10 Steps -->
-    <div class="tab-content" id="tab-steps">
-      <div class="steps-grid">
-        <div class="step-card"><div class="step-num">1</div><div class="step-content"><h3>Find a Problem to Solve</h3><p>Look around! What do your classmates need? What do they complain about? What would make their day easier or more fun? That's where business ideas come from.</p><div class="tip">💡 Tip: Ask 5 friends "What do you wish you could buy at school?" Their answers = your business idea!</div></div></div>
-        <div class="step-card"><div class="step-num">2</div><div class="step-content"><h3>Do Your Research</h3><p>Before spending money, find out if people will actually buy your product. Ask classmates if they'd buy it and how much they'd pay. Check if anyone else is already selling something similar.</p><div class="tip">💡 Tip: Create a quick 3-question survey and ask 10 people. That's real market research!</div></div></div>
-        <div class="step-card"><div class="step-num">3</div><div class="step-content"><h3>Make a Plan</h3><p>Write down: What will you sell? Who will buy it? How much does it cost to make? How much will you charge? Where will you sell it? This is your business plan!</p><div class="tip">💡 Tip: Use the "Build Your Pitch" section below to create your plan!</div></div></div>
-        <div class="step-card"><div class="step-num">4</div><div class="step-content"><h3>Calculate ALL Your Costs</h3><p>List everything you need to buy: supplies, materials, packaging, labels. Add it all up. This is your startup cost. Remember — in this game it must be between $1 and $10!</p><div class="tip">💡 Tip: Don't forget hidden costs like tape, bags, or markers for signs!</div></div></div>
-        <div class="step-card"><div class="step-num">5</div><div class="step-content"><h3>Set Your Price</h3><p>Your price must be MORE than what each item costs you to make. Charge at least 2× your cost per item. Too high? Nobody buys. Too low? You don't make money.</p><div class="tip">💡 Tip: If one bracelet costs you $0.50 to make, sell it for at least $1.00–$2.00!</div></div></div>
-        <div class="step-card"><div class="step-num">6</div><div class="step-content"><h3>Start Small — Test First!</h3><p>Don't make 100 items right away. Make 5–10, sell them, see what happens. Listen to feedback. Then improve and make more. This is called a "pilot" or test run.</p><div class="tip">💡 Tip: Starting small means if something doesn't work, you haven't wasted all your money!</div></div></div>
-        <div class="step-card"><div class="step-num">7</div><div class="step-content"><h3>Market Your Business</h3><p>Tell people about your product! Make flyers, tell friends, create a catchy business name. Word of mouth is the #1 way students sell. Make it easy for people to find you.</p><div class="tip">💡 Tip: Offer a "first customer discount" or a "buy 2 get 1 free" deal to get people talking!</div></div></div>
-        <div class="step-card"><div class="step-num">8</div><div class="step-content"><h3>Sell & Be Professional</h3><p>Have your products ready and looking good. Be friendly, give correct change, and thank every customer. Happy customers tell their friends = more sales for you!</p><div class="tip">💡 Tip: Presentation matters! A cookie in a nice bag sells better than one in a plain napkin.</div></div></div>
-        <div class="step-card"><div class="step-num">9</div><div class="step-content"><h3>Track Every Dollar</h3><p>Write down every sale (money in) and every expense (money out). At the end, subtract costs from sales. Positive number = profit! Negative = loss. Use the tracker below.</p><div class="tip">💡 Tip: Real business owners do this every day. It's called "bookkeeping."</div></div></div>
-        <div class="step-card"><div class="step-num">10</div><div class="step-content"><h3>Grow or Pivot</h3><p>Working great? Make more and expand! Not selling? Change your approach — new price, new product, new audience. Smart businesses adapt. Failing isn't bad — quitting without trying is!</p><div class="tip">💡 Tip: Many famous companies started by selling something completely different than what they sell now!</div></div></div>
-      </div>
-    </div>
-
-    <!-- Tab: How money works -->
-    <div class="tab-content" id="tab-money">
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px">
-        <div class="q-card">
-          <div class="q-num">💵</div>
-          <h3>Revenue</h3>
-          <p>Revenue is ALL the money your business brings in from sales. If you sell 20 bracelets at $2 each, your revenue is $40. But that's NOT your profit yet!</p>
-          <div class="q-example"><div class="ex-label">Formula</div><p>Revenue = Price × Quantity Sold<br><strong>$2 × 20 bracelets = $40 revenue</strong></p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">📉</div>
-          <h3>Costs / Expenses</h3>
-          <p>Costs are everything you spend to run your business: supplies, materials, packaging. Subtract these from your revenue to find your real profit.</p>
-          <div class="q-example"><div class="ex-label">Example costs</div><p>Beads $3 + String $2 + Bags $1 = <strong>$6 total costs</strong></p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">🏆</div>
-          <h3>Profit</h3>
-          <p>Profit is what's LEFT after you subtract ALL costs from your revenue. This is YOUR money to keep (or share with investors)!</p>
-          <div class="q-example"><div class="ex-label">The Math</div><p>$40 revenue − $6 costs = <strong>$34 profit! 🎉</strong></p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">📊</div>
-          <h3>Markup</h3>
-          <p>Markup is how much you add to your cost to set your selling price. If something costs you $0.50 and you sell it for $2.00, your markup is $1.50 (or 300%).</p>
-          <div class="q-example"><div class="ex-label">Rule of thumb</div><p>Charge at least <strong>2× your cost</strong> for a healthy profit margin.</p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">⚖️</div>
-          <h3>Break Even</h3>
-          <p>Break even is when your revenue EQUALS your costs. You haven't made a profit yet, but you haven't lost money either. Everything after this point is profit!</p>
-          <div class="q-example"><div class="ex-label">Example</div><p>You spent $6. Each bracelet earns $2. After selling 3 bracelets ($6), you break even. Bracelet #4 is pure profit!</p></div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">🤝</div>
-          <h3>How Investors Profit</h3>
-          <p>When a Shark invests in your business, you agree on a deal. Usually, the investor gets a <strong>percentage of your profits</strong>. The bigger the investment, the bigger their share.</p>
-          <div class="q-example"><div class="ex-label">Example Deal</div><p>Shark invests $3 for 30% of profits.<br>You earn $34 profit → Shark gets $10.20, you keep $23.80 🤝</p></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab: Avoid Mistakes -->
-    <div class="tab-content" id="tab-mistakes">
-      <div class="steps-grid">
-        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Spending All Your Money at Once</h3><p>Don't blow your entire budget on supplies before testing if anyone wants your product. Start with a small test batch. If it sells, buy more!</p></div></div>
-        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Pricing Too Low</h3><p>If you charge too little, you might sell a lot but still lose money! Always make sure your selling price is at least double your cost per item.</p></div></div>
-        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Copying Everyone Else</h3><p>If 5 people are already selling slime, don't be person #6! Find something unique or put a creative twist on an existing idea to stand out.</p></div></div>
-        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Not Tracking Your Money</h3><p>If you don't write down your sales and expenses, you won't know if you're making money or losing it. Keep a simple log of everything!</p></div></div>
-        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Ignoring Customer Feedback</h3><p>If customers say "it's too expensive" or "I wish it came in blue," LISTEN! Adjusting based on feedback is how smart businesses grow.</p></div></div>
-        <div class="step-card"><div class="step-num" style="background:linear-gradient(135deg,var(--coral),#ff8fab)">!</div><div class="step-content"><h3>❌ Giving Up Too Fast</h3><p>Your first day might be slow. That's normal! Adjust your strategy, try new marketing, and keep going. Most successful entrepreneurs failed before they succeeded.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: THE 5 KEY QUESTIONS -->
-<section id="5questions">
-  <div class="container">
-    <div class="section-tag">🔑 Essential Knowledge</div>
-    <h2 class="section-title">The 5 Questions Every Business Must Answer</h2>
-    <p class="section-desc">Whether you're pitching or investing, EVERY business must answer these 5 questions. If they can't, it's a red flag! 🚩</p>
-    <div class="questions-grid">
-      <div class="q-card">
-        <div class="q-num">01</div>
-        <h3>What Is Your Business?</h3>
-        <p>Describe exactly what you're selling in one clear sentence. Is it a product (something you sell) or a service (something you do for people)? What makes it special?</p>
-        <div class="q-example">
-          <div class="ex-label">Strong Answer</div>
-          <p>"I make custom friendship bracelets with school colors and names using beads and string."</p>
-        </div>
-      </div>
-      <div class="q-card">
-        <div class="q-num">02</div>
-        <h3>Who Will Buy It?</h3>
-        <p>Who is your <strong>target customer</strong>? Be specific! "Everyone" is not a good answer. Think about who would actually pull out their wallet and buy your product.</p>
-        <div class="q-example">
-          <div class="ex-label">Strong Answer</div>
-          <p>"6th–8th grade girls who like jewelry and want to match with their friend groups. Especially popular before dances and spirit weeks."</p>
-        </div>
-      </div>
-      <div class="q-card">
-        <div class="q-num">03</div>
-        <h3>What Does It Cost to Start?</h3>
-        <p>List every single thing you need to buy and the total startup cost. Investors want to know exactly where their money is going. Be honest and detailed!</p>
-        <div class="q-example">
-          <div class="ex-label">Strong Answer</div>
-          <p>"Beads $3, string $1.50, clasps $1, small bags $1 = $6.50 total startup cost. This makes about 25 bracelets."</p>
-        </div>
-      </div>
-      <div class="q-card">
-        <div class="q-num">04</div>
-        <h3>What's Your Selling Price?</h3>
-        <p>How much will you charge per item? Explain why that price is fair. Show the math: cost per item, selling price, and profit per item. Sharks love numbers!</p>
-        <div class="q-example">
-          <div class="ex-label">Strong Answer</div>
-          <p>"Each bracelet costs me $0.26 to make. I'll sell them for $1.50 each. That's $1.24 profit per bracelet, or a 477% markup!"</p>
-        </div>
-      </div>
-      <div class="q-card">
-        <div class="q-num">05</div>
-        <h3>Why Will It Succeed?</h3>
-        <p>What's your plan? How will people find out about your product? Why will they choose YOU over someone else? What's your advantage? This is where confidence and creativity matter!</p>
-        <div class="q-example">
-          <div class="ex-label">Strong Answer</div>
-          <p>"Nobody else at school sells custom jewelry. I'll take orders at lunch, offer free color matching, and give a 'buy 3 get 1 free' deal for friend groups."</p>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top:32px;padding:24px;background:rgba(23,195,178,.08);border:1px solid rgba(23,195,178,.2);border-radius:var(--radius)">
-      <h3 style="font-family:'Fredoka',sans-serif;color:var(--teal);margin-bottom:8px">🦈 Bonus Question for Sharks: How Do Investors Profit?</h3>
-      <p style="color:var(--text-dim);font-size:.95rem;margin-bottom:12px">When you invest money in someone's business, you agree on a deal. Typically the entrepreneur offers a percentage of their profits in exchange for the investment. Before investing, do the math:</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px">
-        <div style="padding:14px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);font-size:.9rem"><strong style="color:var(--gold)">Example Deal:</strong> You invest $3 for 25% of profits</div>
-        <div style="padding:14px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);font-size:.9rem"><strong style="color:var(--gold)">If they profit $20:</strong> You get $5 back (25% of $20)</div>
-        <div style="padding:14px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);font-size:.9rem"><strong style="color:var(--gold)">Your ROI:</strong> Invested $3, got $5 = $2 profit! 📈</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: BUSINESS IDEAS -->
-<section id="ideas" style="background:rgba(255,255,255,.02)">
-  <div class="container">
-    <div class="section-tag">💡 Inspiration</div>
-    <h2 class="section-title">Business Ideas ($1–$10 to Start)</h2>
-    <p class="section-desc">All of these businesses can be started with $10 or less. Pick one, remix one, or come up with your own!</p>
-    <div class="ideas-grid" id="ideasGrid">
-      <!-- Populated by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: SAMPLE PITCHES -->
-<section id="pitches">
-  <div class="container">
-    <div class="section-tag">🎤 Sample Pitches</div>
-    <h2 class="section-title">6 Ready-to-Use Shark Tank Pitches</h2>
-    <p class="section-desc">Study these sample pitches to learn how to present YOUR business. Each one answers the 5 key questions and shows real numbers. Entrepreneurs can use these as-is, or create their own!</p>
-    <div class="pitch-grid" id="pitchGrid">
-      <!-- Populated by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: EVALUATE (Shark Tool) -->
-<section id="evaluate" style="background:rgba(255,255,255,.02)">
-  <div class="container">
-    <div class="section-tag">🦈 Shark Tools</div>
-    <h2 class="section-title">Shark Evaluation Scorecard</h2>
-    <p class="section-desc">Investors: Use this checklist to rate each pitch. Score each question, then make your decision!</p>
-
-    <div class="eval-section">
-      <div style="margin-bottom:20px">
-        <label style="font-size:.8rem;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px">Business Being Evaluated:</label>
-        <input type="text" id="evalBizName" placeholder="Type the business name..." style="display:block;width:100%;max-width:400px;margin-top:8px;padding:10px 14px;background:rgba(255,255,255,.05);border:1.5px solid var(--card-border);border-radius:var(--radius-xs);color:var(--text);font-family:'Outfit',sans-serif;font-size:.95rem;outline:none">
-      </div>
-      <div class="eval-header">
-        <span>Question</span><span style="color:var(--lime)">Yes ✓</span><span style="color:var(--gold)">Maybe</span><span style="color:var(--coral)">No ✗</span>
-      </div>
-      <div class="eval-grid" id="evalGrid">
-        <!-- Populated by JS -->
-      </div>
-
-      <div class="decision-box">
-        <h3>🦈 My Shark Decision</h3>
-        <div class="decision-btns">
-          <button class="d-btn deal-in" onclick="selectDeal(this)">💰 I'M IN!</button>
-          <button class="d-btn deal-out" onclick="selectDeal(this)">👋 I'M OUT</button>
-          <button class="d-btn deal-neg" onclick="selectDeal(this)">🤝 LET'S NEGOTIATE</button>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-          <div class="form-group">
-            <label>Amount I'll Invest</label>
-            <input type="text" placeholder="$___">
-          </div>
-          <div class="form-group">
-            <label>% of Profits I Want</label>
-            <input type="text" placeholder="____%">
-          </div>
-        </div>
-        <div class="form-group" style="margin-top:12px">
-          <label>Why I Made This Decision</label>
-          <textarea placeholder="Explain your reasoning..."></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: BUILD YOUR PITCH -->
-<section id="build">
-  <div class="container">
-    <div class="section-tag">🔨 Create</div>
-    <h2 class="section-title">Build Your Own Business Pitch</h2>
-    <p class="section-desc">Entrepreneurs: Fill in this form to create your pitch. The profit calculator does the math for you!</p>
-
-    <div class="builder">
-      <h3>📝 My Business Pitch Card</h3>
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Business Name</label>
-          <input type="text" id="bizName" placeholder="e.g., Bracelet Boss" oninput="updatePreview()">
-        </div>
-        <div class="form-group">
-          <label>Tagline (one catchy sentence)</label>
-          <input type="text" id="bizTagline" placeholder="e.g., Custom bracelets for every personality!" oninput="updatePreview()">
-        </div>
-        <div class="form-group full">
-          <label>What are you selling? (Answer Question #1)</label>
-          <textarea id="bizWhat" placeholder="Describe your product or service..." oninput="updatePreview()"></textarea>
-        </div>
-        <div class="form-group full">
-          <label>Who will buy it? (Answer Question #2)</label>
-          <textarea id="bizWho" placeholder="Describe your target customer..." oninput="updatePreview()"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Total Startup Cost ($1–$10)</label>
-          <input type="number" id="bizCost" min="1" max="10" step="0.5" placeholder="e.g., 6.50" oninput="calcProfit()">
-        </div>
-        <div class="form-group">
-          <label>Selling Price Per Item</label>
-          <input type="number" id="bizPrice" min="0.25" step="0.25" placeholder="e.g., 1.50" oninput="calcProfit()">
-        </div>
-        <div class="form-group">
-          <label>How Many Can You Make With Your Budget?</label>
-          <input type="number" id="bizQty" min="1" placeholder="e.g., 25" oninput="calcProfit()">
-        </div>
-        <div class="form-group">
-          <label>How Much Are You Asking From Sharks?</label>
-          <input type="number" id="bizAsk" min="0" step="0.5" placeholder="e.g., 3.00" oninput="calcProfit()">
-        </div>
-        <div class="form-group full">
-          <label>Why will your business succeed? (Answer Question #5)</label>
-          <textarea id="bizWhy" placeholder="Explain your plan, what makes you unique, and how you'll sell..." oninput="updatePreview()"></textarea>
-        </div>
-        <div class="form-group full">
-          <label>What % of profits will investors get?</label>
-          <input type="number" id="bizPercent" min="1" max="99" placeholder="e.g., 25" oninput="calcProfit()">
-        </div>
-      </div>
-
-      <div class="calc-result" id="calcResult">
-        <p style="color:var(--text-dim);margin-bottom:8px;font-size:.9rem">Fill in the numbers above to see your profit!</p>
-        <div class="big-num">$ —</div>
-      </div>
-
-      <div style="text-align:center;margin-top:20px">
-        <button class="btn btn-gold" onclick="window.print()">🖨️ Print My Pitch Card</button>
-      </div>
-    </div>
-
-    <!-- MONEY TRACKER -->
-    <div class="tracker">
-      <h3>💰 Money Tracker</h3>
-      <p style="color:var(--text-dim);font-size:.9rem;margin-bottom:20px">Keep track of every dollar spent and earned. This is how real businesses stay profitable!</p>
-
-      <h4 style="color:var(--coral);font-family:'Fredoka',sans-serif;margin-bottom:12px">📤 Expenses (Money Out)</h4>
-      <table class="tracker-table">
-        <thead><tr><th>Date</th><th>What I Bought</th><th>Qty</th><th>Cost</th></tr></thead>
-        <tbody id="expenseRows"></tbody>
-      </table>
-      <button class="btn btn-sm btn-outline" style="margin-top:12px;border-color:var(--coral);color:var(--coral)" onclick="addRow('expenseRows')">+ Add Expense</button>
-
-      <h4 style="color:var(--lime);font-family:'Fredoka',sans-serif;margin:24px 0 12px">📥 Sales (Money In)</h4>
-      <table class="tracker-table">
-        <thead><tr><th>Date</th><th>What I Sold</th><th>Qty</th><th>Amount</th></tr></thead>
-        <tbody id="salesRows"></tbody>
-      </table>
-      <button class="btn btn-sm btn-outline" style="margin-top:12px;border-color:var(--lime);color:var(--lime)" onclick="addRow('salesRows')">+ Add Sale</button>
-
-      <div class="tracker-total">
-        <span class="total-label">💰 Total Profit/Loss:</span>
-        <span class="total-amount positive" id="trackerTotal">$0.00</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: VOCAB -->
-<section id="vocab" style="background:rgba(255,255,255,.02)">
-  <div class="container">
-    <div class="section-tag">📖 Vocabulary</div>
-    <h2 class="section-title">Business Words You Need to Know</h2>
-    <p class="section-desc">Master these terms and you'll sound like a real business pro. Sharks and Entrepreneurs both need to know these!</p>
-    <div class="vocab-grid" id="vocabGrid">
-      <!-- Populated by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: CLASSROOM FLOW -->
-<section id="classroom">
-  <div class="container">
-    <div class="section-tag">🏫 For the Teacher</div>
-    <h2 class="section-title">How to Run the Game in Class</h2>
-    <p class="section-desc">Follow this timeline to run a smooth, fun, and educational Shark Tank session!</p>
-
-    <div class="flow-timeline">
-      <div class="flow-item" data-time="1"><h4>Introduce the Game</h4><div class="flow-time">⏱ 5–10 minutes</div><p>Explain the rules: each student gets a set amount of cash ($1–$10). They choose to be an Entrepreneur or a Shark. Hand out the money and let students explore the business ideas section.</p></div>
-      <div class="flow-item" data-time="2"><h4>Teach the Basics</h4><div class="flow-time">⏱ 10–15 minutes</div><p>Walk through the "What IS a Business?" and "5 Key Questions" sections as a class. Make sure every student understands revenue, costs, and profit before they start planning.</p></div>
-      <div class="flow-item" data-time="3"><h4>Entrepreneurs Plan Their Pitch</h4><div class="flow-time">⏱ 15–20 minutes</div><p>Entrepreneurs use the "Build Your Pitch" section or sample pitch cards to create their presentation. They must answer all 5 key questions and have real numbers. Sharks can review the evaluation checklist.</p></div>
-      <div class="flow-item" data-time="4"><h4>Shark Tank Presentations!</h4><div class="flow-time">⏱ 2–3 minutes per pitch</div><p>Each Entrepreneur stands up and presents their pitch. Sharks listen, take notes on their evaluation scorecards, and can ask 2–3 questions after each pitch.</p></div>
-      <div class="flow-item" data-time="5"><h4>Sharks Make Deals</h4><div class="flow-time">⏱ 10 minutes</div><p>After all pitches, Sharks decide who to invest in. They physically hand their cash to the Entrepreneurs they believe in and agree on the profit-sharing percentage.</p></div>
-      <div class="flow-item" data-time="6"><h4>Run the Businesses (Optional Extended Play)</h4><div class="flow-time">⏱ 1–5 days</div><p>If doing an extended game, Entrepreneurs actually create and sell their products over the week. They track money using the tracker. At the end, they calculate profits and pay investors.</p></div>
-      <div class="flow-item" data-time="7"><h4>Final Results & Awards</h4><div class="flow-time">⏱ 10 minutes</div><p>Announce results! Awards: Most Profitable Business, Best Pitch, Smartest Shark (highest ROI), Most Creative Business, Best Teamwork, and Comeback Award (best pivot from failure).</p></div>
-    </div>
-
-    <div style="margin-top:40px;padding:28px;background:linear-gradient(135deg,rgba(245,166,35,.08),rgba(23,195,178,.08));border:1px solid rgba(245,166,35,.2);border-radius:var(--radius)">
-      <h3 style="font-family:'Fredoka',sans-serif;color:var(--gold);margin-bottom:12px">🏆 Award Ideas</h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
-        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🥇 <strong>Most Profitable</strong><br><span style="color:var(--text-dim);font-size:.8rem">Highest total profit</span></div>
-        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🎤 <strong>Best Pitcher</strong><br><span style="color:var(--text-dim);font-size:.8rem">Most convincing presentation</span></div>
-        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🦈 <strong>Smartest Shark</strong><br><span style="color:var(--text-dim);font-size:.8rem">Best return on investment</span></div>
-        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🎨 <strong>Most Creative</strong><br><span style="color:var(--text-dim);font-size:.8rem">Most original business idea</span></div>
-        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🤝 <strong>Best Teamwork</strong><br><span style="color:var(--text-dim);font-size:.8rem">Best entrepreneur + investor team</span></div>
-        <div style="padding:12px;background:rgba(255,255,255,.04);border-radius:var(--radius-xs);text-align:center;font-size:.9rem">🔄 <strong>Comeback Kid</strong><br><span style="color:var(--text-dim);font-size:.8rem">Best recovery from setback</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <p class="footer-tagline">🦈 Teen Summit Shark Tank Game 🦈</p>
-    <p>Learn. Invest. Build. Profit. — Every great entrepreneur started somewhere!</p>
-  </div>
-</footer>
-
-<!-- PRINT BTN -->
-<button class="print-btn" onclick="window.print()" title="Print this page">🖨️</button>
-
+<div class="bg-fx"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+<nav><div class="c"><div class="nlogo">🦈 Teen Summit Shark Tank</div><div class="nlinks"><a href="#roles">Roles</a><a href="#learn">Learn</a><a href="#q5">5 Questions</a><a href="#ideas">Ideas</a><a href="#pitches">Pitches</a><a href="#eval">Evaluate</a><a href="#build">Build</a><a href="#vocab">Vocab</a><a href="#class">Classroom</a></div><button class="thm" onclick="tgT()" id="tb">🌙</button></div></nav>
+<header class="hero"><div class="c"><div class="hbdg">🎓 Middle School Entrepreneurship Game</div><h1><span class="gd">Teen Summit</span><br><span class="tl">Shark Tank</span> <span class="cr">Game</span></h1><p class="hsub">Learn to build a business, pitch ideas, and invest wisely. Play as an <strong>Entrepreneur</strong> or <strong>Shark Investor</strong>!</p><div class="hact"><a href="#pitches" class="btn bgd">🎤 Pitch Scripts</a><a href="#learn" class="btn bol">📚 Learn First</a></div><div class="sbar"><div class="sc"><div class="si">💰</div><div class="sn">$1–$10</div><div class="sl">Budget</div></div><div class="sc"><div class="si">🎤</div><div class="sn">10</div><div class="sl">Scripts</div></div><div class="sc"><div class="si">💡</div><div class="sn">12+</div><div class="sl">Ideas</div></div><div class="sc"><div class="si">🦈</div><div class="sn">2</div><div class="sl">Roles</div></div></div></div></header>
+<section id="roles"><div class="c"><div class="stag">🎭 Step 1</div><h2 class="stit">Choose Your Role</h2><p class="sdsc">Pick one: build a business or invest in one!</p><div class="rpk"><div class="rc ent" onclick="this.classList.toggle('sel')"><div class="remj">🚀</div><h3 class="rtit">Entrepreneur</h3><p class="rdsc">Pitch your business idea to the Sharks!</p><ul class="rtsk"><li>Pick a business ($1–$10 startup)</li><li>Answer the 5 Key Questions</li><li>Read your pitch script aloud</li><li>Use Q&A buttons for Shark questions</li><li>Negotiate and run your business</li><li>Track profits, pay investors</li></ul></div><div class="rc inv" onclick="this.classList.toggle('sel')"><div class="remj">🦈</div><h3 class="rtit">Shark Investor</h3><p class="rdsc">Decide which businesses earn YOUR money!</p><ul class="rtsk"><li>Receive investment cash</li><li>Listen to pitches carefully</li><li>Score with Evaluation Scorecard</li><li>Ask tough questions</li><li>"I'm IN" or "I'm OUT" on deals</li><li>Earn profit shares</li></ul></div></div></div></section>
+<section id="learn" style="background:var(--bg2)"><div class="c"><div class="stag">📚 Learn</div><h2 class="stit">What IS a Business?</h2><div class="tbar"><button class="tb act" onclick="sT('tw',this)">Basics</button><button class="tb" onclick="sT('ts',this)">10 Steps</button><button class="tb" onclick="sT('tm',this)">Money</button><button class="tb" onclick="sT('te',this)">Mistakes</button></div><div class="tc act" id="tw"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px"><div class="qc"><div class="qn">💡</div><h3>Solves a Problem</h3><p>Sell a product or service people need!</p><div class="qex"><div class="el">Example</div><p>Students lose pencils → Sell pencil packs!</p></div></div><div class="qc"><div class="qn">🔄</div><h3>Money Flow</h3><p>Buy low, sell higher. Difference = profit!</p><div class="qex"><div class="el">Formula</div><p><strong>Revenue − Costs = Profit</strong></p></div></div><div class="qc"><div class="qn">🎯</div><h3>Know Customers</h3><p>Would classmates spend THEIR money on this?</p></div><div class="qc"><div class="qn">⚖️</div><h3>Supply &amp; Demand</h3><p>High demand + low supply = charge more!</p></div><div class="qc"><div class="qn">🤝</div><h3>Investors</h3><p>Give money → get % of profits back.</p><div class="qex"><div class="el">Deal</div><p>$4 for 25%. Profit $20 → Shark gets $5.</p></div></div><div class="qc"><div class="qn">📈</div><h3>Why They Fail</h3><p>No plan, overspending, nobody wants it.</p></div></div></div><div class="tc" id="ts"><div class="sg"><div class="scd"><div class="snm">1</div><div class="scn"><h3>Find a Problem</h3><p>What do classmates need?</p><div class="tip">💡 Ask 5 friends what they'd buy at school</div></div></div><div class="scd"><div class="snm">2</div><div class="scn"><h3>Research</h3><p>Ask 10 people if they'd buy it.</p></div></div><div class="scd"><div class="snm">3</div><div class="scn"><h3>Plan</h3><p>What, who, cost, price, where to sell.</p></div></div><div class="scd"><div class="snm">4</div><div class="scn"><h3>Calculate Costs</h3><p>List everything. $1–$10 total!</p></div></div><div class="scd"><div class="snm">5</div><div class="scn"><h3>Set Price</h3><p>At least 2× your cost per item.</p></div></div><div class="scd"><div class="snm">6</div><div class="scn"><h3>Test Small</h3><p>Make 5–10, sell, get feedback, improve.</p></div></div><div class="scd"><div class="snm">7</div><div class="scn"><h3>Market It</h3><p>Flyers, word of mouth, deals!</p></div></div><div class="scd"><div class="snm">8</div><div class="scn"><h3>Be Professional</h3><p>Be friendly, correct change, thank customers.</p></div></div><div class="scd"><div class="snm">9</div><div class="scn"><h3>Track Money</h3><p>Every sale and expense!</p></div></div><div class="scd"><div class="snm">10</div><div class="scn"><h3>Grow or Pivot</h3><p>Working? Scale up! Not? Change approach!</p></div></div></div></div><div class="tc" id="tm"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px"><div class="qc"><div class="qn">💵</div><h3>Revenue</h3><p>ALL money from sales. 20×$2=$40.</p></div><div class="qc"><div class="qn">📉</div><h3>Costs</h3><p>Everything spent: Beads $3+String $2+Bags $1=$6</p></div><div class="qc"><div class="qn">🏆</div><h3>Profit</h3><p>$40−$6=<strong>$34 profit!</strong></p></div><div class="qc"><div class="qn">📊</div><h3>Markup</h3><p>Cost $0.50, sell $2=300% markup.</p></div><div class="qc"><div class="qn">⚖️</div><h3>Break Even</h3><p>Spent $6, sell at $2→break even after 3 sales!</p></div><div class="qc"><div class="qn">🤝</div><h3>Investor Returns</h3><p>$3 for 30%. Profit $34→Shark gets $10.20</p></div></div></div><div class="tc" id="te"><div class="sg"><div class="scd"><div class="snm" style="background:linear-gradient(135deg,var(--cr),var(--pk))">!</div><div class="scn"><h3>❌ Spending All at Once</h3><p>Test small batch first!</p></div></div><div class="scd"><div class="snm" style="background:linear-gradient(135deg,var(--cr),var(--pk))">!</div><div class="scn"><h3>❌ Pricing Too Low</h3><p>Charge at least 2× cost.</p></div></div><div class="scd"><div class="snm" style="background:linear-gradient(135deg,var(--cr),var(--pk))">!</div><div class="scn"><h3>❌ Copying Everyone</h3><p>Be unique!</p></div></div><div class="scd"><div class="snm" style="background:linear-gradient(135deg,var(--cr),var(--pk))">!</div><div class="scn"><h3>❌ Not Tracking Money</h3><p>Write it down!</p></div></div><div class="scd"><div class="snm" style="background:linear-gradient(135deg,var(--cr),var(--pk))">!</div><div class="scn"><h3>❌ Ignoring Feedback</h3><p>Listen and adjust!</p></div></div><div class="scd"><div class="snm" style="background:linear-gradient(135deg,var(--cr),var(--pk))">!</div><div class="scn"><h3>❌ Giving Up Fast</h3><p>Slow start is normal!</p></div></div></div></div></div></section>
+<section id="q5"><div class="c"><div class="stag">🔑 Essential</div><h2 class="stit">5 Questions Every Business Must Answer</h2><p class="sdsc">Can't answer these? Red flag! 🚩</p><div class="qg"><div class="qc"><div class="qn">01</div><h3>What Is Your Business?</h3><p>One clear sentence about what you sell.</p><div class="qex"><div class="el">Example</div><p>"I make custom bracelets with school colors."</p></div></div><div class="qc"><div class="qn">02</div><h3>Who Will Buy It?</h3><p>Be specific! "Everyone" is NOT a good answer.</p><div class="qex"><div class="el">Example</div><p>"6th–8th graders who like jewelry, before dances."</p></div></div><div class="qc"><div class="qn">03</div><h3>Cost to Start?</h3><p>List every expense. $1–$10 total.</p><div class="qex"><div class="el">Example</div><p>"Beads $3, string $1.50, clasps $1, bags $1=$6.50"</p></div></div><div class="qc"><div class="qn">04</div><h3>Selling Price?</h3><p>Cost per item, price, profit per item.</p><div class="qex"><div class="el">Example</div><p>"Costs $0.26 each. Sell $1.50. Profit $1.24 each!"</p></div></div><div class="qc"><div class="qn">05</div><h3>Why Will It Succeed?</h3><p>Your plan, advantage, how to find customers.</p><div class="qex"><div class="el">Example</div><p>"No competition. Orders at lunch. Color chart."</p></div></div></div></div></section>
+<section id="ideas" style="background:var(--bg2)"><div class="c"><div class="stag">💡 Inspiration</div><h2 class="stit">Business Ideas ($1–$10)</h2><div class="ig" id="iG"></div></div></section>
+<section id="pitches"><div class="c"><div class="stag">🎤 Pitch Scripts</div><h2 class="stit">10 Complete Pitch Scripts</h2><p class="sdsc">Each has a <strong>read-aloud script</strong>, <strong>Q&A answer buttons</strong>, and <strong>investor profit projections</strong>. Pick one and present!</p><div class="psg" id="pG"></div></div></section>
+<section id="eval" style="background:var(--bg2)"><div class="c"><div class="stag">🦈 Shark Tools</div><h2 class="stit">Evaluation Scorecard</h2><div class="es"><div style="margin-bottom:14px"><label style="font-size:.72rem;font-weight:600;color:var(--txd);text-transform:uppercase">Business:</label><input type="text" placeholder="Name..." style="display:block;width:100%;max-width:360px;margin-top:5px;padding:8px 11px;background:var(--inbg);border:1.5px solid var(--inbd);border-radius:var(--rx);color:var(--tx);font-family:'Outfit',sans-serif;font-size:.88rem;outline:none"></div><div class="eh"><span>Question</span><span style="color:var(--lm)">Yes</span><span style="color:var(--gd)">Maybe</span><span style="color:var(--cr)">No</span></div><div class="eg" id="eG"></div><div class="dbox"><h3>🦈 My Decision</h3><div class="dbts"><button class="dbt di" onclick="sd(this)">💰 I'M IN!</button><button class="dbt do" onclick="sd(this)">👋 I'M OUT</button><button class="dbt dn" onclick="sd(this)">🤝 NEGOTIATE</button></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="fgp"><label>$ I'll Invest</label><input placeholder="$___"></div><div class="fgp"><label>% I Want</label><input placeholder="____%"></div></div><div class="fgp" style="margin-top:10px"><label>Why</label><textarea placeholder="My reasoning..."></textarea></div></div></div></div></section>
+<section id="build"><div class="c"><div class="stag">🔨 Create</div><h2 class="stit">Build Your Own Pitch</h2><div class="bld"><h3>📝 My Pitch</h3><div class="fg"><div class="fgp"><label>Business Name</label><input id="bN" placeholder="e.g., Bracelet Boss"></div><div class="fgp"><label>Tagline</label><input id="bT"></div><div class="fgp fu"><label>What are you selling?</label><textarea id="bW"></textarea></div><div class="fgp fu"><label>Who will buy it?</label><textarea id="bWh"></textarea></div><div class="fgp"><label>Startup Cost ($1–$10)</label><input type="number" id="bC" min="1" max="10" step=".5" oninput="cP()"></div><div class="fgp"><label>Price Per Item</label><input type="number" id="bP" min=".25" step=".25" oninput="cP()"></div><div class="fgp"><label>How Many Made?</label><input type="number" id="bQ" min="1" oninput="cP()"></div><div class="fgp"><label>Asking Sharks ($)</label><input type="number" id="bA" min="0" step=".5" oninput="cP()"></div><div class="fgp fu"><label>Why will it succeed?</label><textarea id="bWy"></textarea></div><div class="fgp"><label>% for Investors</label><input type="number" id="bPt" min="1" max="99" oninput="cP()"></div></div><div class="cres" id="cR"><p style="color:var(--txd);font-size:.85rem">Fill in numbers to see profit!</p><div class="bn">$ —</div></div></div><div class="trk"><h3>💰 Money Tracker</h3><h4 style="color:var(--cr);font-family:'Fredoka',sans-serif;margin-bottom:8px;font-size:.95rem">📤 Expenses</h4><table class="tt"><thead><tr><th>Date</th><th>What</th><th>Qty</th><th>Cost</th></tr></thead><tbody id="eR"></tbody></table><button class="btn bxs bol" style="margin-top:6px;border-color:var(--cr);color:var(--cr)" onclick="aR('eR')">+ Expense</button><h4 style="color:var(--lm);font-family:'Fredoka',sans-serif;margin:16px 0 8px;font-size:.95rem">📥 Sales</h4><table class="tt"><thead><tr><th>Date</th><th>What</th><th>Qty</th><th>Amt</th></tr></thead><tbody id="sR"></tbody></table><button class="btn bxs bol" style="margin-top:6px;border-color:var(--lm);color:var(--lm)" onclick="aR('sR')">+ Sale</button><div class="ttl"><span class="tla">💰 Profit/Loss:</span><span class="tam pos" id="tT">$0.00</span></div></div></div></section>
+<section id="vocab" style="background:var(--bg2)"><div class="c"><div class="stag">📖 Vocabulary</div><h2 class="stit">Business Words to Know</h2><div class="vg" id="vG"></div></div></section>
+<section id="class"><div class="c"><div class="stag">🏫 Teacher Guide</div><h2 class="stit">How to Run the Game</h2><div class="ftl"><div class="fi" data-t="1"><h4>Introduce</h4><div class="ft">⏱ 5–10 min</div><p>Explain rules. Hand out $1–$10. Choose roles.</p></div><div class="fi" data-t="2"><h4>Teach Basics</h4><div class="ft">⏱ 10–15 min</div><p>Walk through "What IS a Business?" and 5 Questions.</p></div><div class="fi" data-t="3"><h4>Prepare</h4><div class="ft">⏱ 15–20 min</div><p>Entrepreneurs pick/create scripts. Sharks review scorecard.</p></div><div class="fi" data-t="4"><h4>Presentations!</h4><div class="ft">⏱ 2–3 min each</div><p>Read scripts aloud. Sharks ask questions. Use Q&A buttons!</p></div><div class="fi" data-t="5"><h4>Make Deals</h4><div class="ft">⏱ 10 min</div><p>Sharks invest. Hand cash. Agree on profit %.</p></div><div class="fi" data-t="6"><h4>Run Businesses</h4><div class="ft">⏱ 1–5 days</div><p>Optional: sell products, track money, pay investors.</p></div><div class="fi" data-t="7"><h4>Awards!</h4><div class="ft">⏱ 10 min</div><p>🥇 Most Profitable 🎤 Best Pitcher 🦈 Smartest Shark 🎨 Most Creative</p></div></div></div></section>
+<footer><div class="c"><p class="ftt">🦈 Teen Summit Shark Tank Game 🦈</p><p>Learn. Invest. Build. Profit.</p></div></footer>
+<button class="prn" onclick="window.print()">🖨️</button>
 <script>
-// ── DATA ──
-const ideas = [
-  { name:"Custom Friendship Bracelets", icon:"📿", color:"#f5a623", bg:"rgba(245,166,35,.12)", tag:"Craft", tagColor:"#f5a623", cost:"$3–$6", price:"$1–$2 each", profit:"200–400%", desc:"Buy beads and string in bulk. Make custom bracelets with names, school colors, or trendy styles. Take orders at lunch.", steps:"Buy supplies at dollar store → Make 15–25 bracelets → Take orders with color choices → Deliver next day" },
-  { name:"Snack Packs", icon:"🍿", color:"#ff6b6b", bg:"rgba(255,107,107,.12)", tag:"Food", tagColor:"#ff6b6b", cost:"$5–$10", price:"$1–$2 each", profit:"50–150%", desc:"Buy candy, chips, or drinks in bulk. Sell individual items. Everyone gets hungry! Great for events and after school.", steps:"Buy bulk at warehouse store → Sort into individual portions → Sell at lunch/after school → Restock weekly" },
-  { name:"Study Guide Kits", icon:"📚", color:"#64b5f6", bg:"rgba(100,181,246,.12)", tag:"Service", tagColor:"#64b5f6", cost:"$2–$5", price:"$2–$4 each", profit:"200–400%", desc:"Create printed study guides, flashcard sets, or planner pages. Print them neatly. Students always need help studying!", steps:"Pick popular subjects → Create guides on computer → Print at home/library → Sell before test weeks" },
-  { name:"Custom Slime", icon:"🧪", color:"#a8e063", bg:"rgba(168,224,99,.12)", tag:"Craft", tagColor:"#a8e063", cost:"$4–$8", price:"$2–$4 each", profit:"150–300%", desc:"Make custom slime in different colors, scents, and textures. Glitter, glow-in-the-dark, and crunchy options are popular!", steps:"Buy glue + activator in bulk → Make batches at home → Package in small containers → Offer custom colors" },
-  { name:"Sticker Sheets", icon:"🎨", color:"#7c5cbf", bg:"rgba(124,92,191,.12)", tag:"Design", tagColor:"#7c5cbf", cost:"$3–$7", price:"$1–$3 per sheet", profit:"200–500%", desc:"Design stickers on a computer, print on sticker paper. Themes: school spirit, memes, motivational quotes, animals.", steps:"Design on free apps → Print on sticker paper → Cut into sheets → Sell themed packs" },
-  { name:"Pencil & Supply Packs", icon:"✏️", color:"#17c3b2", bg:"rgba(23,195,178,.12)", tag:"Essentials", tagColor:"#17c3b2", cost:"$3–$8", price:"$1–$3 per pack", profit:"100–200%", desc:"Bundle pencils, erasers, and highlighters into themed packs. Everyone forgets supplies. Easy sell every single day!", steps:"Buy in bulk at dollar store → Bundle 3–5 items per pack → Add a label/bag → Sell from locker or at lunch" },
-  { name:"Tutoring Sessions", icon:"🎓", color:"#f5a623", bg:"rgba(245,166,35,.12)", tag:"Service", tagColor:"#f5a623", cost:"$0–$2", price:"$2–$5 per session", profit:"Very High!", desc:"If you're great at math, reading, or any subject — teach others! Almost zero cost. Just your brain and time.", steps:"Pick your best subject → Make flyers → Schedule 15-min sessions → Meet at library or lunch" },
-  { name:"Bookmarks & Keychains", icon:"🔖", color:"#ff8fab", bg:"rgba(255,143,171,.12)", tag:"Craft", tagColor:"#ff8fab", cost:"$2–$5", price:"$1–$3 each", profit:"200–400%", desc:"Make unique bookmarks from cardstock or beaded keychains. Low cost, easy to make, and everyone uses them!", steps:"Buy cardstock/beads → Design and create → Add tassels or charms → Sell at school events" },
-  { name:"Baked Goods", icon:"🍪", color:"#e8941a", bg:"rgba(232,148,26,.12)", tag:"Food", tagColor:"#e8941a", cost:"$3–$8", price:"$1–$2 each", profit:"100–300%", desc:"Bake cookies, brownies, or rice crispy treats at home. Package them nicely. Homemade snacks always sell out!", steps:"Bake a batch at home → Wrap individually → Price and label → Sell at lunch (check school rules first!)" },
-  { name:"Custom Drawings / Portraits", icon:"🖼️", color:"#42a5f5", bg:"rgba(66,165,245,.12)", tag:"Art", tagColor:"#42a5f5", cost:"$1–$3", price:"$2–$5 each", profit:"300–500%", desc:"If you can draw, take custom orders! Sketch portraits, pet drawings, or cartoon versions of classmates.", steps:"Show samples of your work → Take orders with photo references → Complete in 1–2 days → Deliver" },
-  { name:"Positive Quote Cards", icon:"💌", color:"#7c5cbf", bg:"rgba(124,92,191,.12)", tag:"Design", tagColor:"#7c5cbf", cost:"$1–$4", price:"$0.50–$2 each", profit:"200–400%", desc:"Design small cards with motivational or funny quotes. Print on cardstock. Great for lockers, gifts, or pick-me-ups!", steps:"Write/find quotes → Design on phone or computer → Print and cut → Sell as singles or packs" },
-  { name:"Hair Accessories", icon:"🎀", color:"#ff8fab", bg:"rgba(255,143,171,.12)", tag:"Fashion", tagColor:"#ff8fab", cost:"$3–$8", price:"$1–$3 each", profit:"100–300%", desc:"Make scrunchies, beaded hair clips, or ribbon bows. Fashion accessories are always in demand at school!", steps:"Buy fabric/ribbons/clips → Make at home → Display variety → Sell at school or take custom orders" },
+function tgT(){const h=document.documentElement,n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);document.getElementById('tb').textContent=n==='dark'?'🌙':'☀️';try{localStorage.setItem('th',n)}catch(e){}}try{const s=localStorage.getItem('th');if(s){document.documentElement.setAttribute('data-theme',s);document.getElementById('tb').textContent=s==='dark'?'🌙':'☀️'}}catch(e){}
+function sT(id,b){document.querySelectorAll('.tc').forEach(c=>c.classList.remove('act'));document.querySelectorAll('.tb').forEach(t=>t.classList.remove('act'));document.getElementById(id).classList.add('act');b.classList.add('act')}
+const ideas=[{n:"Friendship Bracelets",i:"📿",c:"#f5a623",b:"rgba(245,166,35,.1)",t:"Craft",co:"$3–$6",pr:"$1–$2",pf:"200–400%",d:"Beads + string. Custom names, school colors.",s:"Buy → Make 20+ → Orders at lunch → Deliver"},{n:"Snack Packs",i:"🍿",c:"#ff6b6b",b:"rgba(255,107,107,.1)",t:"Food",co:"$5–$10",pr:"$1–$2",pf:"50–150%",d:"Bulk candy/chips sold individually.",s:"Buy bulk → Portion → Sell at lunch → Restock"},{n:"Study Guides",i:"📚",c:"#42a5f5",b:"rgba(66,165,245,.1)",t:"Service",co:"$2–$5",pr:"$2–$4",pf:"200–400%",d:"Printed flashcards and study kits.",s:"Create → Print → Sell before tests"},{n:"Custom Slime",i:"🧪",c:"#66bb6a",b:"rgba(102,187,106,.1)",t:"Craft",co:"$4–$8",pr:"$2–$4",pf:"150–300%",d:"Glitter, fluffy, glow-in-dark varieties.",s:"Buy glue → Make → Package → Sell"},{n:"Sticker Sheets",i:"🎨",c:"#7c5cbf",b:"rgba(124,92,191,.1)",t:"Design",co:"$3–$7",pr:"$1–$3",pf:"200–500%",d:"Original designs: memes, quotes, animals.",s:"Design → Print → Cut → Sell packs"},{n:"Pencil Packs",i:"✏️",c:"#17c3b2",b:"rgba(23,195,178,.1)",t:"Essentials",co:"$3–$8",pr:"$1–$3",pf:"100–200%",d:"Bundled pencils, erasers, highlighters.",s:"Buy bulk → Bundle → Label → Sell"},{n:"Tutoring",i:"🎓",c:"#f5a623",b:"rgba(245,166,35,.1)",t:"Service",co:"$0–$2",pr:"$2–$5",pf:"Very High!",d:"Teach subjects you're great at!",s:"Pick subject → Flyers → Schedule → Teach"},{n:"Bookmarks",i:"🔖",c:"#ec407a",b:"rgba(236,64,122,.1)",t:"Craft",co:"$2–$5",pr:"$1–$3",pf:"200–400%",d:"Cardstock bookmarks, beaded keychains.",s:"Buy materials → Create → Sell"},{n:"Baked Goods",i:"🍪",c:"#ff9800",b:"rgba(255,152,0,.1)",t:"Food",co:"$3–$8",pr:"$1–$2",pf:"100–300%",d:"Cookies, brownies, rice crispy treats.",s:"Bake → Wrap → Label → Sell"},{n:"Custom Drawings",i:"🖼️",c:"#42a5f5",b:"rgba(66,165,245,.1)",t:"Art",co:"$1–$3",pr:"$2–$5",pf:"300–500%",d:"Cartoon portraits of classmates.",s:"Samples → Orders → Draw → Deliver"},{n:"Quote Cards",i:"💌",c:"#7c5cbf",b:"rgba(124,92,191,.1)",t:"Design",co:"$1–$4",pr:"$0.50–$2",pf:"200–400%",d:"Motivational/funny quotes on cardstock.",s:"Design → Print → Cut → Sell"},{n:"Hair Accessories",i:"🎀",c:"#ec407a",b:"rgba(236,64,122,.1)",t:"Fashion",co:"$3–$8",pr:"$1–$3",pf:"100–300%",d:"Scrunchies, clips, bows.",s:"Buy fabric → Make → Sell"}];
+document.getElementById('iG').innerHTML=ideas.map(i=>`<div class="ic"><div class="ih"><div class="ii" style="background:${i.b}">${i.i}</div><div><h3>${i.n}</h3><span class="it" style="background:${i.b};color:${i.c}">${i.t}</span></div></div><div class="ib"><p>${i.d}</p><div class="ist"><div class="is"><div class="lb">Cost</div><div class="vl vco">${i.co}</div></div><div class="is"><div class="lb">Price</div><div class="vl vpr">${i.pr}</div></div><div class="is"><div class="lb">Profit</div><div class="vl vpf">${i.pf}</div></div></div><div class="isp"><strong>How:</strong> ${i.s}</div></div></div>`).join('');
+const P=[
+{nm:"Bracelet Boss",tg:"Custom friendship bracelets for every personality!",cl:"c1",em:"📿",su:6,ak:3,pc:25,pr:1.5,qt:25,sc:`Hello Sharks! I am [YOUR NAME] and I founded <span class="hl">Bracelet Boss</span>.<span class="ps">— pause, look at Sharks —</span>Ever wanted a bracelet that is totally YOU? I make <span class="hl">custom friendship bracelets</span> with beads and string from the dollar store. Each is personalized — pick colors, add your name, delivered next day. I offer <span class="hl">matching friend group sets</span> — buy 3 get 1 free!<span class="ps">— show numbers —</span>Costs <span class="hl">$6 total</span> for <span class="hl">25 bracelets</span> — only <span class="hl">24 cents each</span>. Sell for <span class="hl">$1.50</span> = <span class="hl">$1.26 profit per sale</span>. Revenue: <span class="hl">$37.50</span>. Profit: <span class="hl">$28.50</span>!<span class="ps">— make the ask —</span>Asking <span class="hl">$3 for 25% of profits</span>. Your $3 earns <span class="hl">$7.13 back</span> — more than double! Nobody else sells custom jewelry here. Sharks — are you in?`,wh:"Custom bracelets. Names, school colors, friend sets.",cu:"6th–8th graders before dances and spirit weeks.",wy:"No competition. Color chart orders. Next-day delivery.",qa:[{q:"Nobody buys?",ic:"🤔",a:"Surveyed 15 — 12 said yes. Free samples convert the rest!",s:"I surveyed 15 students and 12 said yes. Free samples convince the rest!"},{q:"What's different?",ic:"⭐",a:"100% custom. Matching sets. No one else does this.",s:"Every bracelet is custom. No one else offers this!"},{q:"How long each?",ic:"⏰",a:"8–10 min. Can make 6–8/hour after school.",s:"About 8 to 10 minutes each. 6 to 8 per hour."},{q:"Can it grow?",ic:"📈",a:"Add keychains, anklets, school spirit. Sell at events.",s:"I will add keychains and sell at school events."},{q:"Costs rise?",ic:"💸",a:"Huge margins. Even +20% still $1+ profit each.",s:"Even if costs rise 20 percent, I still profit over a dollar each."},{q:"My ROI?",ic:"🦈",a:"$3→$7.13 = 138% return!",s:"Your 3 dollars returns 7.13. That is 138 percent!"}]},
+{nm:"Snack Attack",tg:"The tastiest snacks at unbeatable prices!",cl:"c2",em:"🍿",su:8,ak:4,pc:30,pr:1,qt:40,sc:`Yo Sharks! I am [YOUR NAME] and this is <span class="hl">Snack Attack</span>!<span class="ps">— smile big —</span>Ever been starving between classes? <span class="hl">Every student</span> has! I buy chips, candy, gummies <span class="hl">in bulk</span> and sell individually for <span class="hl">$1 each</span>. Cost: <span class="hl">$8</span> for <span class="hl">40 snacks</span> — 20 cents each. At $1, that is <span class="hl">80 cents profit per snack</span>! Revenue: <span class="hl">$40</span>. Profit: <span class="hl">$28</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$4 for 30%</span>. Your $4 becomes <span class="hl">$8.40</span>! Surveyed 20 kids — 18 said yes. Same spot daily. Who is hungry for a deal?`,wh:"Bulk snacks sold individually. $1 each.",cu:"ALL students. Everyone gets hungry!",wy:"18/20 surveyed said yes. Same spot daily. Weekly rotations.",qa:[{q:"Allowed at school?",ic:"📋",a:"Approved for our game. Food = #1 seller!",s:"Approved for our game. Food is the number one seller."},{q:"Don't sell?",ic:"🤔",a:"Everyone eats! Long shelf life = no waste.",s:"Everyone eats and snacks have long shelf lives."},{q:"Why buy from you?",ic:"⭐",a:"Convenience! Right here at school.",s:"Convenience! I am right here, no store trip needed."},{q:"Scale up?",ic:"📈",a:"Easy — another dollar store trip.",s:"Restocking is super easy."},{q:"Risks?",ic:"⚠️",a:"Very low! Non-perishable, cheap, wanted.",s:"Risk is very low. Everyone wants snacks."},{q:"My ROI?",ic:"🦈",a:"$4→$8.40 = 110%!",s:"Your 4 dollars returns 8.40. Over double!"}]},
+{nm:"Study Star Kits",tg:"Ace every test with student-made study packs!",cl:"c3",em:"📚",su:5,ak:3,pc:25,pr:3,qt:10,sc:`Hello Sharks. I am [YOUR NAME] and I created <span class="hl">Study Star Kits</span>.<span class="ps">— speak clearly —</span>Stressed before tests? We all are! I make <span class="hl">subject-specific study kits</span> — key terms, practice problems, memory tricks on colorful paper. Costs <span class="hl">$5</span> for <span class="hl">10 kits</span> — 50 cents each. Sell for <span class="hl">$3</span> = <span class="hl">$2.50 profit per kit</span>! Revenue: <span class="hl">$30</span>. Profit: <span class="hl">$22</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$3 for 25%</span>. Your $3 becomes <span class="hl">$5.50</span>. I sell 3 days before every test. Invest in education!`,wh:"Study guides with terms, problems, memory tricks.",cu:"Students before midterms, finals, unit tests.",wy:"A student. Simple language. Sell before every test.",qa:[{q:"Use textbook?",ic:"📖",a:"Textbooks are confusing. My guides simplify everything.",s:"My guides break everything down simply."},{q:"How often sell?",ic:"📅",a:"Tests almost weekly. New guide each time.",s:"Tests almost every week. Consistent sales."},{q:"What subjects?",ic:"🎯",a:"Math and science first. Survey for more.",s:"Starting with math and science."},{q:"My ROI?",ic:"🦈",a:"$3→$5.50 = 83%!",s:"Your 3 dollars returns 5.50."}]},
+{nm:"Slime Factory",tg:"Satisfying slime in every color and scent!",cl:"c4",em:"🧪",su:7,ak:3,pc:20,pr:2.5,qt:20,sc:`Hey Sharks! Welcome to the <span class="hl">Slime Factory</span>!<span class="ps">— hold up slime —</span>Who likes slime? Almost everyone! I make <span class="hl">8 varieties</span>: glitter, fluffy, crunchy, butter, glow-in-dark, cloud, magnetic, scented. Each costs <span class="hl">35 cents</span>. Sells for <span class="hl">$2.50</span> = <span class="hl">$2.15 profit each</span>! I make <span class="hl">20 containers</span>. Revenue: <span class="hl">$50</span>. Profit: <span class="hl">$40</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$3 for 20%</span>. Your $3 becomes <span class="hl">$8</span>! Free samples, mystery bags, custom orders. Who wants in?`,wh:"8+ slime varieties in decorated containers.",cu:"5th–7th graders. Fidget lovers, collectors.",wy:"2 years experience. Free samples. Mystery bags.",qa:[{q:"Still popular?",ic:"🔥",a:"Years strong. Sensory toys always in demand.",s:"Slime is still popular. Sensory toys are in demand."},{q:"Messy?",ic:"🧹",a:"High quality, doesn't stick. Care tips included.",s:"My slime doesn't stick. Care tips included."},{q:"Too many types?",ic:"🎯",a:"Variety = collecting = repeat purchases!",s:"Variety makes people collect them all!"},{q:"My ROI?",ic:"🦈",a:"$3→$8 = 167%! Almost triple!",s:"Your 3 dollars becomes 8. Almost triple!"}]},
+{nm:"Sticker Studio",tg:"Original designs you can't find anywhere!",cl:"c5",em:"🎨",su:6,ak:2,pc:20,pr:2,qt:20,sc:`Hello Sharks! I created <span class="hl">Sticker Studio</span>.<span class="ps">— show sticker sheets —</span>Everyone puts stickers on notebooks, bottles, laptops. But most look the same. I design <span class="hl">100% original sheets</span> — mascots, memes, quotes, animals, seasonal. Cost <span class="hl">$6</span> for <span class="hl">20 sheets</span> — 30 cents each. Sell at <span class="hl">$2</span> = <span class="hl">$1.70 profit per sheet</span>! Revenue: <span class="hl">$40</span>. Profit: <span class="hl">$32</span>!<span class="ps">— the ask —</span>Just <span class="hl">$2 for 20%</span>. Your $2 becomes <span class="hl">$6.40</span>! New drops every 2 weeks. Sticking with me?`,wh:"Original sticker sheets. Memes, quotes, animals.",cu:"Students decorating notebooks, bottles, lockers.",wy:"100% original. New drops every 2 weeks. Custom requests.",qa:[{q:"Print their own?",ic:"🖨️",a:"No sticker paper or skills. Mine are waterproof.",s:"Mine are professional waterproof quality."},{q:"Designs not popular?",ic:"🎯",a:"Survey first. Switch themes every 2 weeks.",s:"I survey classmates first and switch themes fast."},{q:"Keep coming back?",ic:"🔄",a:"New drops = excitement. Collecting is addictive!",s:"New themes every 2 weeks keep people collecting!"},{q:"My ROI?",ic:"🦈",a:"$2→$6.40 = 220%! Triple+!",s:"Your 2 dollars becomes 6.40. Over triple!"}]},
+{nm:"Cookie Crew",tg:"Fresh-baked cookies that taste like happiness!",cl:"c6",em:"🍪",su:6,ak:4,pc:30,pr:1.5,qt:30,sc:`Hi Sharks! I am the head baker of <span class="hl">Cookie Crew</span>!<span class="ps">— everyone loves cookies! —</span>Fresh chocolate chip cookie — want one? Of course! I bake using my family recipe that <span class="hl">won 2 bake-offs</span>. Each cookie is individually wrapped with a label. Rotating flavors: chocolate chip, snickerdoodle, double chocolate, seasonal. Cost <span class="hl">$6</span> for <span class="hl">30 cookies</span> = 20 cents each. Sell <span class="hl">$1.50</span> = <span class="hl">$1.30 profit each</span>! Revenue: <span class="hl">$45</span>. Profit: <span class="hl">$35</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$4 for 30%</span>. Your $4 returns <span class="hl">$10.50</span>! Pre-orders at lunch. Can you smell the profit?`,wh:"Fresh-baked cookies, wrapped with labels. Weekly flavors.",cu:"Everyone! Students, teachers, gift buyers.",wy:"Award-winning recipe. Professional packaging. Weekly flavors.",qa:[{q:"Allergies?",ic:"⚠️",a:"Full ingredient labels. Nut-free batches available.",s:"Every bag has ingredient labels. I offer nut-free."},{q:"Bake enough?",ic:"📦",a:"30 cookies in 45 min. Can do 2 batches/evening.",s:"One batch makes 30 in 45 minutes. I can do two."},{q:"Go stale?",ic:"🕐",a:"Bake night before, sell out by lunch. Never sit!",s:"Baked fresh and sold same day. Never stale!"},{q:"My ROI?",ic:"🦈",a:"$4→$10.50 = 163%!",s:"Your 4 dollars returns 10.50!"}]},
+{nm:"Pencil Packs Plus",tg:"Never be unprepared for class again!",cl:"c7",em:"✏️",su:5,ak:3,pc:25,pr:2,qt:15,sc:`Hey Sharks! I started <span class="hl">Pencil Packs Plus</span>!<span class="ps">— hold up a pack —</span>Who forgot a pencil this week? Almost everyone! I bundle <span class="hl">2 pencils, eraser, pen, highlighter</span> in a clear bag with my logo. Cost <span class="hl">$5</span> for <span class="hl">15 packs</span> = 33 cents each. Sell <span class="hl">$2</span> = <span class="hl">$1.67 profit each</span>! Revenue: <span class="hl">$30</span>. Profit: <span class="hl">$22</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$3 for 25%</span>. Your $3 becomes <span class="hl">$5.50</span>. This is a NEED, not a want. Needs sell themselves!`,wh:"Supply packs: 2 pencils, eraser, pen, highlighter.",cu:"Every student who forgets supplies (= everyone).",wy:"NEED not want. No competition. Sell from locker before 1st period.",qa:[{q:"Teachers give free pencils!",ic:"🤔",a:"Mine is a 5-item complete kit. Way more value!",s:"My pack has 5 items. Way more than a free pencil."},{q:"$2 for pencils?",ic:"💰",a:"It's 5 items! Buying separately costs $3–4. I save money!",s:"It is a 5-item kit. Stores charge 3 to 4 dollars for the same."},{q:"My ROI?",ic:"🦈",a:"$3→$5.50 = 83%!",s:"Your 3 dollars returns 5.50!"}]},
+{nm:"Doodle Portraits",tg:"Your face, but cooler — as a cartoon!",cl:"c8",em:"🖼️",su:2,ak:2,pc:20,pr:3,qt:15,sc:`Sharks! I run <span class="hl">Doodle Portraits</span>!<span class="ps">— show sample drawings —</span>Imagine a <span class="hl">cartoon version of yourself</span> — your hair, style, vibe — drawn just for you. That is what I do! My cost? <span class="hl">$2 on paper and markers</span>. My talent IS the product. I complete <span class="hl">15 portraits</span> at <span class="hl">$3 each</span> = <span class="hl">$2.87 profit each</span>! Revenue: <span class="hl">$45</span>. Costs: <span class="hl">$4</span>. Profit: <span class="hl">$41</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$2 for 20%</span>. Your $2 returns <span class="hl">$8.20</span>! Orders at lunch, 2-day turnaround. Invest in art!`,wh:"Custom cartoon portraits. Send selfie, pick style.",cu:"Anyone wanting unique art for lockers, gifts, social.",wy:"Near-zero cost. Huge margins. Totally unique service.",qa:[{q:"Don't like drawing?",ic:"😬",a:"Pencil sketch first for approval. Free changes!",s:"I show a sketch first. Free changes if needed!"},{q:"Handle many orders?",ic:"📦",a:"20–30 min each. 2–3/day after school.",s:"Each takes 20 to 30 minutes. 2 to 3 per day."},{q:"My ROI?",ic:"🦈",a:"$2→$8.20 = 310%! Money quadruples!",s:"Your 2 dollars becomes 8.20. Quadrupled!"}]},
+{nm:"Motivation Station",tg:"Positive vibes, one card at a time!",cl:"c9",em:"💌",su:3,ak:2,pc:25,pr:1,qt:30,sc:`Hi Sharks! I created <span class="hl">Motivation Station</span>!<span class="ps">— hold up cards —</span>School is stressful. Sometimes you need <span class="hl">encouragement</span>. I sell <span class="hl">beautifully designed quote cards</span> — motivational messages, funny pick-me-ups, kind words. Perfect for lockers, binders, or gifts. Cost <span class="hl">$3</span> for <span class="hl">30 cards</span> = 10 cents each. Sell <span class="hl">$1 each or 3 for $2.50</span>. Revenue: <span class="hl">$30</span>. Profit: <span class="hl">$25</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$2 for 25%</span>. Your $2 becomes <span class="hl">$6.25</span>. Kindness never goes out of style!`,wh:"Quote cards: motivational, funny, kind messages.",cu:"Anyone wanting to cheer up friends or decorate.",wy:"Low cost. Original designs. 3-for-$2.50 drives bulk. Great gifts.",qa:[{q:"Write their own notes!",ic:"📝",a:"Mine are professionally designed on quality cardstock. Store-quality!",s:"Mine are professionally designed. They look store-bought!"},{q:"$1 too much?",ic:"💰",a:"Hallmark is $5! Mine are $1 and totally unique.",s:"Store cards cost 3 to 5 dollars. Mine are only 1!"},{q:"My ROI?",ic:"🦈",a:"$2→$6.25 = 213%! Triple+!",s:"Your 2 dollars returns 6.25. Over triple!"}]},
+{nm:"Glow-Up Hair Bar",tg:"Accessories that make you shine!",cl:"c10",em:"🎀",su:7,ak:3,pc:25,pr:2,qt:20,sc:`Hey Sharks! This is the <span class="hl">Glow-Up Hair Bar</span>!<span class="ps">— display accessories —</span>Hair accessories are huge! I make <span class="hl">scrunchies, beaded clips, and ribbon bows</span> from dollar store supplies that look like they cost $5–$10 at a boutique. Cost <span class="hl">$7</span> for <span class="hl">20 accessories</span> = 35 cents each. Sell <span class="hl">$2</span> = <span class="hl">$1.65 profit each</span>! Revenue: <span class="hl">$40</span>. Profit: <span class="hl">$30</span>!<span class="ps">— the ask —</span>Asking <span class="hl">$3 for 25%</span>. Your $3 becomes <span class="hl">$7.50</span>. School colors, custom orders, mix-and-match sets. Fashion never dies!`,wh:"Scrunchies, clips, bows. School colors available.",cu:"5th–8th graders. Extra demand before dances, picture days.",wy:"Handmade = unique. Look boutique but cost $2. Custom orders.",qa:[{q:"Store-bought competition?",ic:"🏪",a:"Generic vs handmade. Mine are unique and match school colors!",s:"Mine are handmade and one-of-a-kind with school colors!"},{q:"Boys buy?",ic:"🤔",a:"Mainly girls but boys buy as gifts! Also wristbands.",s:"Mainly girls, but boys buy as gifts too!"},{q:"My ROI?",ic:"🦈",a:"$3→$7.50 = 150%!",s:"Your 3 dollars returns 7.50. Two and a half times!"}]}
 ];
 
-const pitches = [
-  { name:"Bracelet Boss", tagline:"Custom friendship bracelets for every personality!", color:"c1",
-    what:"I make custom friendship bracelets using beads and string. Each one is personalized with the buyer's name, favorite colors, or school colors. I also offer matching sets for friend groups.",
-    who:"6th–8th grade students who like accessories, especially girls who want to match with friends. Big demand before dances, spirit weeks, and birthdays.",
-    startup:"$6", ask:"$3", askPercent:"25%", price:"$1.50", qty:"25", revenue:"$37.50", totalCost:"$9", profit:"$28.50", investorReturn:"$7.13",
-    why:"Nobody else at school sells custom jewelry. I take orders at lunch with a color chart. I offer a 'buy 3 get 1 free' deal for friend groups. Delivery next day guaranteed!",
-    howInvestorsProfit:"Invest $3 for 25% of profits. If I make $28.50 profit, you get $7.13 back — that's a $4.13 gain on a $3 investment!"
-  },
-  { name:"Snack Attack", tagline:"The tastiest snacks at the best prices!", color:"c2",
-    what:"I buy popular snacks and candy in bulk from the dollar store and sell them individually at school. Variety packs with chips, candy bars, and gum.",
-    who:"ALL students! Everyone gets hungry between classes. Especially busy during testing weeks and after-school activities when there's no time for the cafeteria.",
-    startup:"$8", ask:"$4", askPercent:"30%", price:"$1.00", qty:"40", revenue:"$40", totalCost:"$12", profit:"$28",investorReturn:"$8.40",
-    why:"I surveyed 20 classmates and 18 said they'd buy snacks at school. I'll have a printed menu, sell at the same spot every day, and rotate flavors weekly to keep it fresh.",
-    howInvestorsProfit:"Invest $4 for 30% of profits. Expected profit is $28 → your share is $8.40. That's more than double your investment!"
-  },
-  { name:"Study Star Kits", tagline:"Ace every test with study packs made by students!", color:"c3",
-    what:"I create subject-specific study guides with key terms, practice problems, and memory tricks. Printed on colorful paper, folded into neat kits with highlighters.",
-    who:"Students who struggle with tests or want better grades. Demand spikes right before midterms, finals, and big unit tests. Parents might buy these too!",
-    startup:"$5", ask:"$3", askPercent:"25%", price:"$3.00", qty:"10", revenue:"$30", totalCost:"$8", profit:"$22", investorReturn:"$5.50",
-    why:"I'm an A student in math and science. My guides use simple language and real examples — not textbook stuff. I'll sell them 3 days before every major test. No competition!",
-    howInvestorsProfit:"Invest $3 for 25% of profits. I'm projecting $22 profit → you get $5.50 back. Almost double your money, and demand is guaranteed before every test!"
-  },
-  { name:"Slime Factory", tagline:"Satisfying slime in every color and scent!", color:"c4",
-    what:"Handmade slime in 8+ varieties: glitter, fluffy, crunchy, butter, glow-in-the-dark, and scented. Each container is decorated and labeled.",
-    who:"5th–7th graders who love fidget toys and sensory items. Slime is a proven seller — kids trade and collect different types. Popular as gifts and stress relievers.",
-    startup:"$7", ask:"$3", askPercent:"20%", price:"$2.50", qty:"20", revenue:"$50", totalCost:"$10", profit:"$40", investorReturn:"$8.00",
-    why:"I've been making slime for 2 years and have perfected my recipes. I'll bring free samples to build hype, offer 'mystery slime' grab bags, and take custom scent orders.",
-    howInvestorsProfit:"Invest $3 for 20% of profits. Projected profit is $40 → you get $8 back. That's almost 3× your investment!"
-  },
-  { name:"Sticker Studio", tagline:"Original designs you can't find anywhere else!", color:"c5",
-    what:"I design and print original sticker sheets with themes: school mascots, funny memes, motivational quotes, cute animals, and seasonal designs.",
-    who:"Students who decorate their notebooks, water bottles, laptops, and lockers. Stickers are collectible — people buy multiple sheets! Especially popular with creative students.",
-    startup:"$6", ask:"$2", askPercent:"20%", price:"$2.00", qty:"20", revenue:"$40", totalCost:"$8", profit:"$32", investorReturn:"$6.40",
-    why:"I'm a strong digital artist and use free design apps. My designs are 100% original — you literally cannot buy these anywhere else. I'll release new themed drops every 2 weeks.",
-    howInvestorsProfit:"Invest $2 for 20% of profits. Projected $32 profit → you receive $6.40. That's over 3× your original investment!"
-  },
-  { name:"Cookie Crew", tagline:"Fresh-baked cookies that taste like happiness!", color:"c6",
-    what:"Homemade cookies baked fresh and individually wrapped. Rotating flavors: chocolate chip, snickerdoodle, double chocolate, and seasonal specials (pumpkin in fall!).",
-    who:"Everyone loves cookies! Students, teachers, and staff. Premium customers are people buying for birthdays or treats for friends. Teachers buy for classroom parties.",
-    startup:"$6", ask:"$4", askPercent:"30%", price:"$1.50", qty:"30", revenue:"$45", totalCost:"$10", profit:"$35", investorReturn:"$10.50",
-    why:"My family recipe has won 2 local bake-offs. I package each cookie in a clear bag with a label. I'll offer 'Cookie of the Week' to keep people coming back. Pre-orders at lunch!",
-    howInvestorsProfit:"Invest $4 for 30% of profits. Expected $35 profit → you receive $10.50. That's more than 2.5× your money back!"
-  },
-];
-
-const evalQuestions = [
-  "Would I actually buy this product myself?",
-  "Is the price fair for what you get?",
-  "Do I believe they can sell this many?",
-  "Are the profit numbers realistic and honest?",
-  "Does this person seem prepared and confident?",
-  "Is there a real need for this product at school?",
-  "Is the startup cost $10 or less?",
-  "Could this business grow over time?",
-  "Is this better or different from what's already available?",
-  "Would I trust this person with my money?",
-];
-
-const vocabTerms = [
-  { word:"Entrepreneur", def:"A person who starts and runs their own business. That could be YOU!" },
-  { word:"Revenue", def:"All the money your business brings in from sales BEFORE subtracting costs." },
-  { word:"Profit", def:"The money left AFTER you subtract costs from revenue. This is what you keep!" },
-  { word:"Loss", def:"When your costs are MORE than your revenue. You lost money. Time to pivot!" },
-  { word:"Investment", def:"Money put into a business with the hope of earning more money back." },
-  { word:"Investor", def:"A person who gives money to a business in exchange for a share of profits." },
-  { word:"Startup Cost", def:"The total money needed to get your business started before making any sales." },
-  { word:"Market Research", def:"Learning about your customers — what they want, what they'll pay, and who else is selling." },
-  { word:"Supply & Demand", def:"High demand + low supply = charge more. Low demand or high supply = lower prices." },
-  { word:"Markup", def:"The amount you add to your cost to set your selling price. Higher markup = more profit per item." },
-  { word:"Break Even", def:"The point where revenue equals costs. After this, every sale is pure profit!" },
-  { word:"ROI", def:"Return on Investment — how much profit compared to how much was invested. Higher = better!" },
-  { word:"Pitch", def:"A short presentation to convince people to invest in or buy from your business." },
-  { word:"Target Customer", def:"The specific group of people most likely to buy your product." },
-  { word:"Competition", def:"Other people selling the same or similar products. Know them, then be better!" },
-  { word:"Bulk Buying", def:"Buying large quantities at a lower per-item price. Key to keeping costs down!" },
-];
-
-// ── RENDER FUNCTIONS ──
-
-function renderIdeas() {
-  const grid = document.getElementById('ideasGrid');
-  grid.innerHTML = ideas.map(i => `
-    <div class="idea-card">
-      <div class="idea-header">
-        <div class="idea-icon" style="background:${i.bg}">${i.icon}</div>
-        <div>
-          <h3>${i.name}</h3>
-          <span class="idea-tag" style="background:${i.bg};color:${i.color}">${i.tag}</span>
-        </div>
-      </div>
-      <div class="idea-body">
-        <p>${i.desc}</p>
-        <div class="idea-stats">
-          <div class="idea-stat"><div class="label">Cost</div><div class="value cost">${i.cost}</div></div>
-          <div class="idea-stat"><div class="label">Sell For</div><div class="value price">${i.price}</div></div>
-          <div class="idea-stat"><div class="label">Profit</div><div class="value profit">${i.profit}</div></div>
-        </div>
-        <div class="idea-steps"><strong>How to do it:</strong> ${i.steps}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderPitches() {
-  const grid = document.getElementById('pitchGrid');
-  grid.innerHTML = pitches.map((p, idx) => `
-    <div class="pitch-card ${p.color}">
-      <div class="pitch-banner">
-        <div class="pitch-number">Pitch #${idx + 1}</div>
-        <h3>${p.name}</h3>
-        <div class="tagline">${p.tagline}</div>
-      </div>
-      <div class="pitch-body">
-        <div class="pitch-field">
-          <div class="field-label">❶ What Is Your Business?</div>
-          <div class="field-value">${p.what}</div>
-        </div>
-        <div class="pitch-field">
-          <div class="field-label">❷ Who Will Buy It?</div>
-          <div class="field-value">${p.who}</div>
-        </div>
-        <div class="pitch-field">
-          <div class="field-label">❸ Cost to Start</div>
-          <div class="field-value">My money: ${p.startup} | Asking Sharks for: ${p.ask} (${p.askPercent} of profits)</div>
-        </div>
-        <div class="pitch-numbers">
-          <div class="pitch-num-item"><div class="p-label">Price Each</div><div class="p-value" style="color:var(--sky)">${p.price}</div></div>
-          <div class="pitch-num-item"><div class="p-label">Can Make</div><div class="p-value" style="color:var(--gold)">${p.qty}</div></div>
-          <div class="pitch-num-item"><div class="p-label">Profit</div><div class="p-value" style="color:var(--lime)">${p.profit}</div></div>
-        </div>
-        <div class="pitch-field">
-          <div class="field-label">❹ Selling Price & Revenue</div>
-          <div class="field-value">${p.price} × ${p.qty} items = ${p.revenue} revenue | Total costs: ${p.totalCost}</div>
-        </div>
-        <div class="pitch-field">
-          <div class="field-label">❺ Why It Will Succeed</div>
-          <div class="field-value">${p.why}</div>
-        </div>
-        <div class="pitch-field">
-          <div class="field-label">🦈 How Investors Profit</div>
-          <div class="field-value">${p.howInvestorsProfit}</div>
-        </div>
-      </div>
-      <div class="pitch-footer">
-        <span style="font-size:.85rem;color:var(--text-dim)">Deal: ${p.ask} for ${p.askPercent}</span>
-        <div>
-          <button class="invest-btn in" onclick="this.classList.toggle('selected')">I'm In! 💰</button>
-          <button class="invest-btn out" onclick="this.classList.toggle('selected')">I'm Out 👋</button>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderEval() {
-  const grid = document.getElementById('evalGrid');
-  grid.innerHTML = evalQuestions.map((q, i) => `
-    <div class="eval-row">
-      <div class="eval-q">${q}</div>
-      <div class="eval-opt yes"><input type="radio" name="eq${i}" id="eq${i}y"><label for="eq${i}y">✓</label></div>
-      <div class="eval-opt maybe"><input type="radio" name="eq${i}" id="eq${i}m"><label for="eq${i}m">~</label></div>
-      <div class="eval-opt no"><input type="radio" name="eq${i}" id="eq${i}n"><label for="eq${i}n">✗</label></div>
-    </div>
-  `).join('');
-}
-
-function renderVocab() {
-  const grid = document.getElementById('vocabGrid');
-  grid.innerHTML = vocabTerms.map(v => `
-    <div class="vocab-card">
-      <div class="vocab-word">${v.word}</div>
-      <div class="vocab-def">${v.def}</div>
-    </div>
-  `).join('');
-}
-
-// ── INTERACTIONS ──
-
-function selectRole(el, role) {
-  document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
-function showTab(tabId) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  event.target.classList.add('active');
-}
-
-function selectDeal(btn) {
-  document.querySelectorAll('.d-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-}
-
-function calcProfit() {
-  const cost = parseFloat(document.getElementById('bizCost').value) || 0;
-  const price = parseFloat(document.getElementById('bizPrice').value) || 0;
-  const qty = parseInt(document.getElementById('bizQty').value) || 0;
-  const ask = parseFloat(document.getElementById('bizAsk').value) || 0;
-  const pct = parseFloat(document.getElementById('bizPercent').value) || 0;
-
-  const revenue = price * qty;
-  const totalCost = cost + ask;
-  const profit = revenue - totalCost;
-  const investorShare = profit * (pct / 100);
-  const yourProfit = profit - investorShare;
-
-  const el = document.getElementById('calcResult');
-  if (cost > 0 && price > 0 && qty > 0) {
-    const profitColor = profit >= 0 ? 'var(--lime)' : 'var(--coral)';
-    el.innerHTML = `
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px;text-align:center">
-        <div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Revenue</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--sky)">$${revenue.toFixed(2)}</div></div>
-        <div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Total Costs</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--coral)">$${totalCost.toFixed(2)}</div></div>
-        <div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Total Profit</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:${profitColor}">$${profit.toFixed(2)}</div></div>
-        ${pct > 0 ? `<div><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Investor Gets</div><div style="font-family:'Fredoka',sans-serif;font-size:1.3rem;color:var(--gold)">$${investorShare.toFixed(2)}</div></div>` : ''}
-      </div>
-      <div style="font-size:.85rem;color:var(--text-dim);margin-bottom:8px">Your Take-Home Profit:</div>
-      <div class="big-num" style="color:${profitColor}">$${(pct > 0 ? yourProfit : profit).toFixed(2)}</div>
-      ${profit > 0 ? `<div style="margin-top:8px;font-size:.85rem;color:var(--teal)">🎉 Cost per item: $${(totalCost/qty).toFixed(2)} | Profit per item: $${((revenue-totalCost)/qty).toFixed(2)} | Markup: ${(((price - totalCost/qty)/(totalCost/qty))*100).toFixed(0)}%</div>` : ''}
-    `;
-  }
-}
-
-function updatePreview() { /* placeholder for future preview */ }
-
-// ── TRACKER ──
-function addRow(tableId) {
-  const tbody = document.getElementById(tableId);
-  const row = document.createElement('tr');
-  row.innerHTML = `
-    <td><input type="date"></td>
-    <td><input type="text" placeholder="Description..."></td>
-    <td><input type="number" min="1" placeholder="0" onchange="updateTotal()"></td>
-    <td><input type="number" min="0" step="0.25" placeholder="$0.00" onchange="updateTotal()"></td>
-  `;
-  tbody.appendChild(row);
-}
-
-function updateTotal() {
-  let expenses = 0, sales = 0;
-  document.querySelectorAll('#expenseRows tr').forEach(row => {
-    const val = parseFloat(row.querySelectorAll('input')[3]?.value) || 0;
-    expenses += val;
-  });
-  document.querySelectorAll('#salesRows tr').forEach(row => {
-    const val = parseFloat(row.querySelectorAll('input')[3]?.value) || 0;
-    sales += val;
-  });
-  const total = sales - expenses;
-  const el = document.getElementById('trackerTotal');
-  el.textContent = `$${total.toFixed(2)}`;
-  el.className = 'total-amount ' + (total >= 0 ? 'positive' : 'negative');
-}
-
-// ── NAV ACTIVE STATE ──
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
-  navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-});
-
-// ── INIT ──
-renderIdeas();
-renderPitches();
-renderEval();
-renderVocab();
-// Add initial tracker rows
-for (let i = 0; i < 4; i++) { addRow('expenseRows'); addRow('salesRows'); }
+function rP(){const g=document.getElementById('pG');g.innerHTML=P.map((p,i)=>{const rv=p.pr*p.qt,tc=p.su+p.ak,pf=rv-tc,ir=pf*(p.pc/100),roi=((ir-p.ak)/p.ak*100).toFixed(0),cpp=(tc/p.qt).toFixed(2),ppp=(pf/p.qt).toFixed(2);
+const sc=[{l:"Worst (50%)",s:Math.floor(p.qt*.5)},{l:"Likely (80%)",s:Math.floor(p.qt*.8)},{l:"Best (100%)",s:p.qt}].map(x=>{const r=x.s*p.pr,pr=r-tc,ir2=pr*(p.pc/100);return{...x,r,pr,ir:ir2}});
+return`<div class="pf ${p.cl}" id="p${i}"><div class="pb"><div class="pnum">Pitch #${i+1} ${p.em}</div><h3>${p.nm}</h3><div class="ptag">${p.tg}</div></div><div class="pbd">
+<div class="slb"><span>📜 Read-Aloud Pitch Script</span><span class="ll"></span></div>
+<div class="sbx"><div class="stx">${p.sc}</div></div>
+<div class="slb"><span>📊 The Numbers</span><span class="ll"></span></div>
+<div class="pns"><div class="pn"><div class="pl">My $</div><div class="pv" style="color:var(--cr)">$${p.su}</div></div><div class="pn"><div class="pl">Ask</div><div class="pv" style="color:var(--gd)">$${p.ak}</div></div><div class="pn"><div class="pl">For</div><div class="pv" style="color:var(--gd)">${p.pc}%</div></div><div class="pn"><div class="pl">Price</div><div class="pv" style="color:var(--sk)">$${p.pr.toFixed(2)}</div></div><div class="pn"><div class="pl">Make</div><div class="pv">${p.qt}</div></div><div class="pn"><div class="pl">Revenue</div><div class="pv" style="color:var(--sk)">$${rv.toFixed(2)}</div></div><div class="pn"><div class="pl">Costs</div><div class="pv" style="color:var(--cr)">$${tc.toFixed(2)}</div></div><div class="pn"><div class="pl">Profit</div><div class="pv" style="color:var(--lm)">$${pf.toFixed(2)}</div></div><div class="pn"><div class="pl">$/Item</div><div class="pv" style="color:var(--txd)">$${cpp}</div></div><div class="pn"><div class="pl">Profit/Item</div><div class="pv" style="color:var(--lm)">$${ppp}</div></div></div>
+<div class="slb"><span>🔑 5 Key Answers</span><span class="ll"></span></div>
+<div style="display:grid;gap:6px;margin-bottom:14px">
+<div style="padding:8px 12px;background:var(--code);border-radius:var(--rx)"><strong style="color:var(--gd);font-size:.7rem">❶ WHAT?</strong><br><span style="font-size:.86rem">${p.wh}</span></div>
+<div style="padding:8px 12px;background:var(--code);border-radius:var(--rx)"><strong style="color:var(--tl);font-size:.7rem">❷ WHO?</strong><br><span style="font-size:.86rem">${p.cu}</span></div>
+<div style="padding:8px 12px;background:var(--code);border-radius:var(--rx)"><strong style="color:var(--cr);font-size:.7rem">❸ COST?</strong><br><span style="font-size:.86rem">$${p.su} mine + $${p.ak} Sharks = $${tc} total</span></div>
+<div style="padding:8px 12px;background:var(--code);border-radius:var(--rx)"><strong style="color:var(--sk);font-size:.7rem">❹ PRICE?</strong><br><span style="font-size:.86rem">$${p.pr.toFixed(2)} × ${p.qt} = $${rv.toFixed(2)}</span></div>
+<div style="padding:8px 12px;background:var(--code);border-radius:var(--rx)"><strong style="color:var(--lm);font-size:.7rem">❺ WHY?</strong><br><span style="font-size:.86rem">${p.wy}</span></div></div>
+<div class="slb"><span>🦈 Shark Q&A — Click to Reveal</span><span class="ll"></span></div>
+<div class="qas"><div class="qag">${p.qa.map((q,j)=>`<button class="qab" onclick="tQ(${i},${j},this)">${q.ic} ${q.q}</button>`).join('')}</div>${p.qa.map((q,j)=>`<div class="qan" id="qa${i}-${j}"><h4>${q.ic} ${q.q}</h4><p>${q.a}</p><div class="sln"><strong>📜 Say:</strong> "${q.s}"</div></div>`).join('')}</div>
+<div class="slb"><span>📈 Investor Projections</span><span class="ll"></span></div>
+<div class="prb"><h4>🦈 If You Invest $${p.ak} for ${p.pc}%...</h4>
+<table class="prt"><thead><tr><th>Scenario</th><th>Sold</th><th>Revenue</th><th>Profit</th><th>Your $</th><th>ROI</th></tr></thead><tbody>${sc.map(s=>{const r=((s.ir-p.ak)/p.ak*100).toFixed(0);return`<tr><td>${s.l}</td><td>${s.s}/${p.qt}</td><td>$${s.r.toFixed(2)}</td><td class="${s.pr>=0?'pos':'neg'}">$${s.pr.toFixed(2)}</td><td class="${s.ir>=0?'pos':'neg'}">$${s.ir.toFixed(2)}</td><td class="${r>=0?'pos':'neg'}">${r}%</td></tr>`}).join('')}</tbody></table>
+<div style="margin-top:12px;display:grid;gap:6px">${sc.map(s=>{const mx=sc[2].pr,w=mx>0?Math.max(0,s.pr/mx*100):0,c=s.pr>=0?'var(--lm)':'var(--cr)';return`<div><div style="display:flex;justify-content:space-between;font-size:.72rem;margin-bottom:2px"><span style="color:var(--txd)">${s.l}</span><span style="color:${c};font-weight:600">$${s.pr.toFixed(2)}</span></div><div style="background:var(--bdr);border-radius:4px;overflow:hidden;height:7px"><div class="prbar" style="width:${w}%;background:${c}"></div></div></div>`}).join('')}</div>
+<div style="margin-top:12px;padding:10px;background:var(--gdim);border-radius:var(--rx);text-align:center"><div style="font-size:.7rem;color:var(--txd);text-transform:uppercase;font-weight:600">Best Case Return</div><div style="font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:var(--lm)">$${sc[2].ir.toFixed(2)}</div><div style="font-size:.8rem;color:var(--gd);font-weight:600">${roi}% ROI</div></div></div>
+</div><div class="pdf"><div class="dsum">Deal: <strong>$${p.ak} for ${p.pc}%</strong></div><div class="dbs"><button class="db din" onclick="cD(this)">💰 In!</button><button class="db dou" onclick="cD(this)">👋 Out</button><button class="db dng" onclick="cD(this)">🤝 Negotiate</button></div></div></div>`}).join('');
+setTimeout(()=>{document.querySelectorAll('.prbar').forEach(b=>{const w=b.style.width;b.style.width='0';setTimeout(()=>b.style.width=w,100)})},300)}
+rP();
+function tQ(pi,qi,btn){const el=document.getElementById(`qa${pi}-${qi}`),v=el.classList.contains('vis');document.querySelectorAll(`[id^="qa${pi}-"]`).forEach(a=>a.classList.remove('vis'));document.querySelectorAll(`#p${pi} .qab`).forEach(b=>b.classList.remove('act'));if(!v){el.classList.add('vis');btn.classList.add('act')}}
+function cD(b){b.closest('.dbs').querySelectorAll('.db').forEach(x=>x.classList.remove('sel'));b.classList.add('sel')}
+const eQs=["Would I buy this?","Is the price fair?","Can they sell this many?","Numbers realistic?","Person seems prepared?","Real demand at school?","Startup ≤ $10?","Can it grow?","Better than what exists?","Trust them with money?"];
+document.getElementById('eG').innerHTML=eQs.map((q,i)=>`<div class="er"><div class="eq">${q}</div><div class="eo yes"><input type="radio" name="e${i}" id="e${i}y"><label for="e${i}y">✓</label></div><div class="eo may"><input type="radio" name="e${i}" id="e${i}m"><label for="e${i}m">~</label></div><div class="eo no"><input type="radio" name="e${i}" id="e${i}n"><label for="e${i}n">✗</label></div></div>`).join('');
+function sd(b){document.querySelectorAll('.dbt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel')}
+const voc=[{w:"Entrepreneur",d:"Person who starts their own business."},{w:"Revenue",d:"All money from sales before costs."},{w:"Profit",d:"Money left after subtracting costs."},{w:"Loss",d:"When costs > revenue."},{w:"Investment",d:"Money put in hoping to earn more."},{w:"Investor",d:"Person who funds a business for profit share."},{w:"Startup Cost",d:"Money needed to get started."},{w:"Market Research",d:"Learning what customers want and will pay."},{w:"Supply & Demand",d:"High demand + low supply = higher prices."},{w:"Markup",d:"Amount added to cost for selling price."},{w:"Break Even",d:"Revenue equals costs — no profit yet."},{w:"ROI",d:"Return on Investment — profit vs. invested."},{w:"Pitch",d:"Presentation to convince others to invest."},{w:"Target Customer",d:"Specific group most likely to buy."},{w:"Competition",d:"Others selling similar products."},{w:"Bulk Buying",d:"Large qty at lower per-item price."}];
+document.getElementById('vG').innerHTML=voc.map(v=>`<div class="vc"><div class="vw">${v.w}</div><div class="vd">${v.d}</div></div>`).join('');
+function cP(){const c=parseFloat(document.getElementById('bC').value)||0,p=parseFloat(document.getElementById('bP').value)||0,q=parseInt(document.getElementById('bQ').value)||0,a=parseFloat(document.getElementById('bA').value)||0,pt=parseFloat(document.getElementById('bPt').value)||0;const rv=p*q,tc=c+a,pf=rv-tc,is=pf*(pt/100),y=pf-is;const el=document.getElementById('cR');if(c>0&&p>0&&q>0){const cl=pf>=0?'var(--lm)':'var(--cr)';el.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-bottom:10px;text-align:center"><div><div style="font-size:.62rem;color:var(--txd);text-transform:uppercase;font-weight:600">Revenue</div><div style="font-family:'Fredoka',sans-serif;font-size:1rem;color:var(--sk)">$${rv.toFixed(2)}</div></div><div><div style="font-size:.62rem;color:var(--txd);text-transform:uppercase;font-weight:600">Costs</div><div style="font-family:'Fredoka',sans-serif;font-size:1rem;color:var(--cr)">$${tc.toFixed(2)}</div></div><div><div style="font-size:.62rem;color:var(--txd);text-transform:uppercase;font-weight:600">Profit</div><div style="font-family:'Fredoka',sans-serif;font-size:1rem;color:${cl}">$${pf.toFixed(2)}</div></div>${pt>0?`<div><div style="font-size:.62rem;color:var(--txd);text-transform:uppercase;font-weight:600">Investor</div><div style="font-family:'Fredoka',sans-serif;font-size:1rem;color:var(--gd)">$${is.toFixed(2)}</div></div>`:''}</div><div style="font-size:.8rem;color:var(--txd)">Your Take-Home:</div><div class="bn" style="color:${cl}">$${(pt>0?y:pf).toFixed(2)}</div>`}}
+function aR(id){const t=document.getElementById(id),r=document.createElement('tr');r.innerHTML='<td><input type="date"></td><td><input type="text" placeholder="..."></td><td><input type="number" min="1" placeholder="0" onchange="uT()"></td><td><input type="number" min="0" step=".25" placeholder="$0" onchange="uT()"></td>';t.appendChild(r)}
+function uT(){let e=0,s=0;document.querySelectorAll('#eR tr').forEach(r=>{e+=parseFloat(r.querySelectorAll('input')[3]?.value)||0});document.querySelectorAll('#sR tr').forEach(r=>{s+=parseFloat(r.querySelectorAll('input')[3]?.value)||0});const t=s-e,el=document.getElementById('tT');el.textContent='$'+t.toFixed(2);el.className='tam '+(t>=0?'pos':'neg')}
+for(let i=0;i<4;i++){aR('eR');aR('sR')}
+const ss=document.querySelectorAll('section[id]'),nl=document.querySelectorAll('.nlinks a');window.addEventListener('scroll',()=>{let c='';ss.forEach(s=>{if(scrollY>=s.offsetTop-200)c=s.id});nl.forEach(a=>{a.classList.toggle('act',a.getAttribute('href')==='#'+c)})});
 </script>
 </body>
 </html>
